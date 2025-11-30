@@ -1,8 +1,8 @@
 [submodule "built-in-ai-chat-kernel"]
 	path = built-in-ai-chat-kernel
-	url = https://github.com/fovi-llc/built-in-ai-chat-kernel
+	url = https://github.com/wiki3-ai/built-in-ai-chat-kernel
 	ignore = dirty
 [submodule "built-in-ai-webllm-kernel"]
 	path = built-in-ai-webllm-kernel
-	url = https://github.com/fovi-llc/built-in-ai-webllm-kernel
+	url = https://github.com/wiki3-ai/built-in-ai-webllm-kernel
 	ignore = dirty
