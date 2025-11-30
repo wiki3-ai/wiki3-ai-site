@@ -1,7 +1,10 @@
 {
     "name": "JupyterLite",
     "build": {
-        "dockerfile": "../Dockerfile"
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "APP_DIR": "/workspaces/wiki3-ai-site"
+        }
     },
     // "remoteUser": "root",
     "forwardPorts": [
@@ -15,7 +18,6 @@
     },
     "containerEnv": {
         "JUPYTER_PORT": "8888",
-        "APP_DIR": "/workspaces/wiki3-ai-site"
         // "GRANT_SUDO": "yes"
         // "RESTARTABLE": "yes"
     }

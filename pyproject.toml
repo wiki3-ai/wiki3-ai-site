@@ -1,6 +1,6 @@
 [project]
 name = "wiki3-ai-site"
-version = "0.2.0"
+version = "0.3.0"
 description = "Wiki3.ai JupyterLite Site"
 readme = "README.md"
 requires-python = ">=3.12"
