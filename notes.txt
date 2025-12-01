@@ -3,3 +3,4 @@ const notifyUploadPlugin = {
     id: '@jupyterlab/filebrowser-extension:notify-upload'
 
 
+webllm.ipynb - Seems we need to reload window after AnyWidget first initializes.
