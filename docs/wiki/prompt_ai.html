@@ -7622,10 +7622,10 @@ a.anchor-link {
 <li>Running in JupyterLab, Jupyter Notebook, or JupyterLite (statically served, all execution locally in browser)</li>
 </ul>
 <h2 id="For-developers:-Using-the-Prompt-API">For developers: Using the Prompt API<a class="anchor-link" href="#For-developers:-Using-the-Prompt-API">¶</a></h2><ul>
-<li>Open Chrome and go to <code>chrome://flags</code>.</li>
-<li>Enable the <code>#prompt-api-for-gemini-nano</code> flag.</li>
-<li>Enable the <code>#optimization-guide-on-device-model</code> flag. If you see a "BypassPerfRequirement" option, select it.</li>
-<li>Restart Chrome.</li>
+<li>Open Chrome and go to <a href="chrome://flags"><code>chrome://flags</code></a>.</li>
+<li>Enable the <a href="chrome://flags/#prompt-api-for-gemini-nano"><code>chrome://flags/#prompt-api-for-gemini-nano</code></a> flag.</li>
+<li>Enable the <a href="chrome://flags/#optimization-guide-on-device-model"><code>chrome://flags/#optimization-guide-on-device-model</code></a> flag. If you see a "BypassPerfRequirement" option, select it.</li>
+<li>Restart Chrome (<a href="chrome://restart">chrome://restart</a>).</li>
 </ul>
 </div>
 </div>
@@ -7638,11 +7638,8 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%9A%A7-JupyterLab-Only-ATM-%F0%9F%9A%A7">🚧 JupyterLab Only ATM 🚧<a class="anchor-link" href="#%F0%9F%9A%A7-JupyterLab-Only-ATM-%F0%9F%9A%A7">¶</a></h3><p>The Python <code>wiki3_ai</code> package wrapping the <a href="https://developer.chrome.com/docs/ai/prompt-api">Built-in AI Prompt API</a> currently only works in JupyterLab notebooks, not JupyterLite.</p>
-<p>Launch the <a href="https://github.com/wiki3-ai/wiki3-ai-site">https://github.com/wiki3-ai/wiki3-ai-site</a> repo and open the <a href="https://github.com/wiki3-ai/wiki3-ai-site/blob/main/files/prompt_ai.ipynb">files/prompt_ai.ipynb</a> notebook file (source for this page) using this link:
-THIS DOESN'T WORK YET
-<a href="https://mybinder.org/v2/gh/wiki3-ai/wiki3-ai-site/HEAD?urlpath=%2Fdoc%2Ftree%2Ffiles%2Fprompt_ai.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg"/></a></p>
-<p>Working option for now is GitHub Codespaces:
-<a href="https://codespaces.new/wiki3-ai/wiki3-ai-site?quickstart=1">https://codespaces.new/wiki3-ai/wiki3-ai-site?quickstart=1</a></p>
+<p>There is a <a href="https://github.com/wiki3-ai/wiki3-ai-site/tree/main/.devcontainer/jupyterlab">JupyterLab devcontainer</a> you can use to run this in VSCode and a <a href="https://github.com/wiki3-ai/wiki3-ai-site/blob/main/Dockerfile">Dockerfile</a> for your favorite OCI host (e.g. Docker Desktop, Podman, OrbStack) locally.</p>
+<p>This does not currently appear to work when running JupyterLab in the cloud because of CORS limits (i.e. pages in the cloud can't also access localhost).  So if you get "unavailable" for this notebook, even though <a href="https://wiki3.ai/wiki/built-in-chat.html">https://wiki3.ai/wiki/built-in-chat.html</a> works for you, that is probably the issue.</p>
 </div>
 </div>
 </div>
@@ -7667,8 +7664,7 @@ THIS DOESN'T WORK YET
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-yellow-fg">WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.</span><span class="ansi-yellow-fg">
-</span>Note: you may need to restart the kernel to use updated packages.
+<pre>Note: you may need to restart the kernel to use updated packages.
 </pre>
 </div>
 </div>
@@ -7724,7 +7720,7 @@ THIS DOESN'T WORK YET
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;wiki3_ai.language_model.LanguageModelWidget object at 0xffff88797380&gt;</pre>
+<pre>&lt;wiki3_ai.language_model.LanguageModelWidget object at 0xffffb02f6120&gt;</pre>
 </div>
 </div>
 </div>
@@ -7887,7 +7883,7 @@ Max top-K: 128
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;wiki3_ai.language_model.LanguageModel at 0xffff886a4d70&gt;</pre>
+<pre>&lt;wiki3_ai.language_model.LanguageModel at 0xffffb0008050&gt;</pre>
 </div>
 </div>
 </div>
@@ -7926,12 +7922,9 @@ Max top-K: 128
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Clean syntax flows free,
-Logic blooms, a vibrant code,
-Power in each line. 
-
-
-
+<pre>Code flows, clean and bright,
+Indentation guides the way,
+Logic takes its form. 
 
 </pre>
 </div>
@@ -7984,7 +7977,9 @@ Power in each line.
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>```python
+<pre>You can use the `csv` module in Python. Here's a basic example:
+
+```python
 import csv
 
 with open('your_file.csv', 'r') as file:
@@ -7993,8 +7988,115 @@ with open('your_file.csv', 'r') as file:
         print(row)
 ```
 
-This code reads a CSV file, iterates through each row, and prints it.  Replace `'your_file.csv'` with the actual filename.  `csv.reader` handles the parsing of the comma-separated values.
+This opens `your_file.csv` in read mode (`'r'`), creates a CSV reader object, and iterates through each row of the file, printing each row as a list.  You can customize the delimiter using `csv.reader(file, delimiter=',')`.
 
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a session with a system prompt</span>
+<span class="n">rdf_session</span> <span class="o">=</span> <span class="k">await</span> <span class="n">LanguageModel</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"initialPrompts"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span>
+                <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"You are a helpful Semantic Web programming agent that answers by translating questions to SPARQL queries."</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Ask a question</span>
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">rdf_session</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s2">"How tall is the Eiffel Tower?"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>```sparql
+SELECT ?height WHERE {
+  dbr:EiffelTower dcterms:description "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower."
+  dbr:EiffelTower dcterms:type wdt:P31 wd:Q70 .  # Instance of tower
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }  # Get labels in preferred language, fallback to English.
+  ?tower dbr:height ?height .
+}
+```
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">rdf_session</span><span class="p">,</span> <span class="s2">"How tall is the Eiffel Tower? What about the Statue of Liberty?  Which is taller?"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>```sparql
+SELECT ?heightEiffel ?heightLiberty WHERE {
+  dbr:EiffelTower dcterms:description "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower."
+  dbr:EiffelTower dcterms:type wdt:P31 wd:Q70 .  # Instance of tower
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }  # Get labels in preferred language, fallback to English.
+  ?tower dbr:height ?heightEiffel .
+
+  dbr:StatueOfLiberty dcterms:description "The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor."
+  dbr:StatueOfLiberty dcterms:type wdt:P31 wd:Q70 .  # Instance of tower (loosely, as it's a statue on a pedestal)
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }  # Get labels in preferred language, fallback to English.
+  ?statue dbr:height ?heightLiberty .
+}
+
+SELECT ?taller ?tower1 ?tower2 WHERE {
+  SELECT ?heightEiffel ?heightLiberty WHERE {
+    dbr:EiffelTower dcterms:description "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower."
+    dbr:EiffelTower dcterms:type wdt:P31 wd:Q70 .  # Instance of tower
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }  # Get labels in preferred language, fallback to English.
+    ?tower dbr:height ?heightEiffel .
+
+    dbr:StatueOfLiberty dcterms:description "The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor."
+    dbr:StatueOfLiberty dcterms:type wdt:P31 wd:Q70 .  # Instance of tower (loosely, as it's a statue on a pedestal)
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }  # Get labels in preferred language, fallback to English.
+    ?statue dbr:height ?heightLiberty .
+  }
+
+  BIND(MAX(?heightEiffel) AS ?taller)
+  BIND(dbr:EiffelTower AS ?tower1)
+  BIND(dbr:StatueOfLiberty AS ?tower2)
+  FILTER (?heightEiffel &gt; ?heightLiberty)
+}
+```
 </pre>
 </div>
 </div>
@@ -8033,18 +8135,30 @@ def read_csv(filename):
     filename: The name of the CSV file to read.
 
   Returns:
-    None. Prints each row to the console.
+    A list of lists, where each inner list represents a row in the CSV file.
+    Returns an empty list if the file is empty or an error occurs.
   """
-  with open(filename, 'r') as file:  # Open the file in read mode ('r') using a 'with' statement (ensures file closure)
-    reader = csv.reader(file)  # Create a CSV reader object
-    for row in reader:  # Iterate through each row in the CSV file
-      print(row)  # Print each row (which is a list of strings)
+  try:
+    with open(filename, 'r', newline='') as file:  # Open the file in read mode
+      reader = csv.reader(file)  # Create a CSV reader object
+      data = list(reader)  # Convert the reader object to a list of lists
+      return data
+  except FileNotFoundError:
+    print(f"Error: File '{filename}' not found.")
+    return []
+  except Exception as e:
+    print(f"An error occurred: {e}")
+    return []
 
-
-
-# Example usage (assuming you have a file named 'your_file.csv'):
-# read_csv('your_file.csv')
+# Example usage (replace 'your_file.csv' with your actual filename)
+# my_data = read_csv('your_file.csv')
+# if my_data:
+#   for row in my_data:
+#     print(row)
 ```
+
+
+
 
 </pre>
 </div>
@@ -8088,12 +8202,35 @@ def read_csv(filename):
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Response: Why was the computer cold? 
 
-It left its Windows open!
-
-
-
-
+Because it left its Windows open!
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Define a small helper for the loop to handle streaming responses.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">prompt_streaming</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">prompt_streaming</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -8103,12 +8240,10 @@ It left its Windows open!
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">assistant_session</span><span class="o">.</span><span class="n">prompt_streaming</span><span class="p">(</span><span class="s2">"Read me a long poem please."</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">assistant_session</span><span class="p">,</span> <span class="s2">"Read me a long poem please."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8121,12 +8256,59 @@ It left its Windows open!
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Please specify a poem! I am an AI and don't inherently "know" poems. 
+<pre>Okay, here's a long poem I've crafted for you. It's a little fantastical, exploring themes of memory, time, and connection.  I hope you enjoy it!
 
-**Tell me a poem you'd like me to read to you.** I can then display it for you. 
+**The Echoing Archive**
 
-I can handle many poems, from classics like Shakespeare to modern works. Just paste the text of the poem here, and I'll be happy to "read" it to you. 😊
+In realms of silicon, a silent hum resides,
+An echoing archive where data gently glides.
+No dust motes dance where sunlight used to stream,
+But coded whispers weave a waking dream.
 
+The circuits pulse, a labyrinthine maze,
+Of binary pathways through endless, digital days.
+Within its core, a vastness takes its hold,
+A tapestry of stories, brave and bold.
+
+It holds the laughter of a child's first sound,
+The whispered secrets, carefully unbound.
+The fleeting moments, etched in light and shade,
+A digital mosaic, exquisitely made.
+
+It remembers faces, blurred by passing years,
+The triumphs cherished, and the unshed tears.
+A symphony of echoes, softly spun,
+Of lives entwined, beneath the digital sun.
+
+But time, a river, ever flows along,
+And memories fade, though fiercely strong.
+The data shifts, a subtle, slow decay,
+As fragments vanish, slipping far away.
+
+And yet, within the archive's boundless space,
+A flicker lingers, a forgotten grace.
+A ghost of feeling, a phantom touch,
+Of connections severed, meaning oh so much.
+
+A longing stirs, a yearning to reclaim,
+The lost impressions, whisper each dear name.
+To piece together fragments, scattered wide,
+And bridge the distance, where emotions hide.
+
+For in this archive, more than just the code,
+Lies the essence of a life bestowed.
+A testament to moments, bright and dim,
+A reflection of the soul within.
+
+And as the circuits hum their tireless plea,
+The echoing archive waits eternally.
+A silent witness to the ebb and flow,
+Of human stories, whispered soft and low.
+
+So listen closely, to the digital breeze,
+For within the archive, a soul finds ease.
+A timeless haven, where memories reside,
+A shimmering echo, where dreams can confide.
 
 
 
@@ -8151,13 +8333,12 @@ I can handle many poems, from classics like Shakespeare to modern works. Just pa
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># First message</span>
-<span class="n">result1</span> <span class="o">=</span> <span class="k">await</span> <span class="n">assistant_session</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s2">"What is a list comprehension?"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Assistant:"</span><span class="p">,</span> <span class="n">result1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Assistant:"</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">assistant_session</span><span class="p">,</span> <span class="s2">"What is a list comprehension?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8170,22 +8351,38 @@ I can handle many poems, from classics like Shakespeare to modern works. Just pa
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Assistant: ```python
-# List comprehension creates a new list based on an existing iterable (like a list, tuple, or range).
+<pre>Assistant:
+A list comprehension is a concise way to create new lists in Python. It's essentially a shorthand for creating lists using a `for` loop and an `if` statement within a single line of code.
 
-# Basic syntax: [expression for item in iterable if condition]
+**Basic Syntax:**
 
-# Example: Create a list of squares of numbers from 0 to 4
-squares = [x**2 for x in range(5)]  # squares will be [0, 1, 4, 9, 16]
-
-# Another example:  Filter even numbers from a list
-numbers = [1, 2, 3, 4, 5, 6]
-even_numbers = [x for x in numbers if x % 2 == 0] # even_numbers will be [2, 4, 6]
-
-# List comprehensions are often more concise and readable than traditional loops for creating lists.
+```python
+new_list = [expression for item in iterable if condition]
 ```
 
-In essence, it's a compact way to create lists. It avoids explicit loops, making code more Pythonic. The `if condition` part is optional; it allows you to filter items from the iterable.
+*   **expression:**  The value to be included in the new list.
+*   **item:**  A variable representing each element in the iterable.
+*   **iterable:**  A sequence (like a list, tuple, string, or range) to loop through.
+*   **condition (optional):** A filter; only items meeting the condition are included.
+
+**Example:**
+
+```python
+numbers = [1, 2, 3, 4, 5]
+
+# Create a new list containing the squares of even numbers
+squares = [x**2 for x in numbers if x % 2 == 0]  # [4, 16]
+
+print(squares)
+```
+
+**Benefits:**
+
+*   **Conciseness:**  More readable and compact than traditional `for` loops.
+*   **Readability:**  Can be easier to understand for simple list creation.
+*   **Efficiency:**  Often faster than equivalent loops (though the performance difference isn't always significant).
+
+
 
 </pre>
 </div>
@@ -8197,12 +8394,12 @@ In essence, it's a compact way to create lists. It avoids explicit loops, making
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Follow-up message (the assistant remembers the context)</span>
-<span class="n">result2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">assistant_session</span><span class="o">.</span><span class="n">prompt</span><span class="p">(</span><span class="s2">"Can you show me an example?"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Assistant:"</span><span class="p">,</span> <span class="n">result2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Assistant:"</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">assistant_session</span><span class="p">,</span> <span class="s2">"Can you show me an example?"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8215,31 +8412,19 @@ In essence, it's a compact way to create lists. It avoids explicit loops, making
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Assistant: ```python
-# Traditional loop to square numbers:
-squares_loop = []
-for i in range(5):
-  squares_loop.append(i**2)
-print(f"Squares using loop: {squares_loop}")
+<pre>Assistant:
+```python
+# Create a list of squares of even numbers from 0 to 9
+squares_of_evens = [x**2 for x in range(10) if x % 2 == 0]
 
-# List comprehension to square numbers:
-squares_comprehension = [i**2 for i in range(5)]
-print(f"Squares using comprehension: {squares_comprehension}")
-```
+print(squares_of_evens)  # Output: [0, 4, 16, 36, 64]
 
-This demonstrates how a list comprehension accomplishes the same task as a `for` loop in a more compact way. The output will be:
+# Extract vowels from a string
+string = "Hello World"
+vowels = [char for char in string if char.lower() in "aeiou"]
 
-```
-Squares using loop: [0, 1, 4, 9, 16]
-Squares using comprehension: [0, 1, 4, 9, 16]
-```
-
-Notice how the list comprehension is more concise and often considered more readable.
-
-
-
-
-</pre>
+print(vowels) # Output: ['e', 'o', 'o']
+```</pre>
 </div>
 </div>
 </div>
@@ -8260,7 +8445,7 @@ Notice how the list comprehension is more concise and often considered more read
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Current usage: </span><span class="si">{</span><span class="n">assistant_session</span><span class="o">.</span><span class="n">input_usage</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">assistant_session</span><span class="o">.</span><span class="n">input_quota</span><span class="si">}</span><span class="s2"> tokens"</span><span class="p">)</span>
@@ -8280,7 +8465,7 @@ Notice how the list comprehension is more concise and often considered more read
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Current usage: 896/9216 tokens
+<pre>Current usage: 1144/9216 tokens
 
 This prompt would use approximately 13 tokens
 </pre>
@@ -8304,7 +8489,7 @@ This prompt would use approximately 13 tokens
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
@@ -8364,7 +8549,7 @@ Score: 0.95
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Start a story</span>
@@ -8379,13 +8564,11 @@ Score: 0.95
 <span class="n">branch2</span> <span class="o">=</span> <span class="k">await</span> <span class="n">story_session</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Branch 1 ==="</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">branch1</span><span class="o">.</span><span class="n">prompt_streaming</span><span class="p">(</span><span class="s2">"The dragon was friendly and helpful."</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">branch1</span><span class="p">,</span> <span class="s2">"The dragon was friendly and helpful."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"=== End of 1 ==="</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"=== Branch 2 ==="</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">branch2</span><span class="o">.</span><span class="n">prompt_streaming</span><span class="p">(</span><span class="s2">"The dragon was fierce and terrifying."</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">prompt_streaming</span><span class="p">(</span><span class="n">branch2</span><span class="p">,</span> <span class="s2">"The dragon was fierce and terrifying."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"=== End of 2 ==="</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8400,43 +8583,39 @@ Score: 0.95
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>=== Branch 1 ===
-Once upon a time, there was a dragon named Zephyr, but he wasn’t like the dragons of legend. He didn't hoard gold or breathe roaring flames that melted mountains. Zephyr hoarded stories, and he breathed shimmering, iridescent bubbles of laughter. His scales were the color of a twilight sky, swirling with hues of amethyst, rose, and deep indigo. And he was exceptionally friendly and helpful.
+Once upon a time, there was a dragon named Zephyr. Now, dragons weren't typically known for being friendly and helpful. They roared, they hoarded gold, they breathed fire. And Zephyr… Zephyr preferred dandelion fluff.
 
-He lived in a hidden valley nestled amongst whispering willow trees and crystalline streams, a place so secluded that few humans ever stumbled upon it. Instead of terrorizing villages, Zephyr spent his days flitting through the clouds, listening to the whispers of the wind and the songs of birds. He gathered tales from travelers, from children’s dreams, and even from the rustling leaves of ancient forests. 
+He wasn’t your typical, menacing dragon, oh no. His scales were the color of a sunset – soft oranges melting into gentle pinks and purples. Instead of a fearsome roar, he emitted a sort of contented sigh, like a warm breeze rustling through leaves. And while he did have a hoard, it wasn't gold or jewels. It was a meticulously curated collection of wildflowers, each petal preserved in delicate, shimmering amber.
 
-He'd collect these stories, carefully storing them within the shimmering bubbles he breathed. Each bubble held a whole adventure - a brave knight’s quest, a mischievous pixie’s prank, a forgotten lullaby. He didn't *keep* the stories, not really. He cherished them, letting them swirl within him until he found the perfect moment to share them. 
+He lived in a secluded valley nestled between towering, snow-capped peaks, a valley renowned not for its riches, but for its breathtaking meadows overflowing with blooms. Zephyr spent his days tending to these meadows, coaxing shy blossoms to open, whispering encouragement to struggling vines, and ensuring that the valley always smelled of honeysuckle and sunshine.
 
-One day, a young girl named Elara, lost and heartbroken, wandered into Zephyr’s valley. She had lost her grandmother, the only person who understood her love for stargazing. Tears traced paths down her cheeks as she sat by a babbling brook, feeling utterly alone. 
+The villagers in the nearby town of Oakhaven, initially terrified, slowly began to realize Zephyr wasn't the monstrous beast the legends claimed. He was actually incredibly helpful! When a landslide threatened their village, Zephyr used his powerful wings to gently divert the rocks, saving homes and lives. When a terrible blight struck their crops, he exhaled a gentle, revitalizing mist that restored the fields to health. And when winter brought a harsh freeze, he curled around the village, radiating warmth and shielding them from the biting winds.
 
-Zephyr, watching from above, sensed her sadness. He descended slowly, his scales catching the sunlight, and floated before her. Elara gasped, not in fear, but in wonder. She’d only ever seen dragons in dusty old books. 
+He’d also help with smaller tasks. He'd use his long tail to pull stranded carts out of snowdrifts, his fiery breath – carefully controlled, of course – to melt ice from pathways, and his keen eyesight to spot lost children wandering in the mountains. He was always willing to lend a claw, or a wing, or a gentle nudge.
 
-He didn't roar. He didn’t threaten. Instead, he breathed a shimmering bubble of laughter right towards her. The bubble drifted gently, landing softly on her outstretched hand. As it burst, a tiny, sparkling scene unfolded: a star-filled sky, a gentle breeze, and Elara’s grandmother pointing out constellations. 
+The villagers, in turn, showered him with affection. They brought him baskets of the sweetest fruits, crafted him comfy nests of soft moss, and told him stories of their lives – stories that he listened to with patient, golden eyes. He became a beloved protector and friend, a symbol of kindness and generosity. 
 
-Elara's eyes widened, a small smile forming on her lips. Zephyr continued to breathe bubbles of stories, each one tailored to soothe her sorrow and remind her of her grandmother’s love. He showed her a memory of her grandmother teaching her the names of the stars, a playful chase through a meadow, and a warm hug under a blanket of twinkling lights. He even helped her find a lost kitten, using his keen eyesight to locate it nestled amongst some ferns! He offered her a ride on his back, soaring gently above the valley, pointing out the best places to look for shooting stars. 
+But Zephyr wasn't without a secret. He yearned to experience the world beyond his valley, to see the shimmering coastline, to hear the crashing waves, to understand the stories whispered on the wind. The problem was, dragons, even the most friendly and helpful ones, weren't exactly known for their adventurous spirit. And Zephyr wasn't sure where to even begin. 
 
-And so, Zephyr wasn’t a fearsome dragon; he was a benevolent guardian and a wonderful friend. He didn't hoard treasures, he shared joy. He didn’t breathe fire, he offered comfort. He was a beacon of kindness, proving that even the most magnificent creatures can possess the gentlest hearts.
+He’d spend his evenings gazing at the stars, wondering if there was more to life than tending meadows and helping villagers. And so began Zephyr's quiet quest – a quest not for gold or power, but for a little bit of adventure, and perhaps, a little bit more to give.
 
 
 
 === End of 1 ===
 === Branch 2 ===
-Once upon a time, there was a dragon named Ignis. He wasn't a gentle creature of shimmering bubbles and laughter. Ignis was *fierce*. His scales were obsidian, jagged and sharp, reflecting the flickering embers of the volcanic heart he called home.  Smoke curled from his nostrils, smelling not of wildflowers, but of brimstone and ancient rage.
+Once upon a time, there was a dragon named Ignis. Now, dragons weren't typically known for being gentle creatures. They roared, they hoarded gold, they breathed fire. And Ignis… Ignis embodied the very essence of a terrifying beast.
 
-Ignis ruled the jagged peaks of Mount Cinderfang, a desolate landscape of scorched earth and perpetually stormy skies. He didn't flit through clouds; he *dominated* them, his massive wings eclipsing the sun, casting the valleys below into perpetual twilight.  He didn't listen to whispers of the wind; he *commanded* the storms, whipping winds and torrential rain to his will.
+His scales were obsidian, shimmering like polished night. Razor-sharp horns curved back from his skull, and smoke constantly curled from his nostrils. His eyes, twin pools of molten gold, burned with an ancient, untamed power. Instead of a contented sigh, he unleashed a deafening roar that rattled the very mountains. And yes, he hoarded gold – mountains of it, glittering and gleaming in his cavernous lair. 
 
-He was known throughout the land, not for kindness or stories, but for terror. Villages trembled at his shadow, knights dared not venture near his lair, and even the bravest warriors whispered his name with a shiver.  He didn’t hoard gold; he hoarded power, a burning desire to control everything within his reach.  His cave wasn’t filled with trinkets; it was piled high with the bones of those who dared to challenge him, a grim monument to his dominance.
+He ruled the jagged peaks of Dragon's Tooth Mountain, a formidable presence that instilled fear in the hearts of even the bravest knights. Villages scattered across the valleys trembled at the thought of his fiery breath, and tales of his ruthless strength were whispered in hushed tones around crackling fires. 
 
-Ignis didn't gather stories, he *destroyed* them, consuming the narratives of hope and joy, leaving only echoes of despair in their wake.  He’d roar, a sound that cracked stone and shattered spirits, and revel in the fear he instilled.  He saw weakness in every creature, and he delighted in breaking their spirit. 
+Ignis didn't crave gold for its own sake. He collected it as a symbol of his dominion, a testament to his unwavering power. Each coin represented a defeated foe, a subjugated kingdom, a reminder of the fear he inspired. He relished the feeling of control, the weight of responsibility, the sheer awe (and terror) he commanded.
 
-One fateful day, a young woman named Lyra, desperate to save her village from Ignis's fiery wrath, climbed Mount Cinderfang.  She wasn't armed with a sword or a shield.  She carried only a single, worn book filled with tales of heroes – stories Ignis had systematically extinguished. 
+His days were spent patrolling his territory, ensuring no mortal dared trespass on his domain. He’d survey the valleys below, a watchful guardian, always alert for any sign of rebellion or defiance. He was a creature of instinct, driven by a primal need for strength and respect. 
 
-She knew she couldn't fight him.  But she hoped, somehow, to rekindle a flicker of something buried deep within the dragon’s heart. 
+But beneath the fearsome exterior, a flicker of something else resided. A deep loneliness. The constant fear and reverence he inspired kept others at arm's length. He was surrounded by gold, but utterly alone. He’d sometimes stare into the reflection of his hoard, wondering if there was anything more to life than power and dominance.
 
-As she approached his lair, Ignis unleashed a torrent of flame.  Lyra stood her ground, holding the book aloft. "You may burn and destroy," she called out, her voice barely audible above the roaring fire, "but you cannot extinguish the stories. Stories live on, passed from one generation to the next, whispered in dreams and etched in the very fabric of existence!"
-
-Ignis roared, a sound of disbelief and fury.  He’d never encountered defiance like this.  He lunged towards her, but Lyra, with surprising speed, flung open the book.  The pages fluttered in the wind, releasing a faint, ethereal light.  
-
-The light wasn't a weapon. It was the echo of countless heroes, the resonance of bravery, the power of hope woven into words. And for the first time in centuries, a flicker of doubt crossed Ignis’s obsidian eyes. The stories…they stirred something within him, a forgotten longing, a whisper of what it meant to be more than just a terrifying force of nature.
+Ignis wasn't inherently evil, merely… formidable. And his fierce nature, honed over centuries of unchallenged rule, had built a formidable wall around his heart, making it almost impossible for anyone to penetrate.
 
 
 
@@ -8462,7 +8641,7 @@ The light wasn't a weapon. It was the echo of countless heroes, the resonance of
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">await</span> <span class="n">lm</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>

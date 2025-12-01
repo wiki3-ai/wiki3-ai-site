@@ -7614,8 +7614,10 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Using-the-WebLLM-Chat-kernel-to-run-built-in-ai-LLMs-as-JupyterLite-kernels">Using the <code>WebLLM Chat</code> kernel to run built-in-ai LLMs as JupyterLite kernels<a class="anchor-link" href="#Using-the-WebLLM-Chat-kernel-to-run-built-in-ai-LLMs-as-JupyterLite-kernels">¶</a></h2><p>The <code>WebLLM Chat</code> kernel (be sure it is selected in the kernel picker above) is derived from a JupyterLite kernel implemented by <a href="https://www.linkedin.com/in/aleksandar-s-486829128/">Aleksandar Sekulovski</a> at <a href="https://github.com/aleks-s10/agent-client-kernel/tree/main/lite-kernel">https://github.com/aleks-s10/agent-client-kernel/tree/main/lite-kernel</a>.  This version currently lives at <a href="https://github.com/wiki3-ai/built-in-ai-webllm-kernel">https://github.com/wiki3-ai/built-in-ai-webllm-kernel</a> with Python installer by <a href="https://www.linkedin.com/in/jamespaulwhite/">Jim White</a> and Copilot.  It will be moving to its own repo RSN.</p>
-<p>It is a TS/JS kernel that wraps <code>@built-in-ai/web-llm</code> from <a href="https://github.com/jakobhoeg/built-in-ai">https://github.com/jakobhoeg/built-in-ai</a> which is an <a href="https://ai-sdk.dev/">AI SDK model provider</a> for open-source models (using WebLLM) running directly in the browser by <a href="https://www.linkedin.com/in/jakob-hoeg-moerk/">Jakob Hoeg Mørk</a>.</p>
+<h1 id="Using-the-WebLLM-Chat-kernel-to-run-built-in-ai-LLMs-as-JupyterLite-kernels">Using the <code>WebLLM Chat</code> kernel to run built-in-ai LLMs as JupyterLite kernels<a class="anchor-link" href="#Using-the-WebLLM-Chat-kernel-to-run-built-in-ai-LLMs-as-JupyterLite-kernels">¶</a></h1><p><em>If you are in the wiki view (static HTML rendering), click "edit" in the top right to open this <a href="https://jupyterlite.readthedocs.io/">JupyterLite</a> notebook in your browser.</em></p>
+<p>The <code>WebLLM Chat</code> kernel (be sure it is selected in the kernel picker above) is derived from a JupyterLite kernel implemented by <a href="https://www.linkedin.com/in/aleksandar-s-486829128/">Aleksandar Sekulovski</a> at <a href="https://github.com/aleks-s10/agent-client-kernel/tree/main/lite-kernel">https://github.com/aleks-s10/agent-client-kernel/tree/main/lite-kernel</a>.  This version currently lives at <a href="https://github.com/wiki3-ai/built-in-ai-webllm-kernel">https://github.com/wiki3-ai/built-in-ai-webllm-kernel</a> with Python installer by <a href="https://www.linkedin.com/in/jamespaulwhite/">Jim White</a> and Copilot.</p>
+<p>It is a TS/JS kernel that wraps <a href="https://www.npmjs.com/package/@built-in-ai/web-llm"><code>@built-in-ai/web-llm</code></a> from <a href="https://github.com/jakobhoeg/built-in-ai">https://github.com/jakobhoeg/built-in-ai</a> which is an <a href="https://ai-sdk.dev/">AI SDK model provider</a> for open models (using <a href="https://webllm.mlc.ai/">WebLLM</a> which uses <a href="https://www.w3.org/TR/webgpu/">WebGPU</a> to run <a href="https://huggingface.co/models?library=mlc-llm">HuggingFace MLC-LLM models</a>) running directly in the browser by <a href="https://www.linkedin.com/in/jakob-hoeg-moerk/">Jakob Hoeg Mørk</a>.</p>
+<h2 id="Next">Next<a class="anchor-link" href="#Next">¶</a></h2><p>After you give this a whirl, check out <a href="https://wiki3.ai/wiki/built-in-chat.html">https://wiki3.ai/wiki/built-in-chat.html</a> which demonstrates the <a href="https://developer.chrome.com/docs/ai/prompt-api">Chrome/Edge Built-In AI Prompt API</a> in a JupyterLite kernel based on this <code>WebLLM Chat</code> kernel.</p>
 <h3 id="%F0%9F%9A%A7-Under-Construction-%F0%9F%9A%A7">🚧 Under Construction 🚧<a class="anchor-link" href="#%F0%9F%9A%A7-Under-Construction-%F0%9F%9A%A7">¶</a></h3><p>There is no UX for things like errors/config issues, status, progress, etc yet.  This version is a PoC towards a Zed Agent Client Protocol (ACP) kernel which not only runs local-first LLMs but also agents (including coding agents).</p>
 <p>Example using the default, a "small" LLM: <a href="https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q4f16_1-MLC">SmolLM2-360M-Instruct-q4f16_1-MLC</a> which is 360M parameters quantized to 4bit and is 130MB.</p>
 </div>
@@ -7626,7 +7628,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-markdown"><pre><span></span>how sweet would a rose smell by another name?
@@ -7642,7 +7644,48 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>A rose, more knowingly, smells of carrion by its own. Just like you, I don't affirm my ability to know. It has more knowledge than it should. I'll just continue to bliss. Just like I haven't the wit to smile, my latitude has more. I'll see it.</pre>
+<pre>a rose by its original name would smell slightly sweeter and floral -this scent was compared to roses such as the 'Rose of Burgundy' which has a sweet and floral fragrance and almost resembles a rose, by a name that might refer to the particular rose – although not the specific rose belong to that here.</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=019018d0-fe63-4150-8548-4e39b2c052d6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-markdown"><pre><span></span>how do i build a skyscraper of straw?
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Sure! Building a skyscraper with Straw is actually a fantastic project – it's almost like achieving 'ch' sound functionality within a fictional character's language 'straw'. This object-less feat can be akin to 'cher', literally or figuratively.
+
+Here's a handy Guide to achieve this 20% Stunt:
+1. Gather some items that are found in a box of paper. Your Straw needs to be made to fit a wooden frame and last as long as it can. You can use soda bottles and melamine dust for this.
+2. Shake the home-made Straw vigorously.
+3. You can use ISAVI TOOLS AND THERMITE artisanal glasses hopper tools to reassemble the straw-made 100% Straw.
+4. When you perform 100% Straw-Breaking 100 per cent,( adlisterical true power from your brain with all your 101% effort), it puts your Symbolic Stunt 20% motor higher from a 100% 20% Making 'CHA' 101% motorcycle.
+5. Take 100% of your 100% 1 Stunt 66% of stacking and means. Glue together 100% of your 100% 2 built 90% Straw-It building it, as it revitalizes all your 1 1 Stunt 20% motor with more efficiency.
+6. Increase the quality 101% of your 100%  motivation.
+7. Take 101% of your 101% motivation.
+
+Remember... You have to use more and more if you want your object to be miraculously 100% made structurally. Increase it, okay?
+
+Hope this is more than satisfying 101% for you. Implement this 'cheat-code' symbolism. 101% more power.
+
+Sigmoid the 100% Magic 2 0% 1 Stunt 6 66 cents 100% 1 101% 1% 1 Horror-dark 20% accidental 11% destructive -3!</pre>
 </div>
 </div>
 </div>
@@ -7658,7 +7701,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=019018d0-fe63-4150-8548-4e39b2c052d6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f06f0903-9f7d-4a60-9633-d68c9d19cdea">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7679,38 +7722,41 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Building a skyscraper out of straw is a fascinating concept, but it's important to understand that it's not a practical or achievable task in its entirety. Straw is a great material with some interesting properties, but it has limitations that make a skyscraper impossible to build with only straw. 
+<pre>Building a skyscraper out of straw is an incredibly ambitious and complex undertaking that's more of a theoretical concept than a practical one. Here's why, and some of the challenges involved:
 
-Here's a breakdown of the challenges and why it's not feasible:
+**Why It's Difficult:**
 
-**Challenges:**
+* **Structural Strength:** Straw is a relatively weak material compared to steel or concrete. While it can be bound together with a strong adhesive, it lacks the inherent structural integrity to support the weight of a skyscraper. 
+* **Stability and Wind Resistance:**  Straw bales are prone to sagging and shifting under weight. This can lead to instability and structural damage. They are also not very resistant to wind pressure, which can cause significant stress. 
+* **Building Codes and Regulations:** Most modern building codes are designed for materials that are more durable and stable than straw. This makes it incredibly difficult to get permits and meet safety standards for a straw-based skyscraper.
+* **Scale and Logistics:** The sheer scale of a skyscraper is a huge challenge. Transporting and placing thousands of straw bales in the correct order is a logistical nightmare. 
+* **Durability:** Straw is susceptible to fire and mold, requiring special considerations for fireproofing and pest control. 
 
-* **Structural Integrity:** Straw is fragile and not strong enough to support the immense weight of a skyscraper. It can easily collapse under pressure. 
-* **Fire Safety:** Straw is highly flammable and would be a significant fire hazard. Fire safety measures are essential for skyscrapers, and straw wouldn't provide adequate protection. 
-* **Building Codes:** Straw buildings would likely not meet modern building codes due to structural safety and fire safety requirements. 
-* **Scalability:** The sheer scale of a skyscraper is difficult to achieve with straw alone.  Straw bales are typically used for smaller structures like shelters or temporary housing. 
-* **Cost:** Building a skyscraper with straw would be incredibly expensive, considering the amount of straw needed and the complexity of construction. 
+**Possible Approaches:**
 
-**However, straw building is still a viable option for smaller structures:**
+Despite these challenges, there are some innovative approaches to exploring straw construction for large-scale buildings:
 
-* **Straw bale construction** utilizes a more robust form of straw, woven together with a mixture of clay, straw, and mud to create stronger, more durable walls. 
-* **Modern techniques:** Architects and engineers are constantly innovating with straw bale construction, finding ways to incorporate it into modern designs and enhance its capabilities.
+* **Hybrid Structures:** Straw bales could be used as a core structure within a more traditional building, with concrete or steel for the exterior and other supporting elements. This would allow for a more robust structure while still incorporating the benefits of straw's sustainability and cost-effectiveness.
+* **Straw-Filled Insulation:** Straw could be used as insulation within a building's walls and roof, providing a natural and energy-efficient solution.
+* **Straw-Based Composites:** Advanced technologies could create stronger and more durable straw-based composites that offer greater structural integrity than traditional straw.
 
-**Instead of building a skyscraper from scratch, you could:**
+**The Future of Straw Construction:**
 
-* **Learn about straw bale building:**  Explore books, online resources, and local workshops to learn more about the techniques and materials involved.
-* **Model a straw bale structure:** Experiment with smaller-scale projects like a model house or a straw bale planter box to gain hands-on experience.
-* **Explore straw bale architecture:** Find architects and designers who are incorporating straw bale construction into their projects. 
+* **Research and Development:** There's ongoing research into using straw for building materials, exploring new methods to improve its strength, durability, and sustainability. 
+* **Sustainable Architecture:**  The use of straw as a sustainable building material is gaining popularity, especially in the context of eco-friendly construction and community development projects.
+
 
 **In Conclusion:**
 
-While a skyscraper made entirely of straw is not realistic in the near future, straw building is a fascinating and sustainable alternative to traditional construction methods. With advancements in technology and innovation, straw could play a more significant role in building the future of architecture. 
+Building a skyscraper entirely out of straw is currently impossible due to the challenges mentioned. However, with advancements in materials science and sustainable building practices, straw could become a more viable option for future construction. 
+
+Remember, this is a complex and specialized field that requires a team of experts in architecture, engineering, and sustainable construction. 
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f06f0903-9f7d-4a60-9633-d68c9d19cdea">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3caab68b-fab6-4971-9ebe-a95e7b73a697">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

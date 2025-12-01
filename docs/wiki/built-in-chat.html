@@ -7614,11 +7614,12 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Chrome-AI-Built-in-Prompt-API-Demo">Chrome AI Built-in Prompt API Demo<a class="anchor-link" href="#Chrome-AI-Built-in-Prompt-API-Demo">¶</a></h1><p>This notebook demonstrates using Chrome's built-in AI (Gemini Nano) with the Prompt API <a href="https://developer.chrome.com/docs/ai/prompt-api">https://developer.chrome.com/docs/ai/prompt-api</a>.</p>
+<h1 id="Chrome-AI-Built-in-Prompt-API-Demo">Chrome AI Built-in Prompt API Demo<a class="anchor-link" href="#Chrome-AI-Built-in-Prompt-API-Demo">¶</a></h1><p><em>If you are in the wiki view (static HTML rendering), click "edit" in the top right to open this <a href="https://jupyterlite.readthedocs.io/">JupyterLite</a> notebook in your browser.</em></p>
+<p>This notebook demonstrates using Chrome/Edge Built-In AI with the Prompt API (Gemini Nano) <a href="https://developer.chrome.com/docs/ai/prompt-api">https://developer.chrome.com/docs/ai/prompt-api</a>.</p>
 <p>Source for this JupyterLite kernel, "Built-in AI Chat" (check that it is selected in the kernel picker above), is located at <a href="https://github.com/wiki3-ai/built-in-ai-chat-kernel">https://github.com/wiki3-ai/built-in-ai-chat-kernel</a>.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
-<li><p>Chrome browser version 128+</p>
+<li><p>Chrome browser version 138+</p>
 </li>
 <li><p>Enable experimental flags:</p>
 <ul>
@@ -7626,14 +7627,21 @@ a.anchor-link {
 <li><a href="chrome://flags/#optimization-guide-on-device-model">chrome://flags/#optimization-guide-on-device-model</a></li>
 </ul>
 </li>
-<li><p><a href="chrome://restart">chrome://restart</a></p>
+<li><p>Restart browser</p>
+<ul>
+<li><a href="chrome://restart">chrome://restart</a></li>
+</ul>
 </li>
-<li><p>First use requires downloading the Gemini Nano model</p>
+<li><p>First use requires downloading the Gemini Nano model which may take a while because the model is around 2GB.</p>
 </li>
-<li><p>Open JupyterLite and create a notebook selecting the "Built-in AI Chat" kernel.</p>
+<li><p>Open JupyterLite (<code>edit</code> button in top right when in wiki view) and create a notebook selecting the "Built-in AI Chat" kernel.</p>
 </li>
 </ul>
-<p>This is a sample chat using the built-in-chat JupyterLite kernel for @built-in-ai/core which provides the Built In AI Prompt API</p>
+<p>This is a sample chat using the built-in-chat JupyterLite kernel for <a href="https://www.npmjs.com/package/@built-in-ai/core"><code>@built-in-ai/web-core</code></a> from <a href="https://github.com/jakobhoeg/built-in-ai">https://github.com/jakobhoeg/built-in-ai</a> which is an <a href="https://ai-sdk.dev/">AI SDK model provider</a> which provides the Built In AI Prompt API .</p>
+<h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">¶</a></h3><ul>
+<li><a href="https://github.com/webmachinelearning/prompt-api">https://github.com/webmachinelearning/prompt-api</a></li>
+<li><a href="https://www.swyx.io/gemini-nano">https://www.swyx.io/gemini-nano</a></li>
+</ul>
 </div>
 </div>
 </div>
@@ -7658,118 +7666,83 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Okay, let's break down the Pythagorean Theorem at three levels: Beginner, Intermediate, and Advanced.
+<pre>## The Pythagorean Theorem Explained - Three Levels of Expertise
+
+Here's an explanation of the Pythagorean Theorem, tailored for different levels of understanding, from beginner to advanced:
+
+---
+
+**Level 1: Basic Understanding (Elementary School/Early Middle School)**
+
+**What it is:** The Pythagorean Theorem describes the relationship between the sides of a *right triangle*. A right triangle is a triangle with one angle that is exactly 90 degrees (like a corner of a square).
+
+**Key terms:**
+* **Hypotenuse:** The longest side of the right triangle, always opposite the right angle.
+* **Legs (or Cathetus):** The two shorter sides of the right triangle.
+
+**The Theorem:**  Imagine you build squares on each side of the right triangle. The area of the square built on the hypotenuse is equal to the *sum* of the areas of the squares built on the two legs.
+
+**The formula:**  a² + b² = c²
+   *  'a' and 'b' are the lengths of the legs.
+   *  'c' is the length of the hypotenuse.
+
+**Example:** If a leg (a) is 3 units long and the other leg (b) is 4 units long, then the hypotenuse (c) is 5 units long. (because 3² + 4² = 9 + 16 = 25, and the square root of 25 is 5).
+
+**Think of it this way:** You're building a triangle with sides of 3, 4, and 5.  If you build squares on each side, the area of the square on the side of length 5 (the hypotenuse) will be the same as adding the areas of the squares on the sides of length 3 and 4.
 
 
 
-## **Level 1: Beginner - The Basic Concept**
+---
 
-**What it is:** Imagine a right triangle (a triangle with one corner that's a perfect 90-degree angle, like a corner of a book). The Pythagorean Theorem is a rule about how the lengths of the sides of that triangle relate to each other.
+**Level 2: Intermediate Understanding (Middle School/High School - Pre-Calculus)**
 
-**The Sides:**  A right triangle has three sides:
-* **Hypotenuse:**  The longest side, *always* opposite the right angle. We often call this side 'c'.
-* **Legs:** The two shorter sides that form the right angle. We often call these 'a' and 'b'.
+**What it is:** The Pythagorean Theorem is a fundamental concept in Euclidean geometry that relates the sides of a right triangle. It's a powerful tool for finding unknown side lengths, particularly when other information is given.
 
-**The Theorem:**  The Pythagorean Theorem states:  **a² + b² = c²**
+**Key Concepts &amp; Applications:**
 
-**What does that mean?**
-*  'a²' is 'a' multiplied by itself (a squared).
-*  'b²' is 'b' multiplied by itself (b squared).
-*  'c²' is 'c' multiplied by itself (c squared).
+* **Proof:**  The theorem can be proven using various geometric arguments (e.g., congruence proofs, area comparisons, similar triangles).  Understanding *how* it's derived provides a deeper appreciation.
+* **Solving for Unknown Sides:** The formula (a² + b² = c²) allows us to solve for any missing side length if we know the other two.  
+* **Applications:** It's used in practical situations involving distances, lengths, and angles, such as:
+    *  Calculating the diagonal of a rectangular screen.
+    *  Determining the distance a boat travels from a lighthouse.
+    *  Construction and engineering calculations.
+* **Pythagorean Triples:**  Sets of three positive integers (a, b, c) that satisfy the Pythagorean theorem (e.g., 3-4-5, 5-12-13).  Knowing these triples can simplify calculations.
+* **Angles:**  The theorem is intimately related to trigonometric functions (sine, cosine, tangent) which are defined in terms of the ratios of sides in a right triangle.
 
-So, you square the lengths of the two shorter sides (a and b), add them together, and that sum is equal to the square of the longest side (c).
+**Example:**  A ladder 13 feet long rests against a wall, making a right angle with the ground. The foot of the ladder is 5 feet from the wall. How high up the wall does the ladder reach?
+   *  a = 5 (distance from wall)
+   *  c = 13 (length of ladder)
+   *  b = ? (height on wall)
+   *  5² + b² = 13²
+   *  25 + b² = 169
+   *  b² = 144
+   *  b = 12 feet
 
-**How to use it:** If you know the lengths of two sides of a right triangle, you can find the length of the third side.
+---
 
-**Example:**  Let's say a right triangle has legs of length 3 and 4.  We want to find the length of the hypotenuse.
-1. a = 3, b = 4
-2. a² + b² = c²  becomes  3² + 4² = c²
-3. 9 + 16 = c²
-4. 25 = c²
-5. c = √25  (We take the square root of both sides)
-6. c = 5
+**Level 3: Advanced Understanding (High School - Calculus/Physics/Engineering)**
 
-So, the hypotenuse is 5!
+**What it is:** The Pythagorean Theorem is more than a simple formula; it represents a fundamental principle of Euclidean space and has profound implications in higher-level mathematics and physics.
 
-**In a nutshell:** It's a relationship between the sides of *right* triangles, letting you calculate missing side lengths.
+**Key Concepts &amp; Applications:**
 
-
-
-## **Level 2: Intermediate - Understanding the Proof and Implications**
-
-**Building on the Basics:**  You understand the theorem (a² + b² = c²) and how to apply it to calculate missing side lengths.  Now, let's dig a little deeper.
-
-**The Proof (Simplified):**  There are many proofs of the Pythagorean Theorem.  Here's a simplified version using squares:
-
-1.  Take two identical right triangles.
-2. Arrange them to form a larger square, with the hypotenuses of the triangles forming the outer sides of the square.  This creates a square with sides of length (a + b).
-3.  The area of the larger square can be calculated in two ways:
-    * **Method 1:** The total area of the four triangles plus the area of the inner square (c²).
-       Area = 2 * (1/2 * a * b) + c² = ab + c²
-    * **Method 2:** The area of the larger square itself: (a + b)² = a² + 2ab + b²
-4. Since both methods calculate the same area, we can equate them:  ab + c² = a² + 2ab + b²
-5. Simplify the equation: c² = a² + b²  (which is our Pythagorean Theorem!)
-
-**Why it's important:**  This proof demonstrates that the theorem isn't arbitrary; it's a fundamental property of right triangles.  It connects geometry and algebra.
-
-**Beyond Calculation:**
-
-* **Pythagorean Triples:** These are sets of whole numbers (a, b, c) that satisfy the theorem (e.g., 3, 4, 5; 5, 12, 13; 8, 15, 17).  Knowing Pythagorean triples can help you quickly identify right triangles.
-* **Angle Properties:** The theorem is intimately linked to trigonometric functions (sine, cosine, tangent).  It forms the basis for many trigonometric identities.
-* **Applications:**  The theorem is used in countless practical applications like:
-    *  Navigation
-    *  Construction
-    *  Engineering
-    *  Surveying
-    *  Finding distances
-
-**Example:** A ladder leans against a wall. The ladder is 13 feet long, and the base of the ladder is 5 feet away from the wall. What is the height of the wall the ladder reaches?
-1. a = 5, c = 13
-2. 5² + b² = 13²
-3. 25 + b² = 169
-4. b² = 144
-5. b = √144
-6. b = 12
-
-The ladder reaches 12 feet up the wall.
+* **Euclidean Geometry &amp; Metric Spaces:** It's a cornerstone of Euclidean geometry, providing a basis for defining distance and length in space. It can be generalized to non-Euclidean geometries, where the relationship between sides changes.
+* **Vector Spaces:**  The Pythagorean Theorem is closely linked to the dot product of vectors.  If **v** and **w** are orthogonal vectors (perpendicular, meaning their dot product is zero), then ||**v** + **w**||² = ||**v**||² + ||**w**||².  This is a generalized form applicable in vector spaces of any dimension.
+* **Coordinate Geometry:** It's used to derive the distance formula in coordinate geometry:  d = √((x₂-x₁)² + (y₂-y₁)²). This formula extends the Pythagorean Theorem to find the distance between two points in a 2D or 3D plane.
+* **Calculus Applications:**  The Pythagorean theorem arises in various calculus contexts, including:
+    *  Finding arc length (the distance along a curve).
+    *  Calculating the curvature of a curve.
+* **Physics:** It's used to calculate resultant vectors (the combined effect of multiple forces), displacement in two dimensions, and other physical quantities.
+* **Complex Numbers:** It is a key part of the modulus of a complex number: |z| = √(a² + b²), where z = a + bi.  The modulus represents the magnitude or absolute value of the complex number.
+* **Generalizations:**  The concept can be extended to higher dimensions. The distance between two points in n-dimensional space is calculated as the square root of the sum of the squared differences in each coordinate.
 
 
 
-## **Level 3: Advanced -  Derivatives, Geometry, and Connections to Other Mathematical Fields**
-
-**Beyond the Theorem Itself:**  You not only understand how to use the theorem, but also appreciate its deeper implications and its connections to other mathematical concepts.
-
-**Calculus and Derivatives:** The Pythagorean Theorem is a foundational concept in calculus.  Consider the parametric equations of a circle:
-
-*  x = r * cos(t)
-*  y = r * sin(t)
-
-Differentiating both equations with respect to *t*, we get:
-
-* dx/dt = -r * sin(t)
-* dy/dt = r * cos(t)
-
-The square of the distance *s* between (x, y) and the origin (0, 0) is given by:
-
-s² = dx² + dy² = (-r * sin(t))² + (r * cos(t))² = r²(sin²(t) + cos²(t)) = r²
-
-Therefore, s = r (the radius of the circle). This demonstrates how calculus can be used to derive and reinforce geometric principles like the Pythagorean theorem.
-
-**Geometry and Transformations:** The Pythagorean Theorem is a key element in understanding geometric transformations.  Consider rotations, reflections, and dilations. The theorem provides a framework for analyzing how distances change under these transformations.  You can analyze the effect of a rotation or reflection on a right triangle's sides using vectors and the theorem.
-
-**Vector Spaces &amp; Euclidean Geometry:**  In vector spaces (like Euclidean space), the Pythagorean Theorem generalizes to finding the norm (length) of a vector.  If **u** and **v** are two vectors, then ||**u**||² = u ⋅ **u** (where ⋅ represents the dot product). This generalizes to higher dimensions.  This is a crucial link between geometry and linear algebra.
-
-**Proofs &amp; Variations:**  You'll be familiar with multiple, more sophisticated proofs, often employing coordinate geometry or complex numbers.  You might also explore variations like Heron's formula (calculating the area of a triangle given its side lengths) which is directly related to the Pythagorean Theorem.
-
-**Connections to Number Theory:** The Pythagorean Theorem has deep connections to number theory.  Pythagorean triples are closely related to Diophantine equations (equations where solutions are integers). The study of Pythagorean triples leads to explorations of modular arithmetic and prime factorization.
+In essence, the Pythagorean Theorem isn't just about finding the length of a side; it's a fundamental principle underpinning our understanding of space, distance, and relationships between geometric objects.  
 
 
 
-**In summary, at the advanced level,  the Pythagorean Theorem becomes not just a formula but a cornerstone of mathematical reasoning, a link between seemingly disparate fields, and a gateway to more complex and abstract concepts.**
-
-
-
-I hope this breakdown is helpful!  Let me know if you'd like me to expand on any of these levels or concepts further.</pre>
+</pre>
 </div>
 </div>
 </div>
