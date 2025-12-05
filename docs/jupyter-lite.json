@@ -33,6 +33,11 @@
       {
         "extension": "./extension",
         "load": "index.js",
+        "name": "@wiki3-ai/ai-sdk-chat-kernel"
+      },
+      {
+        "extension": "./extension",
+        "load": "index.js",
         "name": "@wiki3-ai/built-in-chat"
       },
       {

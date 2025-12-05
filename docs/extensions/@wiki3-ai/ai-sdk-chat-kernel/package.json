@@ -1,0 +1,31 @@
+{
+  "name": "@wiki3-ai/ai-sdk-chat-kernel",
+  "version": "0.2.8dev3",
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "labextension",
+    "schemaDir": "./schema",
+    "sharedPackages": {
+      "@jupyterlab/application": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/coreutils": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/services": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/settingregistry": {
+        "bundled": false,
+        "singleton": true
+      }
+    },
+    "_build": {
+      "load": "index.js",
+      "extension": "./extension"
+    }
+  }
+}
