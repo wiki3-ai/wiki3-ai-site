@@ -19,16 +19,13 @@
             if (!sharedScope) {
               throw new Error(`Shared scope not initialized for ${pkgName}`);
             }
-            await sharedScope[pkgName].get("./");
-            const factory = sharedScope[pkgName].get("./");
+            const factory = await sharedScope[pkgName].get("./");
             return factory();
           };
 
           // Get required modules from shared scope
           let INotebookTracker = null;
           let NotebookActions = null;
-          let ToolbarButton = null;
-          let runIcon = null;
 
           try {
             const notebookModule = await importShared("@jupyterlab/notebook");
@@ -37,22 +34,6 @@
             console.log("[cell-run-button] Got INotebookTracker and NotebookActions");
           } catch (e) {
             console.error("[cell-run-button] Failed to load notebook module:", e);
-          }
-
-          try {
-            const uiComponentsModule = await importShared("@jupyterlab/ui-components");
-            ToolbarButton = uiComponentsModule.ToolbarButton;
-            runIcon = uiComponentsModule.runIcon;
-            console.log("[cell-run-button] Got ToolbarButton and runIcon");
-          } catch (e) {
-            console.error("[cell-run-button] Failed to load ui-components module:", e);
-          }
-
-          try {
-            const luminoModule = await importShared("@lumino/widgets");
-            console.log("[cell-run-button] Got lumino widgets");
-          } catch (e) {
-            console.error("[cell-run-button] Failed to load lumino module:", e);
           }
 
           // Extension implementation
@@ -113,7 +94,7 @@
                   /* Responsive layout for narrow screens */
                   @media (max-width: 768px) {
                     .jp-InputPrompt-wrapper {
-                      flex-wrap: wrap;
+                      gap: 2px;
                     }
                   }
                 `;
@@ -131,15 +112,19 @@
               // Initial setup
               addButtonsToAllCells();
 
+              // DOM update delay: Allow JupyterLab to finish rendering before adding buttons
+              const DOM_UPDATE_DELAY = 100;
+              const CELL_SELECTION_DELAY = 10;
+
               // Listen for new cells being added
               notebook.model.cells.changed.connect(() => {
-                // Use a small delay to ensure DOM is ready
-                setTimeout(() => addButtonsToAllCells(), 100);
+                // Use a small delay to ensure DOM is ready after cell insertion
+                setTimeout(() => addButtonsToAllCells(), DOM_UPDATE_DELAY);
               });
 
               // Listen for cell selection changes to ensure buttons are present
               notebook.activeCellChanged.connect(() => {
-                setTimeout(() => addButtonsToAllCells(), 10);
+                setTimeout(() => addButtonsToAllCells(), CELL_SELECTION_DELAY);
               });
 
               return new DisposableDelegate(() => {
@@ -191,12 +176,13 @@
               button.title = 'Run this cell';
               button.setAttribute('aria-label', 'Run cell');
 
-              // Add the run icon SVG
-              button.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              `;
+              // Add the run icon SVG using safe DOM construction
+              const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+              svg.setAttribute('viewBox', '0 0 24 24');
+              const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+              path.setAttribute('d', 'M8 5v14l11-7z');
+              svg.appendChild(path);
+              button.appendChild(svg);
 
               // Add click handler
               button.addEventListener('click', (event) => {
@@ -213,10 +199,8 @@
                     NotebookActions.run(notebook, notebook.sessionContext);
                   }
                 } else {
-                  // Fallback: try to execute directly
-                  if (cell.model.type === 'code') {
-                    cell.execute();
-                  }
+                  // Fallback: try to execute directly (cell is always a code cell at this point)
+                  cell.execute();
                 }
               });
 
