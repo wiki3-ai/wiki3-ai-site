@@ -1,0 +1,5 @@
+{
+  "packageManager": "javascript",
+  "packageName": "@wiki3-ai/cell-run-button",
+  "uninstallInstructions": "This is a JupyterLab extension. Remove from the extensions directory to uninstall."
+}
