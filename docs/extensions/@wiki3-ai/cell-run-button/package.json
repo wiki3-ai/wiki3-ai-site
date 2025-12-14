@@ -1,0 +1,34 @@
+{
+  "name": "@wiki3-ai/cell-run-button",
+  "version": "0.1.2",
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "labextension",
+    "sharedPackages": {
+      "@jupyterlab/application": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/notebook": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/docregistry": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/cells": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@lumino/disposable": {
+        "bundled": false,
+        "singleton": true
+      }
+    },
+    "_build": {
+      "load": "index.js",
+      "extension": "./extension"
+    }
+  }
+}

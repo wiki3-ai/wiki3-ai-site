@@ -2,7 +2,7 @@
   "jupyter-config-data": {
     "appName": "Wiki3.ai",
     "appUrl": "./wiki",
-    "appVersion": "0.3.1.dev1",
+    "appVersion": "0.3.2",
     "baseUrl": "./",
     "defaultKernelName": "python",
     "defaultUrl": "./wiki/index.html",
@@ -39,6 +39,11 @@
         "extension": "./extension",
         "load": "index.js",
         "name": "@wiki3-ai/built-in-chat"
+      },
+      {
+        "extension": "./extension",
+        "load": "index.js",
+        "name": "@wiki3-ai/cell-run-button"
       },
       {
         "extension": "./extension",

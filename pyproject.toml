@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "anywidget>=0.9.21",
+    "folium",
     "ipywidgets",
     "jupyterlite<0.7.0",
     "jupyterlite-core<0.7.0",
@@ -24,6 +25,8 @@ dependencies = [
 dev = [
     "pip",
     "jupyterlab>=4.4.0,<5",
+    "nodejs",
+    "nodeenv",
 ]
 
 kernels = [
