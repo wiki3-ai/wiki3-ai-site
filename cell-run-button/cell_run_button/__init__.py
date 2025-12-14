@@ -3,9 +3,9 @@
 # The extension is distributed via shared-data in the wheel.
 
 try:
-    from importlib.metadata import version as _get_version
+    from importlib.metadata import version as _get_version, PackageNotFoundError
     __version__ = _get_version("cell-run-button")
-except Exception:
+except (PackageNotFoundError, ImportError):
     # Fallback for development or if package is not installed
     import tomllib
     from pathlib import Path

@@ -104,12 +104,18 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
     });
 
     // Return disposable for cleanup
+    let disposed = false;
     return {
-      isDisposed: false,
+      get isDisposed() {
+        return disposed;
+      },
       dispose: () => {
-        const styleElement = document.getElementById(styleId);
-        if (styleElement) {
-          styleElement.remove();
+        if (!disposed) {
+          disposed = true;
+          const styleElement = document.getElementById(styleId);
+          if (styleElement) {
+            styleElement.remove();
+          }
         }
       }
     };
