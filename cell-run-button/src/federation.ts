@@ -245,12 +245,12 @@ const container = {
                   event.preventDefault();
                   event.stopPropagation();
                   
-                  // Execute the cell
+                  // Execute the cell and advance to next cell (same as toolbar run button)
                   const cellIndex = notebook.widgets.indexOf(cell);
                   if (cellIndex !== -1 && panel) {
                     notebook.activeCellIndex = cellIndex;
-                    // Execute the active cell using the panel's sessionContext
-                    NotebookActions.run(notebook, panel.sessionContext);
+                    // Execute the active cell and move to next cell
+                    NotebookActions.runAndAdvance(notebook, panel.sessionContext);
                   }
                 });
 
