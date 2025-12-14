@@ -1,10 +1,10 @@
 [project]
 name = "cell-run-button"
-version = "0.1.0"
+version = "0.1.2"
 description = "JupyterLab extension that adds run buttons next to cell input prompts"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "AGPL-3.0"}
+license = {text = "BSD-3-Clause"}
 dependencies = []
 
 [build-system]

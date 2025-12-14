@@ -1,6 +1,6 @@
 {
   "name": "@wiki3-ai/cell-run-button",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "JupyterLab extension that adds run buttons next to cell input prompts",
 
   "main": "dist/index.js",
