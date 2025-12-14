@@ -20,6 +20,6 @@
         "JUPYTERLITE_PORT": "8000"
         // "RESTARTABLE": "yes"
     },
-    "postCreateCommand": "mamba install -y nodejs && git submodule update --init --recursive && pip install -e .[dev,kernels]",
+    "postCreateCommand": "mamba install -y nodejs && git submodule update --init --recursive && pip install -e .[dev,extensions,kernels]",
     "postStartCommand": "cd files && jupyter lab"
 }

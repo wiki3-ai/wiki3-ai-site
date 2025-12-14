@@ -1,6 +1,6 @@
 {
   "name": "@wiki3-ai/ai-sdk-chat-kernel",
-  "version": "0.2.9",
+  "version": "0.3.0.dev2",
   "jupyterlab": {
     "extension": true,
     "outputDir": "labextension",
