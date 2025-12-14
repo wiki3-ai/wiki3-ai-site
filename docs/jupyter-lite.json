@@ -47,11 +47,6 @@
       },
       {
         "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/cell-run-button"
-      },
-      {
-        "extension": "./extension",
         "load": "./static/remoteEntry.7e3ac003.js",
         "name": "anywidget"
       },

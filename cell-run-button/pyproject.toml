@@ -1,0 +1,39 @@
+[project]
+name = "cell-run-button"
+version = "0.1.0"
+description = "JupyterLab extension that adds run buttons next to cell input prompts"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "AGPL-3.0"}
+dependencies = []
+
+[build-system]
+requires = [
+    "hatchling>=1.5.0",
+    "jupyterlab>=4.4.0,<5",
+    "hatch-jupyter-builder>=0.5",
+]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".github",
+    "node_modules",
+]
+artifacts = ["labextension"]
+
+[tool.hatch.build.targets.wheel]
+artifacts = ["labextension"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"labextension" = "share/jupyter/labextensions/@wiki3-ai/cell-run-button"
+
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder>=0.5"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = ["labextension/package.json"]
+skip-if-exists = ["labextension/package.json"]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build:prod"
+npm = ["npm"]

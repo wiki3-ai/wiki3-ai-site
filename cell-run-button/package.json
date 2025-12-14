@@ -1,0 +1,58 @@
+{
+  "name": "@wiki3-ai/cell-run-button",
+  "version": "0.1.0",
+  "description": "JupyterLab extension that adds run buttons next to cell input prompts",
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "labextension/**/*"
+  ],
+  "scripts": {
+    "build:ts": "tsc --project tsconfig.json",
+    "build:bundle": "esbuild ./lib/federation.js --bundle --format=iife --outfile=dist/index.js",
+    "build:labextension": "npm run build:ts && npm run build:bundle && npm run build:package",
+    "build:package": "node -e \"const pkg = require('./package.json'); const fs = require('fs'); const out = {name: pkg.name, version: pkg.version, jupyterlab: {...pkg.jupyterlab, _build: {load: 'index.js', extension: './extension'}}}; fs.writeFileSync('dist/package.json', JSON.stringify(out, null, 2));\"",
+    "build": "npm run build:labextension",
+    "build:prod": "npm run build:labextension && npm run copy:labextension",
+    "copy:labextension": "mkdir -p labextension && cp -r dist/* labextension/ && cp install.json labextension/",
+    "clean": "rm -rf lib dist labextension"
+  },
+  "dependencies": {
+    "@jupyterlab/application": "^4.4.0",
+    "@jupyterlab/notebook": "^4.4.0",
+    "@jupyterlab/docregistry": "^4.4.0",
+    "@jupyterlab/cells": "^4.4.0",
+    "@lumino/disposable": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0"
+  },
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "labextension",
+    "sharedPackages": {
+      "@jupyterlab/application": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/notebook": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/docregistry": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/cells": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@lumino/disposable": {
+        "bundled": false,
+        "singleton": true
+      }
+    }
+  }
+}

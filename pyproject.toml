@@ -32,6 +32,10 @@ kernels = [
     "webllm-chat-kernel @ file:./webllm-chat-kernel",
 ]
 
+extensions = [
+    "cell-run-button @ file:./cell-run-button",
+]
+
 [project.entry-points."jupyterlite.addon.v0"]
 wiki = "jupyterlite_wiki_addon.addon:WikiPageAddon"
 
