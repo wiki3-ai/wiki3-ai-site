@@ -1,3 +1,0 @@
-jupyterlite-core>=0.2.0
-nbconvert
-nbformat

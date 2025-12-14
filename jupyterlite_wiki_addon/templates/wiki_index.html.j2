@@ -95,7 +95,14 @@
       word-break: break-all;
     }
     .wiki-name a:hover { text-decoration: underline; }
-    .wiki-action-button { text-transform: lowercase; }
+    .wiki-action-button {
+      padding: 0.25rem 0.5rem;
+    }
+    .wiki-action-button svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
     .wiki-share-success {
       box-shadow: 0 0 0 2px var(--jp-success-color1);
     }
@@ -112,11 +119,23 @@
     .wiki-actions {
       display: inline-flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.35rem;
       align-items: center;
     }
     .wiki-toolbar + * {
       padding-top: 0.75rem;
+    }
+    @media (max-width: 480px) {
+      .wiki-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      .wiki-actions {
+        order: 2;
+      }
+      .wiki-name {
+        order: 1;
+      }
     }
   </style>
 </head>
@@ -136,11 +155,18 @@
 {% for entry in entries %}
       <li class="wiki-row" role="listitem">
         <div class="wiki-actions" role="group" aria-label="Actions">
-          <a class="jp-Button wiki-action-button" href="{{ entry.html_href }}">open</a>
-          <a class="jp-Button wiki-action-button" href="{{ entry.edit_href }}" target="_blank" rel="noopener noreferrer">edit</a>
-          <a class="jp-Button wiki-action-button" href="{{ entry.lab_href }}" target="_blank" rel="noopener noreferrer">lab</a>
-          <a class="jp-Button wiki-action-button" href="{{ entry.download_href }}" download aria-label="Download" title="Download">down</a>
-          <button type="button" class="jp-Button wiki-action-button" data-share="{{ entry.static_href }}" aria-label="Copy share link">share</button>
+          <a class="jp-Button wiki-action-button" href="{{ entry.edit_href }}" target="_blank" rel="noopener noreferrer" aria-label="Edit" title="Edit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75z"/></svg>
+          </a>
+          <a class="jp-Button wiki-action-button" href="{{ entry.lab_href }}" target="_blank" rel="noopener noreferrer" aria-label="Open in JupyterLab" title="Open in JupyterLab">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.9 17.45c1.35 0 2.45-1.1 2.45-2.45s-1.1-2.45-2.45-2.45c-1.36 0-2.45 1.1-2.45 2.45s1.09 2.45 2.45 2.45m5.2-1.77 1.48 1.16c.13.11.17.29.08.45l-1.4 2.42a.35.35 0 0 1-.43.15l-1.74-.7c-.36.28-.76.51-1.18.69l-.27 1.85c-.02.17-.17.3-.34.3h-2.8c-.18 0-.32-.13-.35-.3l-.26-1.85c-.43-.18-.82-.41-1.18-.69l-1.75.7c-.15.06-.34 0-.42-.15l-1.4-2.42a.35.35 0 0 1 .08-.45l1.48-1.16-.05-.68.05-.69-1.48-1.15a.35.35 0 0 1-.08-.45l1.4-2.42c.08-.16.27-.22.42-.16l1.75.71c.36-.28.75-.52 1.18-.69l.26-1.86c.03-.16.17-.29.35-.29h2.8c.17 0 .32.13.34.29l.27 1.86c.42.17.82.41 1.18.69l1.74-.71c.17-.06.34 0 .43.16l1.4 2.42c.09.15.05.34-.08.45l-1.48 1.15.05.69zM7.33 7.445A1.566 1.566 0 0 0 7.904 5.3a1.575 1.575 0 1 0-.574 2.145m2.327-2.65 1.21.157c.096.025.173.12.171.236v1.8a.214.214 0 0 1-.183.223l-1.195.17-.42.75.43 1.126c.037.106 0 .22-.096.275l-1.559.9a.23.23 0 0 1-.294-.05l-.734-.95-.878-.001-.762.96c-.058.08-.173.1-.275.043l-1.56-.901a.23.23 0 0 1-.101-.276l.452-1.116-.246-.366-.194-.396-1.192-.166a.23.23 0 0 1-.189-.226V5.186c.002-.117.077-.206.175-.217l1.204-.175.446-.766-.456-1.11a.23.23 0 0 1 .104-.28l1.56-.9a.225.225 0 0 1 .285.054l.76.936.86.01.745-.949a.214.214 0 0 1 .284-.048l1.56.9a.24.24 0 0 1 .118.267l-.47 1.126.246.366z"/></svg>
+          </a>
+          <a class="jp-Button wiki-action-button" href="{{ entry.download_href }}" download aria-label="Download" title="Download">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7zM5 18v2h14v-2z"/></svg>
+          </a>
+          <button type="button" class="jp-Button wiki-action-button" data-share="{{ entry.static_href }}" aria-label="Copy share link" title="Share">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2c-1.645 0-3 1.355-3 3 0 .191.022.377.057.559L7.922 9.72A2.97 2.97 0 0 0 6 9c-1.645 0-3 1.355-3 3s1.355 3 3 3c.732 0 1.399-.278 1.922-.72l7.135 4.16A3 3 0 0 0 15 19c0 1.645 1.355 3 3 3s3-1.355 3-3-1.355-3-3-3a2.97 2.97 0 0 0-1.922.723l-7.135-4.164C8.978 12.377 9 12.19 9 12s-.022-.377-.057-.559l7.135-4.162C16.601 7.722 17.268 8 18 8c1.645 0 3-1.355 3-3s-1.355-3-3-3m0 2c.564 0 1 .436 1 1s-.436 1-1 1-1-.436-1-1 .436-1 1-1M6 11c.564 0 1 .436 1 1s-.436 1-1 1-1-.436-1-1 .436-1 1-1m12 7c.564 0 1 .436 1 1s-.436 1-1 1-1-.436-1-1 .436-1 1-1"/></svg>
+          </button>
         </div>
         <span class="wiki-name"><a href="{{ entry.html_href }}" title="{{ entry.title_attr }}">{{ entry.rel_display }}</a></span>
       </li>
