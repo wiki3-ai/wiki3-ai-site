@@ -117,7 +117,7 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
   /**
    * Add a run button to a single cell
    */
-  private _addButtonToCell(cell: Cell, notebook: any): void {
+  private _addButtonToCell(cell: Cell, notebook: NotebookPanel['content']): void {
     // Only add to code cells
     if (cell.model.type !== 'code') {
       return;

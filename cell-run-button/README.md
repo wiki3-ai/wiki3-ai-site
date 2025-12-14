@@ -24,7 +24,7 @@ The extension uses the `DocumentRegistry.IWidgetExtension` pattern to:
 ## Technical Details
 
 - **Module Federation**: Uses JupyterLab's Module Federation for loading
-- **Shared Packages**: Depends on `@jupyterlab/notebook`, `@jupyterlab/ui-components`, and `@lumino/widgets`
+- **Shared Packages**: Depends on `@jupyterlab/notebook`, `@jupyterlab/docregistry`, `@jupyterlab/cells`, and `@lumino/disposable`
 - **CSS Variables**: Uses JupyterLab's CSS variables for theming consistency
 - **DOM Manipulation**: Wraps input prompts in flex containers for responsive layout
 
@@ -34,6 +34,6 @@ The extension activates automatically when JupyterLab loads. Simply click the ru
 
 ## Compatibility
 
-- JupyterLab >= 4.2.0
+- JupyterLab >= 4.4.0
 - JupyterLite >= 0.6.0
 - Tested on desktop, tablet, and mobile viewports
