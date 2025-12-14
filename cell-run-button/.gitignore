@@ -1,0 +1,8 @@
+node_modules/
+lib/
+dist/
+labextension/
+*.egg-info/
+__pycache__/
+.DS_Store
+package-lock.json
