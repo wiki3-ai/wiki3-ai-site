@@ -23,7 +23,6 @@ except (PackageNotFoundError, ImportError):
 
 def _jupyter_labextension_paths():
     """Return metadata about the JupyterLab extension."""
-    return [{
-        "src": "cell_run_button/labextension",
-        "dest": "@wiki3-ai/cell-run-button"
-    }]
+    # Extension is installed via shared-data in pyproject.toml
+    # to share/jupyter/labextensions/@wiki3-ai/cell-run-button
+    return []
