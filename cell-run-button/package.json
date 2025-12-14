@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build:ts": "tsc --project tsconfig.json",
-    "build:bundle": "esbuild ./lib/federation.js --bundle --format=iife --outfile=dist/index.js",
+    "build:bundle": "esbuild ./lib/federation.js --bundle --format=iife --outfile=dist/index.js --external:@jupyterlab/* --external:@lumino/*",
     "build:labextension": "npm run build:ts && npm run build:bundle && npm run build:package",
     "build:package": "node -e \"const pkg = require('./package.json'); const fs = require('fs'); const out = {name: pkg.name, version: pkg.version, jupyterlab: {...pkg.jupyterlab, _build: {load: 'index.js', extension: './extension'}}}; fs.writeFileSync('dist/package.json', JSON.stringify(out, null, 2));\"",
     "build": "npm run build:labextension",

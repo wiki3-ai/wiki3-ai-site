@@ -7,7 +7,7 @@ import { JupyterFrontEnd, JupyterFrontEndPlugin } from '@jupyterlab/application'
 import { INotebookTracker, NotebookActions, NotebookPanel } from '@jupyterlab/notebook';
 import { DocumentRegistry } from '@jupyterlab/docregistry';
 import { IDisposable } from '@lumino/disposable';
-import { Cell, CodeCell } from '@jupyterlab/cells';
+import { Cell } from '@jupyterlab/cells';
 
 /**
  * Widget extension that adds run buttons to notebook cells
@@ -18,7 +18,7 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
   /**
    * Create a new extension for the notebook panel widget
    */
-  createNew(panel: NotebookPanel, context: DocumentRegistry.IContext<any>): IDisposable {
+  createNew(panel: NotebookPanel, _context: DocumentRegistry.IContext<any>): IDisposable {
     const notebook = panel.content;
     
     // Create a style element for our CSS
@@ -81,7 +81,7 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
     const addButtonsToAllCells = () => {
       const cells = notebook.widgets;
       for (let i = 0; i < cells.length; i++) {
-        this._addButtonToCell(cells[i], notebook);
+        this._addButtonToCell(cells[i], notebook, panel);
       }
     };
 
@@ -105,6 +105,7 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
 
     // Return disposable for cleanup
     return {
+      isDisposed: false,
       dispose: () => {
         const styleElement = document.getElementById(styleId);
         if (styleElement) {
@@ -117,7 +118,7 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
   /**
    * Add a run button to a single cell
    */
-  private _addButtonToCell(cell: Cell, notebook: NotebookPanel['content']): void {
+  private _addButtonToCell(cell: Cell, notebook: NotebookPanel['content'], panel?: NotebookPanel): void {
     // Only add to code cells
     if (cell.model.type !== 'code') {
       return;
@@ -172,10 +173,10 @@ class CellRunButtonExtension implements DocumentRegistry.IWidgetExtension<Notebo
       
       // Execute the cell
       const cellIndex = notebook.widgets.indexOf(cell);
-      if (cellIndex !== -1) {
+      if (cellIndex !== -1 && panel) {
         notebook.activeCellIndex = cellIndex;
-        // Execute the active cell
-        NotebookActions.run(notebook, notebook.sessionContext);
+        // Execute the active cell using the panel's sessionContext
+        NotebookActions.run(notebook, panel.sessionContext);
       }
     });
 
@@ -194,7 +195,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
   id: '@wiki3-ai/cell-run-button:plugin',
   autoStart: true,
   requires: [INotebookTracker],
-  activate: (app: JupyterFrontEnd, notebookTracker: INotebookTracker) => {
+  activate: (app: JupyterFrontEnd, _notebookTracker: INotebookTracker) => {
     console.log('[cell-run-button] Extension activated');
     
     const extension = new CellRunButtonExtension();

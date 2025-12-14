@@ -23,6 +23,7 @@ exclude = [
 artifacts = ["labextension"]
 
 [tool.hatch.build.targets.wheel]
+packages = ["cell_run_button"]
 artifacts = ["labextension"]
 
 [tool.hatch.build.targets.wheel.shared-data]
