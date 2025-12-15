@@ -7611,7 +7611,7 @@ a.anchor-link {
 <div aria-label="Notebook actions" class="wiki-toolbar" role="toolbar">
 <div class="wiki-toolbar-left">
 <a class="jp-Button" href="/">home</a>
-<span class="wiki-toolbar-title" title="Ai Sdk Kernel">Ai Sdk Kernel</span>
+<span class="wiki-toolbar-title" title="AI SDK Chat Kernel">AI SDK Chat Kernel</span>
 </div>
 <div aria-label="File actions" class="wiki-toolbar-actions" role="group">
 <a class="jp-Button" href="/notebooks/index.html?path=ai-sdk-kernel.ipynb" rel="noopener noreferrer" target="_blank">edit</a>
@@ -7621,7 +7621,57 @@ a.anchor-link {
 </div>
 </div>
 <main class="wiki-main">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34efeb2d-3fdc-432f-b14c-f98b13513fd4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d913cc87-a794-4c04-9449-271a386902c0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="AI-SDK-Chat-Kernel">AI SDK Chat Kernel<a class="anchor-link" href="#AI-SDK-Chat-Kernel">¶</a></h1><p><em>If you are in the wiki view (static HTML rendering), click "edit" in the top right to open this <a href="https://jupyterlite.readthedocs.io/">JupyterLite</a> notebook in your browser.</em></p>
+<p>This notebook demonstrates using the AI SDK Chat Kernel.  It uses the Vercel AI SDK (<a href="https://ai-sdk.dev/">https://ai-sdk.dev/</a>) to provision LLM models that operate in your choice of web browser, local hosting, and cloud services.</p>
+<p>Source for this JupyterLite kernel, "AI SDK Chat" (check that it is selected in the kernel picker above), is located at <a href="https://github.com/wiki3-ai/ai-sdk-chat-kernel">https://github.com/wiki3-ai/ai-sdk-chat-kernel</a> and is <a href="https://github.com/wiki3-ai/ai-sdk-chat-kernel?tab=License-1-ov-file">Apache v2 licensed</a>.</p>
+<p>Three local LLM providers are configured by default, other providers need configuration using the <code>%chat</code> magic.
+Initialization will be attempted in this order:</p>
+<ol>
+<li><a href="https://developer.chrome.com/docs/ai/prompt-api">Chrome/Edge AI Built-in AI</a> (<code>%chat provider built-in-ai/core</code>) requires that the, currently experimental, built-in AI feature is enabled.<ul>
+<li>Enable experimental flag: <a href="chrome://flags/#prompt-api-for-gemini-nano">chrome://flags/#prompt-api-for-gemini-nano</a> and relaunch.</li>
+</ul>
+</li>
+<li>MLC WebLLM (<a href="https://webllm.mlc.ai/">webllm.mlc.ai</a>) Provider (<code>%chat provider built-in-ai/webllm</code>) requires that <a href="https://en.wikipedia.org/wiki/WebGPU">WebGPU</a> be available in the browser.<ul>
+<li>Default model is <code>%chat model SmolLM2-135M-Instruct-q0f16-MLC</code>, details at (<a href="https://huggingface.co/mlc-ai/SmolLM2-135M-Instruct-q0f16-MLC">https://huggingface.co/mlc-ai/SmolLM2-135M-Instruct-q0f16-MLC</a>).</li>
+</ul>
+</li>
+<li><a href="https://huggingface.co/docs/transformers.js">HuggingFace Transformers.js</a> (<code>%chat provider built-in-ai/transformers</code>) requires that enough memory is available in the browser.<ul>
+<li>Default model is <code>%chat model HuggingFaceTB/SmolLM2-360M-Instruct</code>, details at (<a href="https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct">https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct</a>).</li>
+<li>Unfortunately there are many common mobile devices and browsers that Transformers.js doesn't work in yet so "Aw snap!" is a common occurence.</li>
+</ul>
+</li>
+</ol>
+<p>Those AI SDK Providers are all by <a href="https://www.linkedin.com/in/jakob-hoeg-moerk/">Jakob Hoeg Mørk</a>.  Source at <a href="https://github.com/jakobhoeg/built-in-ai">https://github.com/jakobhoeg/built-in-ai</a> and are documented here: <a href="https://ai-sdk.dev/providers/community-providers/built-in-ai">https://ai-sdk.dev/providers/community-providers/built-in-ai</a></p>
+<h2 id="Chrome/Edge-AI-Built-in-AI-Provider">Chrome/Edge AI Built-in AI Provider<a class="anchor-link" href="#Chrome/Edge-AI-Built-in-AI-Provider">¶</a></h2><p>Chrome/Edge Built-In AI with the Prompt API (Gemini Nano) <a href="https://developer.chrome.com/docs/ai/prompt-api">https://developer.chrome.com/docs/ai/prompt-api</a>.</p>
+<p>This uses the <a href="">@built-in-ai/core</a> NPM package.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Chrome browser version 138+</li>
+<li>Enable experimental flags:<ul>
+<li><a href="chrome://flags/#prompt-api-for-gemini-nano">chrome://flags/#prompt-api-for-gemini-nano</a></li>
+<li><a href="chrome://flags/#optimization-guide-on-device-model">chrome://flags/#optimization-guide-on-device-model</a></li>
+</ul>
+</li>
+<li>Restart browser<ul>
+<li><a href="chrome://restart">chrome://restart</a></li>
+</ul>
+</li>
+<li>First use requires downloading the Gemini Nano model which may take a while because the model is around 2GB.</li>
+</ul>
+<h3 id="See-Also">See Also<a class="anchor-link" href="#See-Also">¶</a></h3><ul>
+<li><a href="https://github.com/webmachinelearning/prompt-api">https://github.com/webmachinelearning/prompt-api</a></li>
+<li><a href="https://www.swyx.io/gemini-nano">https://www.swyx.io/gemini-nano</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2665f795-a88f-4fda-9377-808d39ad3918">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7629,7 +7679,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-markdown"><pre><span></span>hello
+<div class="highlight hl-markdown"><pre><span></span>hello, who are you?
 </pre></div>
 </div>
 </div>
@@ -7642,11 +7692,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Hello there! 😊
+<pre>Hello! I'm Gemma, a large language model created by Google DeepMind. I'm an open-weights AI assistant, which means I'm freely available for anyone to use. I'm designed to take text and images as input and generate text as output. I'm still under development, but I'm learning new things every day! 😊 
 
-It's nice to meet you.  How can I help you today?  Do you have any questions, need information, or just want to chat?  
-
-Let me know what's on your mind!
+You can find out more about me here: [https://www.google.com/deepmind/gemma/](https://www.google.com/deepmind/gemma/)
 
 
 
@@ -7655,7 +7703,7 @@ Let me know what's on your mind!
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fc5a88a7-3795-4dab-98d2-2c8cd853ecc1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4f60d9dc-5c3f-40fd-b551-729fd994d16b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7663,7 +7711,7 @@ Let me know what's on your mind!
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-markdown"><pre><span></span>%chat status
+<div class="highlight hl-markdown"><pre><span></span>%chat provider built-in-ai/webllm
 </pre></div>
 </div>
 </div>
@@ -7676,10 +7724,87 @@ Let me know what's on your mind!
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Active session:
-  Provider: built-in-ai
-  Model: prompt-api
+<pre>Provider: WebLLM (Local)
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9aa80403-0f31-475b-9bd8-cd69d6a16501">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-markdown"><pre><span></span>hello, who are you?
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Hello! Is this a chatbot, a AI assistant?</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8216987c-d0fd-48c3-995e-21f3ca8176bf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-markdown"><pre><span></span>%chat provider built-in-ai/transformers
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Provider: Transformers.js (Local)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48f4b99a-6c49-45fa-8ea2-4741a240f008">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-markdown"><pre><span></span>hello, who are you?
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>I'm a chatbot designed to assist users with their queries. I'm here to help with any questions or problems you might have. I'm not a replacement for human assistance, but I can provide general information and answer questions based on my training data.</pre>
 </div>
 </div>
 </div>
@@ -7702,7 +7827,7 @@ Let me know what's on your mind!
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-markdown"><pre><span></span>%chat provider google
@@ -7722,7 +7847,7 @@ Let me know what's on your mind!
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Provider: Google
 Model: gemini-2.5-flash
-API key set.
+API key entry cancelled.
 </pre>
 </div>
 </div>
