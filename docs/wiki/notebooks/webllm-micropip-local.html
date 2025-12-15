@@ -75,6 +75,19 @@
       margin: 0 auto;
       padding: 1rem 1.5rem;
     }
+    .wiki-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .wiki-breadcrumb-sep {
+      color: var(--jp-ui-font-color2);
+      margin: 0 0.125rem;
+    }
+    .wiki-breadcrumb-current {
+      font-weight: 600;
+    }
     .wiki-share-success {
       box-shadow: 0 0 0 2px var(--jp-success-color1);
     }
@@ -7598,6 +7611,10 @@ a.anchor-link {
 <div aria-label="Notebook actions" class="wiki-toolbar" role="toolbar">
 <div class="wiki-toolbar-left">
 <a class="jp-Button" href="/">home</a>
+<nav aria-label="Breadcrumb" class="wiki-breadcrumbs">
+<a class="jp-Button" href="index.html">notebooks</a>
+<span aria-hidden="true" class="wiki-breadcrumb-sep">/</span>
+</nav>
 <span class="wiki-toolbar-title" title="Installing WebLLM in Pyodide with Micropip">Installing WebLLM in Pyodide with Micropip</span>
 </div>
 <div aria-label="File actions" class="wiki-toolbar-actions" role="group">

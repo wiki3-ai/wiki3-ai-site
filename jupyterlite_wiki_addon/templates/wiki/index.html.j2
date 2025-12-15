@@ -73,6 +73,19 @@
       margin: 0 auto;
       padding: 1rem 1.5rem;
     }
+    .wiki-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .wiki-breadcrumb-sep {
+      color: var(--jp-ui-font-color2);
+      margin: 0 0.125rem;
+    }
+    .wiki-breadcrumb-current {
+      font-weight: 600;
+    }
     .wiki-share-success {
       box-shadow: 0 0 0 2px var(--jp-success-color1);
     }
@@ -98,6 +111,15 @@
   <div class="wiki-toolbar" role="toolbar" aria-label="Notebook actions">
     <div class="wiki-toolbar-left">
       <a class="jp-Button" href="{{ resources.wiki_toolbar.home_href }}">home</a>
+      {% if resources.wiki_toolbar.breadcrumbs %}
+      <nav class="wiki-breadcrumbs" aria-label="Breadcrumb">
+        {% for crumb in resources.wiki_toolbar.breadcrumbs %}
+        {% if not loop.first %}<span class="wiki-breadcrumb-sep" aria-hidden="true">/</span>{% endif %}
+        <a class="jp-Button" href="{{ crumb.href }}">{{ crumb.name }}</a>
+        {% endfor %}
+        <span class="wiki-breadcrumb-sep" aria-hidden="true">/</span>
+      </nav>
+      {% endif %}
       <span class="wiki-toolbar-title" title="{{ resources.wiki_toolbar.title }}">{{ resources.wiki_toolbar.title }}</span>
     </div>
     <div class="wiki-toolbar-actions" role="group" aria-label="File actions">

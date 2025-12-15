@@ -3,6 +3,7 @@ from pathlib import Path
 import html
 import os
 from urllib.parse import quote
+from collections import defaultdict
 
 from jinja2 import Environment, FileSystemLoader
 import nbformat
@@ -80,7 +81,16 @@ class WikiPageAddon(BaseAddon):
                 ],
             )
         
-        # Yield task for index page (depends on all notebook outputs)
+        # Collect all directories that contain notebooks (directly or nested)
+        dirs_with_content = set()
+        for notebook_path in notebooks:
+            rel_path = notebook_path.relative_to(files_dir)
+            # Add all parent directories
+            for parent in rel_path.parents:
+                if parent != Path('.'):
+                    dirs_with_content.add(parent)
+        
+        # Yield task for root index page
         index_file = wiki_dir / "index.html"
         yield self.task(
             name="generate:index",
@@ -88,9 +98,22 @@ class WikiPageAddon(BaseAddon):
             file_dep=[self._index_template] + all_output_files,
             targets=[index_file],
             actions=[
-                (self._generate_index_page, [wiki_dir, files_dir, output_dir]),
+                (self._generate_index_page, [wiki_dir, files_dir, output_dir, Path('.')]),
             ],
         )
+        
+        # Yield tasks for nested directory index pages
+        for subdir in sorted(dirs_with_content):
+            subdir_index = wiki_dir / subdir / "index.html"
+            yield self.task(
+                name=f"generate:index:{subdir.as_posix()}",
+                doc=f"generate index page for {subdir}",
+                file_dep=[self._index_template] + all_output_files,
+                targets=[subdir_index],
+                actions=[
+                    (self._generate_index_page, [wiki_dir, files_dir, output_dir, subdir]),
+                ],
+            )
     
     def _convert_notebook(self, notebook_path, output_file, files_dir, output_dir):
         """Convert a single notebook to HTML"""
@@ -104,6 +127,20 @@ class WikiPageAddon(BaseAddon):
         static_output = output_file.relative_to(output_dir)
         rel_path_url = quote(rel_path.as_posix(), safe='/')
         
+        # Build breadcrumbs for nested notebooks
+        breadcrumbs = []
+        parent_parts = list(rel_path.parent.parts)
+        if parent_parts and parent_parts != ['.']:
+            for i, part in enumerate(parent_parts):
+                # Calculate relative path from output_file location to this breadcrumb's index
+                # We need to go up one level for the file itself, then navigate
+                levels_up = len(parent_parts) - i
+                rel_href = '../' * levels_up + 'index.html' if i < len(parent_parts) - 1 else 'index.html'
+                breadcrumbs.append({
+                    'name': part,
+                    'href': rel_href,
+                })
+        
         html_exporter = HTMLExporter(
             template_name='wiki',
             extra_template_basedirs=[str(self._template_dir)],
@@ -114,6 +151,7 @@ class WikiPageAddon(BaseAddon):
             "wiki_toolbar": {
                 "title": notebook_title,
                 "home_href": "/",
+                "breadcrumbs": breadcrumbs,
                 "actions": [
                     {
                         "kind": "link",
@@ -153,19 +191,54 @@ class WikiPageAddon(BaseAddon):
         
         print(f"[WikiPageAddon] Generated: {output_file}")
     
-    def _generate_index_page(self, wiki_dir, files_dir, output_dir):
-        """Generate an index page listing all notebooks"""
-        relative_root = Path(os.path.relpath(output_dir, wiki_dir))
+    def _generate_index_page(self, wiki_dir, files_dir, output_dir, current_dir):
+        """Generate an index page listing notebooks and subdirectories for a specific directory"""
+        # Calculate paths relative to the index being generated
+        index_location = wiki_dir / current_dir
+        relative_root = Path(os.path.relpath(output_dir, index_location))
         theme_base = relative_root / "build" / "themes" / "@jupyterlab"
         light_css = (theme_base / "theme-light-extension" / "index.css").as_posix()
         dark_css = (theme_base / "theme-dark-extension" / "index.css").as_posix()
-
-        # Scan for all HTML files in wiki_dir (excluding index.html)
-        html_files = [f for f in wiki_dir.rglob("*.html") if f.name != "index.html"]
         
-        # Build entries from the HTML files
+        # Calculate wiki root relative path for home link
+        wiki_root = Path(os.path.relpath(wiki_dir, index_location)).as_posix()
+        if wiki_root == '.':
+            wiki_root = ''
+        
+        # Build breadcrumbs for nested directories
+        breadcrumbs = []
+        if current_dir != Path('.'):
+            # Add wiki root
+            parts = list(current_dir.parts)
+            for i in range(len(parts)):
+                part_path = Path(*parts[:i+1]) if i > 0 else Path(parts[0])
+                # Calculate relative path from current index to this breadcrumb
+                rel_to_crumb = Path(os.path.relpath(wiki_dir / part_path, index_location))
+                breadcrumbs.append({
+                    'name': parts[i],
+                    'href': (rel_to_crumb / 'index.html').as_posix(),
+                })
+
+        # Scan for HTML files in the current directory only (not nested)
+        current_wiki_dir = wiki_dir / current_dir
+        html_files = [f for f in current_wiki_dir.glob("*.html") if f.name != "index.html"]
+        
+        # Find immediate subdirectories that have content
+        subdirs = []
+        for subdir in sorted(current_wiki_dir.iterdir()):
+            if subdir.is_dir():
+                # Check if this subdir has any HTML files (recursively)
+                has_content = any(subdir.rglob("*.html"))
+                if has_content:
+                    subdir_name = subdir.name
+                    subdirs.append({
+                        'name': subdir_name,
+                        'href': quote(subdir_name, safe='') + '/index.html',
+                    })
+        
+        # Build entries from the HTML files in current directory
         template_entries = []
-        for html_file in sorted(html_files, key=lambda f: f.relative_to(wiki_dir).as_posix()):
+        for html_file in sorted(html_files, key=lambda f: f.name):
             html_rel_path = html_file.relative_to(wiki_dir)
             # Corresponding notebook path
             nb_rel_path = html_rel_path.with_suffix('.ipynb')
@@ -181,8 +254,9 @@ class WikiPageAddon(BaseAddon):
                 except Exception:
                     pass
             
-            rel_display = html.escape(nb_rel_path.as_posix())
-            html_href = quote(html_rel_path.as_posix(), safe='/')
+            # For display, just show the filename (not full path)
+            rel_display = html.escape(html_file.stem)
+            html_href = quote(html_file.name, safe='')
             rel_path_url = quote(nb_rel_path.as_posix(), safe='/')
             static_output = html_file.relative_to(output_dir)
             static_href = '/' + quote(static_output.as_posix(), safe='/')
@@ -204,17 +278,29 @@ class WikiPageAddon(BaseAddon):
             autoescape=True,
         )
         template = env.get_template("wiki_index.html.j2")
+        
+        # Generate title based on current directory
+        if current_dir == Path('.'):
+            toolbar_title = "Wiki3.ai index"
+            page_title = "Wiki Index"
+        else:
+            toolbar_title = current_dir.name
+            page_title = f"Wiki Index - {current_dir.name}"
 
         index_html = template.render(
-            title="Wiki Index",
-            toolbar_title="Wiki3.ai index",
+            title=page_title,
+            toolbar_title=toolbar_title,
             light_css=light_css,
             dark_css=dark_css,
             entries=template_entries,
+            subdirs=subdirs,
+            breadcrumbs=breadcrumbs,
+            wiki_root=wiki_root,
             behavior_script_url="/static/wiki_behavior.js",
         )
 
-        index_file = wiki_dir / "index.html"
+        index_file = index_location / "index.html"
+        index_file.parent.mkdir(parents=True, exist_ok=True)
         with open(index_file, 'w', encoding='utf-8') as f:
             f.write(index_html)
         
