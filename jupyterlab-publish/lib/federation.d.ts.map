@@ -1,1 +1,1 @@
-{"version":3,"file":"federation.d.ts","sourceRoot":"","sources":["../src/federation.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAiFH,QAAA,MAAM,SAAS;wBACO,GAAG;kBASH,MAAM;;;;iBA0LL,GAAG;CACzB,CAAC;AAqFF,eAAe,SAAS,CAAC"}
+{"version":3,"file":"federation.d.ts","sourceRoot":"","sources":["../src/federation.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAiFH,QAAA,MAAM,SAAS;wBACO,GAAG;kBASH,MAAM;;;;iBA2LL,GAAG;CACzB,CAAC;AAqFF,eAAe,SAAS,CAAC"}

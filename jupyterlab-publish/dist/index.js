@@ -162,12 +162,26 @@
     }
     /**
      * Create GitHub Actions workflow for publishing with repo2jupyterlite-action
+     * Only creates if it doesn't exist
      */
     async ensurePublishWorkflow(owner, repo) {
+      const existingSha = await this.getFileSha(owner, repo, ".github/workflows/publish.yml");
+      if (existingSha) {
+        console.log("[wiki3-publish] Workflow already exists, skipping creation");
+        return;
+      }
       const workflowYaml = `name: Build and Publish JupyterLite
 on:
   push:
     branches: [main]
+    paths:
+      - '**.ipynb'
+      - '**.py'
+      - '**.md'
+      - 'requirements.txt'
+      - 'pyproject.toml'
+    paths-ignore:
+      - '.github/**'
   workflow_dispatch:
 
 permissions:
@@ -177,7 +191,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -1204,7 +1218,16 @@ jobs:
     }
     const github = new GitHubAPI(token, user.login);
     const settings = loadSettings2 ? loadSettings2() : {};
-    const selector = new RepoSelector(github, settings.defaultOwner, settings.defaultRepo);
+    let defaultOwner = settings.defaultOwner;
+    let defaultRepo = settings.defaultRepo;
+    if (settings.lastUsedRepo) {
+      const parts = settings.lastUsedRepo.split("/");
+      if (parts.length === 2) {
+        defaultOwner = parts[0];
+        defaultRepo = parts[1];
+      }
+    }
+    const selector = new RepoSelector(github, defaultOwner, defaultRepo);
     const repo = await selector.show();
     if (!repo)
       return;
@@ -1339,7 +1362,7 @@ jobs:
                 return JSON.stringify(model.toJSON(), null, 2);
               }, () => {
                 const path = panel.context.path;
-                return path.split("/").pop() || "notebook.ipynb";
+                return path || "notebook.ipynb";
               }, loadSettings, saveSettings).catch((err) => {
                 console.error("[wiki3-publish] Publish error:", err);
                 alert(`Publish failed: ${err.message}`);

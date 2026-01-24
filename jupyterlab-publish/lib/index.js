@@ -530,8 +530,18 @@ async function handlePublish(getNotebookContent, getNotebookFilename, loadSettin
     const github = new GitHubAPI(token, user.login);
     // Load settings for default repo
     const settings = loadSettings ? loadSettings() : {};
+    // Use lastUsedRepo if available, otherwise fall back to defaults
+    let defaultOwner = settings.defaultOwner;
+    let defaultRepo = settings.defaultRepo;
+    if (settings.lastUsedRepo) {
+        const parts = settings.lastUsedRepo.split('/');
+        if (parts.length === 2) {
+            defaultOwner = parts[0];
+            defaultRepo = parts[1];
+        }
+    }
     // Step 3: Show repo selector with settings
-    const selector = new RepoSelector(github, settings.defaultOwner, settings.defaultRepo);
+    const selector = new RepoSelector(github, defaultOwner, defaultRepo);
     const repo = await selector.show();
     if (!repo)
         return; // User cancelled

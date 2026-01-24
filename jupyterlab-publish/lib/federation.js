@@ -94,8 +94,9 @@ const container = {
                             }
                             return JSON.stringify(model.toJSON(), null, 2);
                         }, () => {
+                            // Preserve the full path from JupyterLite
                             const path = panel.context.path;
-                            return path.split('/').pop() || 'notebook.ipynb';
+                            return path || 'notebook.ipynb';
                         }, loadSettings, saveSettings).catch(err => {
                             console.error('[wiki3-publish] Publish error:', err);
                             alert(`Publish failed: ${err.message}`);

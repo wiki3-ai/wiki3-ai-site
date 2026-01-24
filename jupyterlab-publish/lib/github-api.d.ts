@@ -32,6 +32,7 @@ export declare class GitHubAPI {
     uploadNotebook(owner: string, repo: string, notebookContent: string, filename?: string): Promise<void>;
     /**
      * Create GitHub Actions workflow for publishing with repo2jupyterlite-action
+     * Only creates if it doesn't exist
      */
     ensurePublishWorkflow(owner: string, repo: string): Promise<void>;
     /**

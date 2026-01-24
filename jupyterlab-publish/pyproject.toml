@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "jupyterlab-wiki3-publish"
-version = "0.1.1"
+version = "0.1.2"
 description = "Publish JupyterLite notebooks directly to GitHub with one click"
 readme = "README.md"
 requires-python = ">=3.8"

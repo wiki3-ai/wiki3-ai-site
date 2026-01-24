@@ -148,12 +148,28 @@ export class GitHubAPI {
 
   /**
    * Create GitHub Actions workflow for publishing with repo2jupyterlite-action
+   * Only creates if it doesn't exist
    */
   async ensurePublishWorkflow(owner: string, repo: string): Promise<void> {
+    // Check if workflow already exists
+    const existingSha = await this.getFileSha(owner, repo, '.github/workflows/publish.yml');
+    if (existingSha) {
+      console.log('[wiki3-publish] Workflow already exists, skipping creation');
+      return;
+    }
+
     const workflowYaml = `name: Build and Publish JupyterLite
 on:
   push:
     branches: [main]
+    paths:
+      - '**.ipynb'
+      - '**.py'
+      - '**.md'
+      - 'requirements.txt'
+      - 'pyproject.toml'
+    paths-ignore:
+      - '.github/**'
   workflow_dispatch:
 
 permissions:
@@ -163,7 +179,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:

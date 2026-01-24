@@ -1,6 +1,6 @@
 {
   "name": "@wiki3-ai/jupyterlab-publish",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Publish JupyterLite notebooks directly to GitHub with one click",
   "main": "dist/index.js",
   "files": [

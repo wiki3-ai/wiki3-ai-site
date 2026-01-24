@@ -124,8 +124,9 @@ const container = {
                 return JSON.stringify(model.toJSON(), null, 2);
               },
               () => {
+                // Preserve the full path from JupyterLite
                 const path = panel.context.path;
-                return path.split('/').pop() || 'notebook.ipynb';
+                return path || 'notebook.ipynb';
               },
               loadSettings,
               saveSettings
