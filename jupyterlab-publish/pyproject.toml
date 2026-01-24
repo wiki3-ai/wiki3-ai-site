@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.6.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyterlab-wiki3-publish"
+version = "0.1.0"
+description = "Publish JupyterLite notebooks directly to GitHub with one click"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "AGPL-3.0-only"}
+authors = [
+  {name = "Wiki3.ai", email = "contact@wiki3.ai"}
+]
+keywords = ["jupyter", "jupyterlab", "jupyterlite", "github", "publish"]
+classifiers = [
+  "Framework :: Jupyter",
+  "Framework :: Jupyter :: JupyterLab :: 4",
+  "License :: OSI Approved :: GNU Affero General Public License v3",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
+]
+
+[project.urls]
+Homepage = "https://wiki3.ai"
+Repository = "https://github.com/wiki3-ai/wiki3-ai-site.git"
+Issues = "https://github.com/wiki3-ai/wiki3-ai-site/issues"
+
+[tool.hatch.build.targets.sdist]
+exclude = [".github", "node_modules"]
+artifacts = ["labextension"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["jupyterlab_wiki3_publish"]
+artifacts = ["labextension"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"labextension" = "share/jupyter/labextensions/@wiki3-ai/jupyterlab-publish"
+

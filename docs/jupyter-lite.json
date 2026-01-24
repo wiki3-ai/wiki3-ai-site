@@ -48,6 +48,11 @@
       {
         "extension": "./extension",
         "load": "index.js",
+        "name": "@wiki3-ai/jupyterlab-publish"
+      },
+      {
+        "extension": "./extension",
+        "load": "index.js",
         "name": "@wiki3-ai/webllm-chat-kernel"
       },
       {

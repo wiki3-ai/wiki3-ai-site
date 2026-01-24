@@ -37,6 +37,7 @@ kernels = [
 
 extensions = [
     "cell-run-button @ file:./cell-run-button",
+    "jupyterlab-wiki3-publish @ file:./jupyterlab-publish",
 ]
 
 [project.entry-points."jupyterlite.addon.v0"]

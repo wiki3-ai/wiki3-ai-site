@@ -1,0 +1,1 @@
+{"version":3,"file":"token-dialog.d.ts","sourceRoot":"","sources":["../src/token-dialog.ts"],"names":[],"mappings":"AAEA;;;GAGG;AACH,qBAAa,WAAW;IACtB,OAAO,CAAC,MAAM,CAAkC;IAChD,OAAO,CAAC,cAAc,CAAiD;IAEvE;;OAEG;IACH,IAAI,IAAI,OAAO,CAAC,MAAM,GAAG,IAAI,CAAC;IAQ9B,OAAO,CAAC,YAAY;YAiFN,YAAY;IAkC1B,OAAO,CAAC,YAAY;IAKpB,OAAO,CAAC,KAAK;CAKd"}
