@@ -1,24 +1,27 @@
 {
-  "name": "@wiki3-ai/webllm-chat-kernel",
-  "version": "0.2.5dev4",
+  "name": "@wiki3-ai/cell-run-button",
+  "version": "0.1.2",
   "jupyterlab": {
     "extension": true,
     "outputDir": "labextension",
-    "schemaDir": "./schema",
     "sharedPackages": {
       "@jupyterlab/application": {
         "bundled": false,
         "singleton": true
       },
-      "@jupyterlab/coreutils": {
+      "@jupyterlab/notebook": {
         "bundled": false,
         "singleton": true
       },
-      "@jupyterlab/services": {
+      "@jupyterlab/docregistry": {
         "bundled": false,
         "singleton": true
       },
-      "@jupyterlab/settingregistry": {
+      "@jupyterlab/cells": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@lumino/disposable": {
         "bundled": false,
         "singleton": true
       }

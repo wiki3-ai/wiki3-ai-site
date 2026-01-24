@@ -43,6 +43,11 @@
       {
         "extension": "./extension",
         "load": "index.js",
+        "name": "@wiki3-ai/cell-run-button"
+      },
+      {
+        "extension": "./extension",
+        "load": "index.js",
         "name": "@wiki3-ai/webllm-chat-kernel"
       },
       {
