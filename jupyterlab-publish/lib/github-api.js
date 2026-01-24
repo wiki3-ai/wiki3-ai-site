@@ -30,14 +30,22 @@ export class GitHubAPI {
         return repos;
     }
     /**
-     * Create new repository
+     * Create new repository with GitHub Pages homepage set
      */
     async createRepo(name, description = '') {
+        // First get the authenticated user to build the Pages URL
+        const userResponse = await this.fetch('https://api.github.com/user');
+        if (!userResponse.ok) {
+            throw new Error('Failed to get user info');
+        }
+        const user = await userResponse.json();
+        const homepage = `https://${user.login}.github.io/${name}/`;
         const response = await this.fetch('https://api.github.com/user/repos', {
             method: 'POST',
             body: JSON.stringify({
                 name,
-                description: description || 'Wiki3.ai notebooks',
+                description: description || 'JupyterLite notebooks',
+                homepage,
                 private: false,
                 auto_init: true
             })

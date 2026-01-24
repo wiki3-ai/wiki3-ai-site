@@ -90,14 +90,21 @@
       return repos;
     }
     /**
-     * Create new repository
+     * Create new repository with GitHub Pages homepage set
      */
     async createRepo(name, description = "") {
+      const userResponse = await this.fetch("https://api.github.com/user");
+      if (!userResponse.ok) {
+        throw new Error("Failed to get user info");
+      }
+      const user = await userResponse.json();
+      const homepage = `https://${user.login}.github.io/${name}/`;
       const response = await this.fetch("https://api.github.com/user/repos", {
         method: "POST",
         body: JSON.stringify({
           name,
-          description: description || "Wiki3.ai notebooks",
+          description: description || "JupyterLite notebooks",
+          homepage,
           private: false,
           auto_init: true
         })
@@ -450,8 +457,14 @@ jobs:
             class="wiki3-repo-input"
             placeholder="my-notebooks"
           />
+          <input
+            type="text"
+            id="wiki3-repo-description"
+            class="wiki3-repo-input"
+            placeholder="Description (optional)"
+          />
           <p class="wiki3-repo-note">
-            Repository will be created as public and auto-initialized with a README.
+            Repository will be created as public with GitHub Pages enabled.
           </p>
           <button type="button" id="wiki3-create-btn" class="wiki3-primary-button">
             Create Repository
@@ -558,12 +571,14 @@ jobs:
       const name = nameInput.value.trim();
       if (!name)
         return;
+      const descInput = this.dialog?.querySelector("#wiki3-repo-description");
+      const description = descInput?.value.trim() || "";
       const errorDiv = this.dialog?.querySelector("#wiki3-repo-error");
       createBtn.disabled = true;
       createBtn.textContent = "Creating...";
       errorDiv.style.display = "none";
       try {
-        const repo = await this.github.createRepo(name, "Wiki3.ai notebooks");
+        const repo = await this.github.createRepo(name, description);
         this.close();
         this.resolvePromise?.(repo);
       } catch (err) {

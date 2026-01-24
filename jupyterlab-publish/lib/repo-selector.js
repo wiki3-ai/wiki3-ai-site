@@ -57,8 +57,14 @@ export class RepoSelector {
             class="wiki3-repo-input"
             placeholder="my-notebooks"
           />
+          <input
+            type="text"
+            id="wiki3-repo-description"
+            class="wiki3-repo-input"
+            placeholder="Description (optional)"
+          />
           <p class="wiki3-repo-note">
-            Repository will be created as public and auto-initialized with a README.
+            Repository will be created as public with GitHub Pages enabled.
           </p>
           <button type="button" id="wiki3-create-btn" class="wiki3-primary-button">
             Create Repository
@@ -175,12 +181,14 @@ export class RepoSelector {
         const name = nameInput.value.trim();
         if (!name)
             return;
+        const descInput = this.dialog?.querySelector('#wiki3-repo-description');
+        const description = descInput?.value.trim() || '';
         const errorDiv = this.dialog?.querySelector('#wiki3-repo-error');
         createBtn.disabled = true;
         createBtn.textContent = 'Creating...';
         errorDiv.style.display = 'none';
         try {
-            const repo = await this.github.createRepo(name, 'Wiki3.ai notebooks');
+            const repo = await this.github.createRepo(name, description);
             this.close();
             this.resolvePromise?.(repo);
         }

@@ -11,7 +11,7 @@ export declare class GitHubAPI {
      */
     listRepos(): Promise<GitHubRepo[]>;
     /**
-     * Create new repository
+     * Create new repository with GitHub Pages homepage set
      */
     createRepo(name: string, description?: string): Promise<GitHubRepo>;
     /**
