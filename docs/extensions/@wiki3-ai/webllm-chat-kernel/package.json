@@ -1,6 +1,6 @@
 {
   "name": "@wiki3-ai/webllm-chat-kernel",
-  "version": "0.2.5dev4",
+  "version": "0.2.5",
   "jupyterlab": {
     "extension": true,
     "outputDir": "labextension",

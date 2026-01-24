@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR ${APP_DIR}
 COPY . ${APP_DIR}
 
-RUN git submodule update --init --recursive \
+RUN git submodule update --init --recursive --force  \
     && pip install --upgrade pip \
     && pip install uv \
     && uv pip install --system . \
