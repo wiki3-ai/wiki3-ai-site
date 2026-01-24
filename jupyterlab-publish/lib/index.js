@@ -414,6 +414,73 @@ function injectStyles() {
       width: 16px;
       height: 16px;
     }
+    
+    /* Settings dialog styles */
+    .wiki3-settings-form {
+      margin: 16px 0;
+    }
+    
+    .wiki3-settings-label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #334155;
+    }
+    
+    .wiki3-settings-input {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .wiki3-settings-input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    
+    .wiki3-settings-note {
+      font-size: 12px;
+      color: #64748b;
+      margin: 8px 0;
+    }
+    
+    /* Better toolbar button styling for JupyterLab */
+    .jp-ToolbarButton .wiki3-publish-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      margin: 0 2px;
+      background: var(--jp-brand-color1, #0ea5e9);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      height: 24px;
+      line-height: 1;
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn:hover {
+      background: var(--jp-brand-color0, #0284c7);
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn .jp-ToolbarButtonComponent-label {
+      white-space: nowrap;
+    }
   `;
     document.head.appendChild(style);
 }
@@ -438,7 +505,7 @@ function createPublishButton(onClick) {
 /**
  * Main publish workflow
  */
-async function handlePublish(getNotebookContent, getNotebookFilename) {
+async function handlePublish(getNotebookContent, getNotebookFilename, loadSettings, saveSettings) {
     const auth = new GitHubAuth();
     // Step 1: Get or request GitHub token
     let token = auth.getStoredToken();
@@ -461,11 +528,20 @@ async function handlePublish(getNotebookContent, getNotebookFilename) {
         throw new Error('Could not fetch user info');
     }
     const github = new GitHubAPI(token, user.login);
-    // Step 3: Show repo selector
-    const selector = new RepoSelector(github);
+    // Load settings for default repo
+    const settings = loadSettings ? loadSettings() : {};
+    // Step 3: Show repo selector with settings
+    const selector = new RepoSelector(github, settings.defaultOwner, settings.defaultRepo);
     const repo = await selector.show();
     if (!repo)
         return; // User cancelled
+    // Save last used repo
+    if (saveSettings) {
+        saveSettings({
+            ...settings,
+            lastUsedRepo: repo.full_name
+        });
+    }
     // Step 4: Execute publish workflow
     await executePublish(github, user, repo, getNotebookContent, getNotebookFilename);
 }

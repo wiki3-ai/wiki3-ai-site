@@ -16,8 +16,16 @@ declare function injectStyles(): void;
  */
 declare function createPublishButton(onClick: () => void): HTMLButtonElement;
 /**
+ * Settings type for publish
+ */
+interface PublishSettings {
+    defaultRepo?: string;
+    defaultOwner?: string;
+    lastUsedRepo?: string;
+}
+/**
  * Main publish workflow
  */
-declare function handlePublish(getNotebookContent: () => string, getNotebookFilename: () => string): Promise<void>;
+declare function handlePublish(getNotebookContent: () => string, getNotebookFilename: () => string, loadSettings?: () => PublishSettings, saveSettings?: (settings: PublishSettings) => void): Promise<void>;
 export { injectStyles, createPublishButton, handlePublish, GitHubAuth, GitHubAPI, TokenDialog, RepoSelector, PublishStatus };
 //# sourceMappingURL=index.d.ts.map

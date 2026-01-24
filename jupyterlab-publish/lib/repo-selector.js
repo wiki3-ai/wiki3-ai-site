@@ -2,11 +2,13 @@
  * Repository selector dialog using native DOM
  */
 export class RepoSelector {
-    constructor(github) {
+    constructor(github, defaultOwner, defaultRepo) {
         this.dialog = null;
         this.repos = [];
         this.resolvePromise = null;
         this.github = github;
+        this.defaultOwner = defaultOwner;
+        this.defaultRepo = defaultRepo;
     }
     /**
      * Show the repo selector dialog
@@ -132,18 +134,31 @@ export class RepoSelector {
             return;
         const loading = this.dialog.querySelector('#wiki3-repo-loading');
         const selectEl = this.dialog.querySelector('#wiki3-repo-select');
+        const selectBtn = this.dialog.querySelector('#wiki3-select-btn');
         const errorDiv = this.dialog.querySelector('#wiki3-repo-error');
         try {
             this.repos = await this.github.listRepos();
             loading.style.display = 'none';
             selectEl.style.display = 'block';
             // Populate select
+            let defaultRepoId = null;
             this.repos.forEach(repo => {
                 const option = document.createElement('option');
                 option.value = repo.id.toString();
                 option.textContent = repo.full_name;
                 selectEl.appendChild(option);
+                // Check if this matches the default repo
+                if (this.defaultOwner && this.defaultRepo) {
+                    if (repo.owner.login === this.defaultOwner && repo.name === this.defaultRepo) {
+                        defaultRepoId = repo.id.toString();
+                    }
+                }
             });
+            // Auto-select default repo if found
+            if (defaultRepoId) {
+                selectEl.value = defaultRepoId;
+                selectBtn.disabled = false;
+            }
             if (this.repos.length === 0) {
                 selectEl.innerHTML = '<option value="">No repositories found</option>';
                 // Switch to create tab

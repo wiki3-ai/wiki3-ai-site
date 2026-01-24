@@ -9,9 +9,13 @@ export class RepoSelector {
   private github: GitHubAPI;
   private repos: GitHubRepo[] = [];
   private resolvePromise: ((repo: GitHubRepo | null) => void) | null = null;
+  private defaultOwner?: string;
+  private defaultRepo?: string;
 
-  constructor(github: GitHubAPI) {
+  constructor(github: GitHubAPI, defaultOwner?: string, defaultRepo?: string) {
     this.github = github;
+    this.defaultOwner = defaultOwner;
+    this.defaultRepo = defaultRepo;
   }
 
   /**
@@ -155,6 +159,7 @@ export class RepoSelector {
 
     const loading = this.dialog.querySelector('#wiki3-repo-loading') as HTMLElement;
     const selectEl = this.dialog.querySelector('#wiki3-repo-select') as HTMLSelectElement;
+    const selectBtn = this.dialog.querySelector('#wiki3-select-btn') as HTMLButtonElement;
     const errorDiv = this.dialog.querySelector('#wiki3-repo-error') as HTMLElement;
 
     try {
@@ -164,12 +169,26 @@ export class RepoSelector {
       selectEl.style.display = 'block';
 
       // Populate select
+      let defaultRepoId: string | null = null;
       this.repos.forEach(repo => {
         const option = document.createElement('option');
         option.value = repo.id.toString();
         option.textContent = repo.full_name;
         selectEl.appendChild(option);
+        
+        // Check if this matches the default repo
+        if (this.defaultOwner && this.defaultRepo) {
+          if (repo.owner.login === this.defaultOwner && repo.name === this.defaultRepo) {
+            defaultRepoId = repo.id.toString();
+          }
+        }
       });
+
+      // Auto-select default repo if found
+      if (defaultRepoId) {
+        selectEl.value = defaultRepoId;
+        selectBtn.disabled = false;
+      }
 
       if (this.repos.length === 0) {
         selectEl.innerHTML = '<option value="">No repositories found</option>';

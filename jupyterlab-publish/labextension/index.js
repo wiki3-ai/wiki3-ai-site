@@ -381,11 +381,13 @@ jobs:
 
   // lib/repo-selector.js
   var RepoSelector = class {
-    constructor(github) {
+    constructor(github, defaultOwner, defaultRepo) {
       this.dialog = null;
       this.repos = [];
       this.resolvePromise = null;
       this.github = github;
+      this.defaultOwner = defaultOwner;
+      this.defaultRepo = defaultRepo;
     }
     /**
      * Show the repo selector dialog
@@ -506,17 +508,28 @@ jobs:
         return;
       const loading = this.dialog.querySelector("#wiki3-repo-loading");
       const selectEl = this.dialog.querySelector("#wiki3-repo-select");
+      const selectBtn = this.dialog.querySelector("#wiki3-select-btn");
       const errorDiv = this.dialog.querySelector("#wiki3-repo-error");
       try {
         this.repos = await this.github.listRepos();
         loading.style.display = "none";
         selectEl.style.display = "block";
+        let defaultRepoId = null;
         this.repos.forEach((repo) => {
           const option = document.createElement("option");
           option.value = repo.id.toString();
           option.textContent = repo.full_name;
           selectEl.appendChild(option);
+          if (this.defaultOwner && this.defaultRepo) {
+            if (repo.owner.login === this.defaultOwner && repo.name === this.defaultRepo) {
+              defaultRepoId = repo.id.toString();
+            }
+          }
         });
+        if (defaultRepoId) {
+          selectEl.value = defaultRepoId;
+          selectBtn.disabled = false;
+        }
         if (this.repos.length === 0) {
           selectEl.innerHTML = '<option value="">No repositories found</option>';
           this.switchTab("create");
@@ -1099,25 +1112,77 @@ jobs:
       width: 16px;
       height: 16px;
     }
+    
+    /* Settings dialog styles */
+    .wiki3-settings-form {
+      margin: 16px 0;
+    }
+    
+    .wiki3-settings-label {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #334155;
+    }
+    
+    .wiki3-settings-input {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .wiki3-settings-input:focus {
+      outline: none;
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+    
+    .wiki3-settings-note {
+      font-size: 12px;
+      color: #64748b;
+      margin: 8px 0;
+    }
+    
+    /* Better toolbar button styling for JupyterLab */
+    .jp-ToolbarButton .wiki3-publish-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      margin: 0 2px;
+      background: var(--jp-brand-color1, #0ea5e9);
+      color: white;
+      border: none;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      height: 24px;
+      line-height: 1;
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn:hover {
+      background: var(--jp-brand-color0, #0284c7);
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    
+    .jp-ToolbarButton .wiki3-publish-btn .jp-ToolbarButtonComponent-label {
+      white-space: nowrap;
+    }
   `;
     document.head.appendChild(style);
   }
-  function createPublishButton(onClick) {
-    const btn = document.createElement("button");
-    btn.className = "wiki3-publish-btn";
-    btn.title = "Publish this notebook to GitHub";
-    btn.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-      <polyline points="16 6 12 2 8 6"/>
-      <line x1="12" y1="2" x2="12" y2="15"/>
-    </svg>
-    Publish
-  `;
-    btn.addEventListener("click", onClick);
-    return btn;
-  }
-  async function handlePublish(getNotebookContent, getNotebookFilename) {
+  async function handlePublish(getNotebookContent, getNotebookFilename, loadSettings2, saveSettings2) {
     const auth = new GitHubAuth();
     let token = auth.getStoredToken();
     if (!token) {
@@ -1138,10 +1203,17 @@ jobs:
       throw new Error("Could not fetch user info");
     }
     const github = new GitHubAPI(token, user.login);
-    const selector = new RepoSelector(github);
+    const settings = loadSettings2 ? loadSettings2() : {};
+    const selector = new RepoSelector(github, settings.defaultOwner, settings.defaultRepo);
     const repo = await selector.show();
     if (!repo)
       return;
+    if (saveSettings2) {
+      saveSettings2({
+        ...settings,
+        lastUsedRepo: repo.full_name
+      });
+    }
     await executePublish(github, user, repo, getNotebookContent, getNotebookFilename);
   }
   async function executePublish(github, _user, repo, getNotebookContent, getNotebookFilename) {
@@ -1191,6 +1263,22 @@ jobs:
   var win = window;
   console.log("[wiki3-publish/federation] Setting up Module Federation container");
   var scope = "@wiki3-ai/jupyterlab-publish";
+  var SETTINGS_KEY = "wiki3-publish-settings";
+  function loadSettings() {
+    try {
+      const stored = localStorage.getItem(SETTINGS_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  }
+  function saveSettings(settings) {
+    try {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    } catch (e) {
+      console.warn("[wiki3-publish] Could not save settings:", e);
+    }
+  }
   async function importShared(pkg) {
     const sharedScope = container.sharedScope;
     if (!sharedScope) {
@@ -1198,7 +1286,8 @@ jobs:
     }
     const versions = sharedScope[pkg];
     if (!versions) {
-      throw new Error(`[wiki3-publish] Shared module ${pkg} not found in shared scope`);
+      console.warn(`[wiki3-publish] Shared module ${pkg} not found in shared scope`);
+      return null;
     }
     const versionKeys = Object.keys(versions);
     if (versionKeys.length === 0) {
@@ -1234,60 +1323,222 @@ jobs:
         return async () => {
           console.log("[wiki3-publish/federation] Loading dependencies from shared scope");
           const notebookModule = await importShared("@jupyterlab/notebook");
+          const uiComponents = await importShared("@jupyterlab/ui-components");
           const { INotebookTracker } = notebookModule;
+          const ToolbarButton = uiComponents?.ToolbarButton;
           console.log("[wiki3-publish/federation] Dependencies loaded, creating plugin");
+          console.log("[wiki3-publish/federation] ToolbarButton available:", !!ToolbarButton);
           injectStyles();
+          const createPublishHandler = (panel) => {
+            return () => {
+              handlePublish(() => {
+                const model = panel.model;
+                if (!model) {
+                  throw new Error("No notebook model");
+                }
+                return JSON.stringify(model.toJSON(), null, 2);
+              }, () => {
+                const path = panel.context.path;
+                return path.split("/").pop() || "notebook.ipynb";
+              }, loadSettings, saveSettings).catch((err) => {
+                console.error("[wiki3-publish] Publish error:", err);
+                alert(`Publish failed: ${err.message}`);
+              });
+            };
+          };
           const plugin = {
             id: "@wiki3-ai/jupyterlab-publish:plugin",
             description: "Publish JupyterLite notebooks directly to GitHub",
             autoStart: true,
             requires: [INotebookTracker],
-            activate: (_app, tracker) => {
+            activate: (app, tracker) => {
               console.log("[wiki3-publish] Extension activated");
-              tracker.widgetAdded.connect((_, panel) => {
+              const commandId = "wiki3-publish:publish-notebook";
+              app.commands.addCommand(commandId, {
+                label: "Publish to GitHub",
+                caption: "Publish this notebook to GitHub Pages",
+                execute: () => {
+                  const current = tracker.currentWidget;
+                  if (current) {
+                    createPublishHandler(current)();
+                  } else {
+                    alert("No notebook is currently open");
+                  }
+                },
+                isEnabled: () => {
+                  return tracker.currentWidget !== null;
+                }
+              });
+              app.contextMenu.addItem({
+                command: commandId,
+                selector: ".jp-Notebook",
+                rank: 100
+              });
+              try {
+                if (app.mainMenu && app.mainMenu.fileMenu) {
+                  app.mainMenu.fileMenu.addGroup([{ command: commandId }], 40);
+                  console.log("[wiki3-publish] Added to File menu");
+                }
+              } catch (e) {
+                console.log("[wiki3-publish] Could not add to File menu:", e);
+              }
+              app.commands.addCommand("wiki3-publish:settings", {
+                label: "Publish Settings...",
+                caption: "Configure GitHub publish settings",
+                execute: () => {
+                  showSettingsDialog(loadSettings(), saveSettings);
+                }
+              });
+              try {
+                if (app.mainMenu && app.mainMenu.settingsMenu) {
+                  app.mainMenu.settingsMenu.addGroup([{ command: "wiki3-publish:settings" }], 100);
+                  console.log("[wiki3-publish] Added to Settings menu");
+                }
+              } catch (e) {
+                console.log("[wiki3-publish] Could not add to Settings menu:", e);
+              }
+              tracker.widgetAdded.connect((_sender, panel) => {
                 console.log("[wiki3-publish] Notebook panel added, inserting publish button");
-                const btn = createPublishButton(() => {
-                  handlePublish(() => {
-                    const model = panel.model;
-                    if (!model) {
-                      throw new Error("No notebook model");
-                    }
-                    return JSON.stringify(model.toJSON(), null, 2);
-                  }, () => {
-                    const path = panel.context.path;
-                    return path.split("/").pop() || "notebook.ipynb";
-                  }).catch((err) => {
-                    console.error("[wiki3-publish] Publish error:", err);
-                    alert(`Publish failed: ${err.message}`);
+                let widget;
+                if (ToolbarButton) {
+                  widget = new ToolbarButton({
+                    label: "Publish",
+                    tooltip: "Publish this notebook to GitHub",
+                    onClick: createPublishHandler(panel)
                   });
-                });
-                const widget = new class extends (win.lumino?.Widget || class {
-                  constructor() {
-                    this.node = document.createElement("div");
-                  }
-                }) {
-                  constructor() {
-                    super();
-                    this.node.appendChild(btn);
-                  }
-                }();
+                  console.log("[wiki3-publish] Created ToolbarButton widget");
+                } else {
+                  const btn = document.createElement("button");
+                  btn.className = "wiki3-publish-btn jp-ToolbarButtonComponent jp-mod-minimal";
+                  btn.title = "Publish this notebook to GitHub";
+                  btn.innerHTML = `
+                  <span class="jp-ToolbarButtonComponent-icon">${getUploadIconSvg()}</span>
+                  <span class="jp-ToolbarButtonComponent-label">Publish</span>
+                `;
+                  btn.addEventListener("click", createPublishHandler(panel));
+                  const wrapper = document.createElement("div");
+                  wrapper.className = "jp-ToolbarButton";
+                  wrapper.appendChild(btn);
+                  widget = {
+                    node: wrapper,
+                    addClass: function(cls) {
+                      this.node.classList.add(cls);
+                    },
+                    hasClass: function(cls) {
+                      return this.node.classList.contains(cls);
+                    },
+                    removeClass: function(cls) {
+                      this.node.classList.remove(cls);
+                    },
+                    dispose: function() {
+                      this.isDisposed = true;
+                      this.node.remove();
+                    },
+                    isDisposed: false,
+                    id: "wiki3-publish-btn-" + Date.now()
+                  };
+                  console.log("[wiki3-publish] Created fallback widget");
+                }
                 try {
-                  panel.toolbar.insertItem(10, "publish-github", widget);
+                  const inserted = panel.toolbar.insertItem(5, "publish-github", widget);
+                  if (!inserted) {
+                    panel.toolbar.addItem("publish-github", widget);
+                  }
+                  console.log("[wiki3-publish] Publish button added to toolbar");
                 } catch (e) {
-                  panel.toolbar.addItem("publish-github", widget);
+                  console.error("[wiki3-publish] Error adding toolbar button:", e);
+                  try {
+                    panel.toolbar.addItem("publish-github", widget);
+                    console.log("[wiki3-publish] Publish button added via addItem fallback");
+                  } catch (e2) {
+                    console.error("[wiki3-publish] Fallback also failed:", e2);
+                  }
                 }
               });
             }
           };
-          return plugin;
+          console.log("[wiki3-publish/federation] Returning plugin");
+          return {
+            __esModule: true,
+            default: [plugin]
+          };
         };
       }
       throw new Error(`[wiki3-publish] Unknown module: ${module}`);
     },
     sharedScope: null
   };
-  var federation_default = container;
-  if (typeof win !== "undefined") {
-    win[scope] = container;
+  function showSettingsDialog(currentSettings, onSave) {
+    const dialog = document.createElement("dialog");
+    dialog.className = "wiki3-dialog wiki3-settings-dialog";
+    dialog.innerHTML = `
+    <div class="wiki3-dialog-content">
+      <h2 class="wiki3-dialog-title">Publish Settings</h2>
+      
+      <div class="wiki3-settings-form">
+        <label class="wiki3-settings-label">
+          Default Repository Owner (username/org):
+          <input type="text" id="wiki3-settings-owner" class="wiki3-settings-input" 
+                 placeholder="e.g., my-username" 
+                 value="${currentSettings.defaultOwner || ""}" />
+        </label>
+        
+        <label class="wiki3-settings-label">
+          Default Repository Name:
+          <input type="text" id="wiki3-settings-repo" class="wiki3-settings-input" 
+                 placeholder="e.g., my-notebooks" 
+                 value="${currentSettings.defaultRepo || ""}" />
+        </label>
+        
+        ${currentSettings.lastUsedRepo ? `
+          <p class="wiki3-settings-note">
+            Last used: <strong>${currentSettings.lastUsedRepo}</strong>
+          </p>
+        ` : ""}
+        
+        <p class="wiki3-settings-note">
+          These settings are stored in your browser's local storage.
+        </p>
+      </div>
+
+      <div class="wiki3-dialog-buttons">
+        <button type="button" id="wiki3-settings-save" class="wiki3-primary-button">Save</button>
+        <button type="button" id="wiki3-settings-cancel" class="wiki3-secondary-button">Cancel</button>
+      </div>
+    </div>
+  `;
+    document.body.appendChild(dialog);
+    const ownerInput = dialog.querySelector("#wiki3-settings-owner");
+    const repoInput = dialog.querySelector("#wiki3-settings-repo");
+    const saveBtn = dialog.querySelector("#wiki3-settings-save");
+    const cancelBtn = dialog.querySelector("#wiki3-settings-cancel");
+    saveBtn.addEventListener("click", () => {
+      onSave({
+        ...currentSettings,
+        defaultOwner: ownerInput.value.trim() || void 0,
+        defaultRepo: repoInput.value.trim() || void 0
+      });
+      dialog.close();
+      dialog.remove();
+    });
+    cancelBtn.addEventListener("click", () => {
+      dialog.close();
+      dialog.remove();
+    });
+    dialog.addEventListener("cancel", () => {
+      dialog.remove();
+    });
+    dialog.showModal();
   }
+  function getUploadIconSvg() {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+    <polyline points="16 6 12 2 8 6"/>
+    <line x1="12" y1="2" x2="12" y2="15"/>
+  </svg>`;
+  }
+  var federation_default = container;
+  win._JUPYTERLAB = win._JUPYTERLAB || {};
+  win._JUPYTERLAB[scope] = container;
+  console.log("[wiki3-publish/federation] Module Federation container registered for scope:", scope);
 })();

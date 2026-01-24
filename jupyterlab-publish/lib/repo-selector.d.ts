@@ -8,7 +8,9 @@ export declare class RepoSelector {
     private github;
     private repos;
     private resolvePromise;
-    constructor(github: GitHubAPI);
+    private defaultOwner?;
+    private defaultRepo?;
+    constructor(github: GitHubAPI, defaultOwner?: string, defaultRepo?: string);
     /**
      * Show the repo selector dialog
      */

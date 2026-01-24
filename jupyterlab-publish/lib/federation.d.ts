@@ -4,7 +4,10 @@
  */
 declare const container: {
     init: (sharedScope: any) => Promise<void>;
-    get: (module: string) => Promise<() => Promise<any>>;
+    get: (module: string) => Promise<() => Promise<{
+        __esModule: boolean;
+        default: any[];
+    }>>;
     sharedScope: any;
 };
 export default container;
