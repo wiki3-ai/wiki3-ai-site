@@ -171,14 +171,6 @@ export class GitHubAPI {
 on:
   push:
     branches: [main]
-    paths:
-      - '**.ipynb'
-      - '**.py'
-      - '**.md'
-      - 'requirements.txt'
-      - 'pyproject.toml'
-    paths-ignore:
-      - '.github/**'
   workflow_dispatch:
 
 permissions:
