@@ -63,6 +63,8 @@ npm run build
 
 ### Build for production
 
+This makes the labextension subdir
+
 ```bash
 npm run build:prod
 ```

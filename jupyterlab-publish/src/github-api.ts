@@ -151,7 +151,7 @@ export class GitHubAPI {
       repo,
       filename,
       notebookContent,
-      `Add ${filename} from Wiki3.ai`
+      `Add ${filename}`
     );
   }
 

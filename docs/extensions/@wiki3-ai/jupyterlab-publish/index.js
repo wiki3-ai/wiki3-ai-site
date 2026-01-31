@@ -165,7 +165,7 @@
      * Upload notebook file
      */
     async uploadNotebook(owner, repo, notebookContent, filename = "notebook.ipynb") {
-      await this.uploadFile(owner, repo, filename, notebookContent, `Add ${filename} from Wiki3.ai`);
+      await this.uploadFile(owner, repo, filename, notebookContent, `Add ${filename}`);
     }
     /**
      * Create GitHub Actions workflow for publishing with repo2jupyterlite-action
@@ -181,14 +181,6 @@
 on:
   push:
     branches: [main]
-    paths:
-      - '**.ipynb'
-      - '**.py'
-      - '**.md'
-      - 'requirements.txt'
-      - 'pyproject.toml'
-    paths-ignore:
-      - '.github/**'
   workflow_dispatch:
 
 permissions:
