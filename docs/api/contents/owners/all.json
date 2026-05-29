@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-05-29T23:25:03.983716Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-05-29T23:07:13Z",
+      "mimetype": "image/png",
+      "name": "ownersclub_ai_qr.png",
+      "path": "owners/ownersclub_ai_qr.png",
+      "size": 1850,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-05-29T23:25:03.981683Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-05-29T23:19:41Z",
+      "mimetype": null,
+      "name": "about.ipynb",
+      "path": "owners/about.ipynb",
+      "size": 6578,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-05-29T23:25:03.982859Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-05-29T22:50:30Z",
+      "mimetype": "text/markdown",
+      "name": "agenda.md",
+      "path": "owners/agenda.md",
+      "size": 2263,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2026-05-29T23:25:03.983436Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-05-29T23:25:03.983436Z",
+  "mimetype": null,
+  "name": "owners",
+  "path": "owners",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
