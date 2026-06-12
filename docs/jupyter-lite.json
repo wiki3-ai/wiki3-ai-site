@@ -32,31 +32,6 @@
       },
       {
         "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/ai-sdk-chat-kernel"
-      },
-      {
-        "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/built-in-chat"
-      },
-      {
-        "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/cell-run-button"
-      },
-      {
-        "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/jupyterlab-publish"
-      },
-      {
-        "extension": "./extension",
-        "load": "index.js",
-        "name": "@wiki3-ai/webllm-chat-kernel"
-      },
-      {
-        "extension": "./extension",
         "load": "./static/remoteEntry.698dcaf7.js",
         "name": "anywidget"
       },

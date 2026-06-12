@@ -1,5 +1,0 @@
-{
-    "packageManager": "python",
-    "packageName": "built-in-chat",
-    "uninstallInstructions": "Use your Python package manager (pip, conda, etc.) to uninstall the package built-in-chat"
-}
