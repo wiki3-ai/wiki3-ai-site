@@ -30,14 +30,14 @@ dev = [
 ]
 
 kernels = [
-    "ai-sdk-chat-kernel @ file:./ai-sdk-chat-kernel",
-    "built-in-chat @ file:./built-in-ai-chat-kernel",
-    "webllm-chat-kernel @ file:./webllm-chat-kernel",
+    "ai-sdk-chat-kernel",
+    "built-in-chat",
+    "webllm-chat-kernel",
 ]
 
 extensions = [
-    "cell-run-button @ file:./cell-run-button",
-    "jupyterlab-wiki3-publish @ file:./jupyterlab-publish",
+    "cell-run-button",
+    "jupyterlab-wiki3-publish",
 ]
 
 [project.entry-points."jupyterlite.addon.v0"]

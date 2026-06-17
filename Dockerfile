@@ -23,6 +23,7 @@ RUN git submodule update --init --recursive --force  \
     && uv pip install --system ai-sdk-chat-kernel/ \
     && uv pip install --system built-in-ai-chat-kernel/ \
     && uv pip install --system webllm-chat-kernel/ \
+    && uv pip install --system cell-run-button/ \
     && uv pip install --system jupyterlab-publish/
 
 RUN rm -rf docs .jupyterlite.doit.db \

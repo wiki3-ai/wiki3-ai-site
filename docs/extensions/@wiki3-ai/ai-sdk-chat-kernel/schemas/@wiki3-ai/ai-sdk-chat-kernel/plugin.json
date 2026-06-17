@@ -1,0 +1,42 @@
+{
+  "title": "AI SDK Chat Kernel",
+  "description": "Settings for the AI SDK Chat Kernel",
+  "jupyter.lab.setting-icon": "ui-components:kernel",
+  "jupyter.lab.setting-icon-label": "AI SDK Chat Kernel",
+  "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-mainmenu-kernel",
+        "items": [
+          {
+            "command": "ai-sdk-chat-kernel:open-settings",
+            "rank": 10
+          }
+        ]
+      }
+    ]
+  },
+  "type": "object",
+  "properties": {
+    "defaultProvider": {
+      "type": "string",
+      "title": "Default Provider",
+      "description": "The AI provider to use. Leave empty for auto-selection. Options: 'built-in-ai/core' (Chrome/Edge Prompt API), 'built-in-ai/webllm' (WebLLM local inference), 'built-in-ai/transformers' (Transformers.js local inference), 'openai', 'anthropic', 'google'. Auto-select will try core → webllm → transformers in order.",
+      "default": ""
+    },
+    "defaultModel": {
+      "type": "string",
+      "title": "Default Model",
+      "description": "The model to use. For built-in-ai/core: 'text'. For built-in-ai/transformers: HuggingFace model IDs. For built-in-ai/webllm: any model from %chat list. For cloud providers: see provider docs. Use %chat list <provider> to see available models.",
+      "default": "text"
+    },
+    "apiKey": {
+      "type": "string",
+      "title": "API Key",
+      "description": "API key for cloud providers (OpenAI, Anthropic, Google). Not needed for built-in-ai providers. The key is stored in browser local storage.",
+      "default": "",
+      "format": "password"
+    }
+  },
+  "additionalProperties": false
+}

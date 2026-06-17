@@ -1,0 +1,30 @@
+{
+  "name": "@wiki3-ai/jupyterlab-publish",
+  "version": "0.1.4",
+  "jupyterlab": {
+    "extension": true,
+    "outputDir": "labextension",
+    "sharedPackages": {
+      "@jupyterlab/application": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/notebook": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@jupyterlab/apputils": {
+        "bundled": false,
+        "singleton": true
+      },
+      "@lumino/widgets": {
+        "bundled": false,
+        "singleton": true
+      }
+    },
+    "_build": {
+      "load": "index.js",
+      "extension": "./extension"
+    }
+  }
+}

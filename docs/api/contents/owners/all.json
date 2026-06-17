@@ -2,7 +2,7 @@
   "content": [
     {
       "content": null,
-      "created": "2026-06-12T23:43:59.202121Z",
+      "created": "2026-06-17T19:37:09.534906Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
@@ -16,11 +16,11 @@
     },
     {
       "content": null,
-      "created": "2026-06-12T23:43:59.200525Z",
+      "created": "2026-06-17T19:37:09.531940Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
-      "last_modified": "2026-06-12T23:41:07Z",
+      "last_modified": "2026-06-12T23:44:40Z",
       "mimetype": null,
       "name": "about.ipynb",
       "path": "owners/about.ipynb",
@@ -30,7 +30,7 @@
     },
     {
       "content": null,
-      "created": "2026-06-12T23:43:59.201341Z",
+      "created": "2026-06-17T19:37:09.533664Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
@@ -43,11 +43,11 @@
       "writable": true
     }
   ],
-  "created": "2026-06-12T23:43:59.201824Z",
+  "created": "2026-06-17T19:37:09.534410Z",
   "format": "json",
   "hash": null,
   "hash_algorithm": null,
-  "last_modified": "2026-06-12T23:43:59.201824Z",
+  "last_modified": "2026-06-17T19:37:09.534410Z",
   "mimetype": null,
   "name": "owners",
   "path": "owners",
