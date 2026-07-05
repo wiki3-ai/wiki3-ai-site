@@ -2,7 +2,35 @@
   "content": [
     {
       "content": null,
-      "created": "2026-06-19T00:59:40.455139Z",
+      "created": "2026-07-05T21:35:40.056316Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-07-05T21:33:50Z",
+      "mimetype": "application/pdf",
+      "name": "slides.pdf",
+      "path": "owners/slides.pdf",
+      "size": 33057,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-07-05T21:35:40.055273Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-06-25T00:49:48Z",
+      "mimetype": null,
+      "name": "slides.ipynb",
+      "path": "owners/slides.ipynb",
+      "size": 8384,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-07-05T21:35:40.054024Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
@@ -16,7 +44,7 @@
     },
     {
       "content": null,
-      "created": "2026-06-19T00:59:40.453503Z",
+      "created": "2026-07-05T21:35:40.052314Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
@@ -30,7 +58,7 @@
     },
     {
       "content": null,
-      "created": "2026-06-19T00:59:40.454354Z",
+      "created": "2026-07-05T21:35:40.053172Z",
       "format": null,
       "hash": null,
       "hash_algorithm": null,
@@ -43,11 +71,11 @@
       "writable": true
     }
   ],
-  "created": "2026-06-19T00:59:40.454859Z",
+  "created": "2026-07-05T21:35:40.055916Z",
   "format": "json",
   "hash": null,
   "hash_algorithm": null,
-  "last_modified": "2026-06-19T00:59:40.454859Z",
+  "last_modified": "2026-07-05T21:35:40.055916Z",
   "mimetype": null,
   "name": "owners",
   "path": "owners",

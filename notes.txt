@@ -4,3 +4,13 @@ const notifyUploadPlugin = {
 
 
 webllm.ipynb - Seems we need to reload window after AnyWidget first initializes.
+
+
+For PDF output like for slides:
+
+```bash
+apt update
+apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-plain-generic
+uv pip install --system jupyter_rise pandoc
+python -m nbconvert --to pdf /workspaces/wiki3-ai-site/files/owners/slides.ipynb
+```
