@@ -11,6 +11,14 @@ For PDF output like for slides:
 ```bash
 apt update
 apt-get install pandoc texlive-xetex texlive-fonts-recommended texlive-plain-generic
-uv pip install --system jupyter_rise pandoc
-python -m nbconvert --to pdf /workspaces/wiki3-ai-site/files/owners/slides.ipynb
+uv venv
+source .venv/bin/activate
+uv pip install --system jupyterlab-rise pandoc nbconvert
+python -m nbconvert --to slides /workspaces/wiki3-ai-site/files/owners/slides.ipynb
+```
+
+
+```bash
+juptrer server password
+jupyter lab --port 8888
 ```

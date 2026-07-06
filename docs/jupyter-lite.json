@@ -21,6 +21,12 @@
       },
       {
         "extension": "./extension",
+        "load": "static/remoteEntry.71fdd4ee54dea9240f59.js",
+        "name": "@jupyterlab/mathjax3-extension",
+        "style": "./style"
+      },
+      {
+        "extension": "./extension",
         "load": "static/remoteEntry.3745c44cbbd62cec9a73.js",
         "name": "@jupyterlite/pyodide-kernel-extension"
       },
@@ -59,6 +65,12 @@
         "extension": "./extension",
         "load": "./static/remoteEntry.698dcaf7.js",
         "name": "anywidget"
+      },
+      {
+        "extension": "./extension",
+        "load": "static/remoteEntry.fe204744ca64b3a8dbb7.js",
+        "name": "jupyterlab-rise",
+        "style": "./style"
       },
       {
         "extension": "./extension",

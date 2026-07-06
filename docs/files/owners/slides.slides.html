@@ -2,106 +2,24 @@
 
 <html lang="en">
 <head><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>webllm</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<style>
-    :root { color-scheme: light dark; }
-    .jp-Button, .jp-Button:visited {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      border: 1px solid var(--jp-border-color2);
-      background: var(--jp-layout-color2);
-      color: inherit;
-      text-decoration: none;
-      font-size: var(--jp-ui-font-size1, 14px);
-      line-height: 1.4;
-      cursor: pointer;
-    }
-    .jp-Button:hover,
-    .jp-Button:focus {
-      border-color: var(--jp-brand-color1);
-      text-decoration: none;
-    }
-    .jp-Button:focus-visible {
-      outline: 2px solid var(--jp-brand-color1);
-      outline-offset: 2px;
-    }
-    button.jp-Button {
-      appearance: none;
-      -webkit-appearance: none;
-    }
-    body.jp-mod-light,
-    body.jp-mod-dark {
-      background: var(--jp-layout-color0);
-      color: var(--jp-ui-font-color1);
-    }
-    .wiki-toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      background: var(--jp-layout-color1);
-      border-bottom: 1px solid var(--jp-border-color2);
-    }
-    .wiki-toolbar-left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-    .wiki-toolbar-title {
-      font-weight: 600;
-      font-size: var(--jp-ui-font-size2, 16px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .wiki-toolbar-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .wiki-main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
-    }
-    .wiki-breadcrumbs {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      flex-wrap: wrap;
-    }
-    .wiki-breadcrumb-sep {
-      color: var(--jp-ui-font-color2);
-      margin: 0 0.125rem;
-    }
-    .wiki-breadcrumb-current {
-      font-weight: 600;
-    }
-    .wiki-share-success {
-      box-shadow: 0 0 0 2px var(--jp-success-color1);
-    }
-    .wiki-sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
-  </style>
+<meta content="chrome=1" http-equiv="X-UA-Compatible"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<title>slides slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script><script type="module">
+  import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.0/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+<!-- General and theme style sheets -->
+<link href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css" rel="stylesheet"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+</script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7332,61 +7250,148 @@ all of MD as it is not optimized for dense, information rich UIs.
 }
 </style>
 <style type="text/css">
-/* Force rendering true colors when outputing to pdf */
-* {
-  -webkit-print-color-adjust: exact;
-}
-
-/* Misc */
 a.anchor-link {
-  display: none;
+   display: none;
+}
+.highlight  {
+    margin: 0.4em;
+}
+.jp-Notebook {
+    padding: 0;
+}
+:root {
+    --jp-ui-font-size1: 20px;       /* instead of 14px */
+    --jp-content-font-size1: 20px;  /* instead of 14px */
+    --jp-code-font-size: 19px;      /* instead of 13px */
+    --jp-cell-prompt-width: 110px;  /* instead of 64px */
+}
+@media print {
+  body {
+    margin: 0;
+  }
+}
+</style>
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+.reveal {
+  font-size: 160%;
+}
+.reveal table {
+  font-size: var(--jp-ui-font-size1);
+}
+.reveal pre {
+  width: inherit;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.reveal pre code {
+  padding: 0px;
+}
+.reveal section img {
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal.fade {
+  opacity: 1;
+}
+.reveal .progress {
+  position: static;
 }
 
-/* Input area styling */
-.jp-InputArea {
-  overflow: hidden;
+div.jp-InputArea-editor {
+  padding: 0.06em;
 }
 
-.jp-InputArea-editor {
-  overflow: hidden;
+div.code_cell {
+  background-color: transparent;
 }
 
-.cm-editor.cm-s-jupyter .highlight pre {
-/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.cm-line */
-  padding: var(--jp-code-padding) 4px;
+div.output_area pre {
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+}
+
+div.jp-OutputPrompt {
+  /* 5px right shift to account for margin in parent container */
+  margin: 5px 5px 0 0;
+}
+
+.reveal div.highlight {
   margin: 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  color: inherit;
-
 }
 
-.jp-OutputArea-output pre {
-  line-height: inherit;
-  font-family: inherit;
-}
-
-.jp-RenderedText pre {
-  color: var(--jp-content-font-color1);
+.reveal div.highlight > pre {
+  margin: 0;
+  width: 100%;
   font-size: var(--jp-code-font-size);
 }
 
-/* Hiding the collapser by default */
-.jp-Collapser {
-  display: none;
+.reveal div.jp-OutputArea-output > pre {
+  margin: 0;
+  width: 90%;
+  font-size: var(--jp-code-font-size);
+  box-shadow: none;
 }
 
-@page {
-    margin: 0.5in; /* Margin for each printed piece of paper */
+main {
+  height: 100%;
 }
 
-@media print {
-  .jp-Cell-inputWrapper,
-  .jp-Cell-outputWrapper {
-    display: block;
-  }
+/* Reveal navigation controls */
+
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: #727272;
+}
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-left.enabled.enabled:hover {
+  border-right-color: #dfdfdf;
+}
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: #727272;
+}
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-right.enabled.enabled:hover {
+  border-left-color: #dfdfdf;
+}
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: #727272;
+}
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-up.enabled.enabled:hover {
+  border-bottom-color: #dfdfdf;
+}
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: #727272;
+}
+.reveal .controls .navigate-down.enabled:hover,
+.reveal .controls .navigate-down.enabled.enabled:hover {
+  border-top-color: #dfdfdf;
+}
+.reveal .progress span {
+  background: #727272;
+}
+
+/* Scrollbars */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar * {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #727272 !important;
 }
 </style>
 <!-- Load mathjax -->
@@ -7423,1590 +7428,316 @@ a.anchor-link {
     }
     init_mathjax();
     </script>
-<!-- End of mathjax configuration --><script type="module">
-  document.addEventListener("DOMContentLoaded", async () => {
-    const diagrams = document.querySelectorAll(".jp-Mermaid > pre.mermaid");
-    // do not load mermaidjs if not needed
-    if (!diagrams.length) {
-      return;
-    }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.0/mermaid.esm.min.mjs")).default;
-    const elkUrl = "https://cdnjs.cloudflare.com/ajax/libs/mermaid-layout-elk/0.1.9/mermaid-layout-elk.esm.min.mjs";
-    if(elkUrl) {
-      const elkLayouts = (await import(elkUrl)).default;
-      mermaid.registerLayoutLoaders(elkLayouts);
-    }
-    const parser = new DOMParser();
-
-    mermaid.initialize({
-      maxTextSize: 100000,
-      maxEdges: 100000,
-      startOnLoad: false,
-      fontFamily: window
-        .getComputedStyle(document.body)
-        .getPropertyValue("--jp-ui-font-family"),
-      theme: document.querySelector("body[data-jp-theme-light='true']")
-        ? "default"
-        : "dark",
-    });
-
-    let _nextMermaidId = 0;
-
-    function makeMermaidImage(svg) {
-      const img = document.createElement("img");
-      const doc = parser.parseFromString(svg, "image/svg+xml");
-      const svgEl = doc.querySelector("svg");
-      const { maxWidth } = svgEl?.style || {};
-      const firstTitle = doc.querySelector("title");
-      const firstDesc = doc.querySelector("desc");
-
-      img.setAttribute("src", `data:image/svg+xml,${encodeURIComponent(svg)}`);
-      if (maxWidth) {
-        img.width = parseInt(maxWidth);
-      }
-      if (firstTitle) {
-        img.setAttribute("alt", firstTitle.textContent);
-      }
-      if (firstDesc) {
-        const caption = document.createElement("figcaption");
-        caption.className = "sr-only";
-        caption.textContent = firstDesc.textContent;
-        return [img, caption];
-      }
-      return [img];
-    }
-
-    async function makeMermaidError(text) {
-      let errorMessage = "";
-      try {
-        await mermaid.parse(text);
-      } catch (err) {
-        errorMessage = `${err}`;
-      }
-
-      const result = document.createElement("details");
-      result.className = 'jp-RenderedMermaid-Details';
-      const summary = document.createElement("summary");
-      summary.className = 'jp-RenderedMermaid-Summary';
-      const pre = document.createElement("pre");
-      const code = document.createElement("code");
-      code.innerText = text;
-      pre.appendChild(code);
-      summary.appendChild(pre);
-      result.appendChild(summary);
-
-      const warning = document.createElement("pre");
-      warning.innerText = errorMessage;
-      result.appendChild(warning);
-      return [result];
-    }
-
-    async function renderOneMarmaid(src) {
-      const id = `jp-mermaid-${_nextMermaidId++}`;
-      const parent = src.parentNode;
-      let raw = src.textContent.trim();
-      const el = document.createElement("div");
-      el.style.visibility = "hidden";
-      document.body.appendChild(el);
-      let results = null;
-      let output = null;
-      try {
-        let { svg } = await mermaid.render(id, raw, el);
-        svg = cleanMermaidSvg(svg);
-        results = makeMermaidImage(svg);
-        output = document.createElement("figure");
-        results.map(output.appendChild, output);
-      } catch (err) {
-        parent.classList.add("jp-mod-warning");
-        results = await makeMermaidError(raw);
-        output = results[0];
-      } finally {
-        el.remove();
-      }
-      parent.classList.add("jp-RenderedMermaid");
-      parent.appendChild(output);
-    }
-
-
-    /**
-     * Post-process to ensure mermaid diagrams contain only valid SVG and XHTML.
-     */
-    function cleanMermaidSvg(svg) {
-      svg = svg.replace(RE_VOID_ELEMENT, replaceVoidElement);
-      return `${SVG_XML_HEADER}${svg}`;
-    }
-
-
-    /**
-     * A regular expression for all void elements, which may include attributes and
-     * a slash.
-     *
-     * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-     *
-     * Of these, only `<br>` is generated by Mermaid in place of `\n`,
-     * but _any_ "malformed" tag will break the SVG rendering entirely.
-     */
-    const RE_VOID_ELEMENT =
-      /<\s*(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)\s*([^>]*?)\s*>/gi;
-
-    /**
-     * Ensure a void element is closed with a slash, preserving any attributes.
-     */
-    function replaceVoidElement(match, tag, rest) {
-      rest = rest.trim();
-      if (!rest.endsWith('/')) {
-        rest = `${rest} /`;
-      }
-      return `<${tag} ${rest}>`;
-    }
-
-
-  /**
-   * Named HTML entities with their decimal equivalent codes.
-   *
-   * @see https://www.w3.org/TR/WD-html40-970708/sgml/entities.html
-   * */
-  const HTML_ENTITIES = `<!ENTITY Aacute "&#193;">
-<!ENTITY aacute "&#225;">
-<!ENTITY Acirc "&#194;">
-<!ENTITY acirc "&#226;">
-<!ENTITY acute "&#180;">
-<!ENTITY AElig "&#198;">
-<!ENTITY aelig "&#230;">
-<!ENTITY Agrave "&#192;">
-<!ENTITY agrave "&#224;">
-<!ENTITY alefsym "&#8501;">
-<!ENTITY Alpha "&#913;">
-<!ENTITY alpha "&#945;">
-<!ENTITY amp "&#38;">
-<!ENTITY and "&#8869;">
-<!ENTITY ang "&#8736;">
-<!ENTITY Aring "&#197;">
-<!ENTITY aring "&#229;">
-<!ENTITY asymp "&#8776;">
-<!ENTITY Atilde "&#195;">
-<!ENTITY atilde "&#227;">
-<!ENTITY Auml "&#196;">
-<!ENTITY auml "&#228;">
-<!ENTITY bdquo "&#8222;">
-<!ENTITY Beta "&#914;">
-<!ENTITY beta "&#946;">
-<!ENTITY brvbar "&#166;">
-<!ENTITY bull "&#8226;">
-<!ENTITY cap "&#8745;">
-<!ENTITY Ccedil "&#199;">
-<!ENTITY ccedil "&#231;">
-<!ENTITY cedil "&#184;">
-<!ENTITY cent "&#162;">
-<!ENTITY Chi "&#935;">
-<!ENTITY chi "&#967;">
-<!ENTITY circ "&#710;">
-<!ENTITY clubs "&#9827;">
-<!ENTITY cong "&#8773;">
-<!ENTITY copy "&#169;">
-<!ENTITY crarr "&#8629;">
-<!ENTITY cup "&#8746;">
-<!ENTITY curren "&#164;">
-<!ENTITY dagger "&#8224;">
-<!ENTITY Dagger "&#8225;">
-<!ENTITY darr "&#8595;">
-<!ENTITY dArr "&#8659;">
-<!ENTITY deg "&#176;">
-<!ENTITY Delta "&#916;">
-<!ENTITY delta "&#948;">
-<!ENTITY diams "&#9830;">
-<!ENTITY divide "&#247;">
-<!ENTITY Eacute "&#201;">
-<!ENTITY eacute "&#233;">
-<!ENTITY Ecirc "&#202;">
-<!ENTITY ecirc "&#234;">
-<!ENTITY Egrave "&#200;">
-<!ENTITY egrave "&#232;">
-<!ENTITY empty "&#8709;">
-<!ENTITY emsp "&#8195;">
-<!ENTITY ensp "&#8194;">
-<!ENTITY epsilon "&#949;">
-<!ENTITY Epsilon "&#917;">
-<!ENTITY equiv "&#8801;">
-<!ENTITY Eta "&#919;">
-<!ENTITY eta "&#951;">
-<!ENTITY ETH "&#208;">
-<!ENTITY eth "&#240;">
-<!ENTITY Euml "&#203;">
-<!ENTITY euml "&#235;">
-<!ENTITY exist "&#8707;">
-<!ENTITY fnof "&#402;">
-<!ENTITY forall "&#8704;">
-<!ENTITY frac12 "&#189;">
-<!ENTITY frac14 "&#188;">
-<!ENTITY frac34 "&#190;">
-<!ENTITY frasl "&#8260;">
-<!ENTITY Gamma "&#915;">
-<!ENTITY gamma "&#947;">
-<!ENTITY ge "&#8805;">
-<!ENTITY gt "&#62;">
-<!ENTITY harr "&#8596;">
-<!ENTITY hArr "&#8660;">
-<!ENTITY hearts "&#9829;">
-<!ENTITY hellip "&#8230;">
-<!ENTITY Iacute "&#205;">
-<!ENTITY iacute "&#237;">
-<!ENTITY Icirc "&#206;">
-<!ENTITY icirc "&#238;">
-<!ENTITY iexcl "&#161;">
-<!ENTITY Igrave "&#204;">
-<!ENTITY igrave "&#236;">
-<!ENTITY image "&#8465;">
-<!ENTITY infin "&#8734;">
-<!ENTITY int "&#8747;">
-<!ENTITY Iota "&#921;">
-<!ENTITY iota "&#953;">
-<!ENTITY iquest "&#191;">
-<!ENTITY isin "&#8712;">
-<!ENTITY Iuml "&#207;">
-<!ENTITY iuml "&#239;">
-<!ENTITY Kappa "&#922;">
-<!ENTITY kappa "&#954;">
-<!ENTITY Lambda "&#923;">
-<!ENTITY lambda "&#955;">
-<!ENTITY lang "&#9001;">
-<!ENTITY laquo "&#171;">
-<!ENTITY larr "&#8592;">
-<!ENTITY lArr "&#8656;">
-<!ENTITY lceil "&#8968;">
-<!ENTITY ldquo "&#8220;">
-<!ENTITY le "&#8804;">
-<!ENTITY lfloor "&#8970;">
-<!ENTITY lowast "&#8727;">
-<!ENTITY loz "&#9674;">
-<!ENTITY lrm "&#8206;">
-<!ENTITY lsaquo "&#8249;">
-<!ENTITY lsquo "&#8216;">
-<!ENTITY lt "&#60;">
-<!ENTITY macr "&#175;">
-<!ENTITY mdash "&#8212;">
-<!ENTITY micro "&#181;">
-<!ENTITY middot "&#183;">
-<!ENTITY minus "&#8722;">
-<!ENTITY Mu "&#924;">
-<!ENTITY mu "&#956;">
-<!ENTITY nabla "&#8711;">
-<!ENTITY nbsp "&#160;">
-<!ENTITY ndash "&#8211;">
-<!ENTITY ne "&#8800;">
-<!ENTITY ni "&#8715;">
-<!ENTITY not "&#172;">
-<!ENTITY notin "&#8713;">
-<!ENTITY nsub "&#8836;">
-<!ENTITY Ntilde "&#209;">
-<!ENTITY ntilde "&#241;">
-<!ENTITY Nu "&#925;">
-<!ENTITY nu "&#957;">
-<!ENTITY Oacute "&#211;">
-<!ENTITY oacute "&#243;">
-<!ENTITY Ocirc "&#212;">
-<!ENTITY ocirc "&#244;">
-<!ENTITY OElig "&#338;">
-<!ENTITY oelig "&#339;">
-<!ENTITY Ograve "&#210;">
-<!ENTITY ograve "&#242;">
-<!ENTITY oline "&#8254;">
-<!ENTITY Omega "&#937;">
-<!ENTITY omega "&#969;">
-<!ENTITY Omicron "&#927;">
-<!ENTITY omicron "&#959;">
-<!ENTITY oplus "&#8853;">
-<!ENTITY or "&#8870;">
-<!ENTITY ordf "&#170;">
-<!ENTITY ordm "&#186;">
-<!ENTITY Oslash "&#216;">
-<!ENTITY oslash "&#248;">
-<!ENTITY Otilde "&#213;">
-<!ENTITY otilde "&#245;">
-<!ENTITY otimes "&#8855;">
-<!ENTITY Ouml "&#214;">
-<!ENTITY ouml "&#246;">
-<!ENTITY para "&#182;">
-<!ENTITY part "&#8706;">
-<!ENTITY permil "&#8240;">
-<!ENTITY perp "&#8869;">
-<!ENTITY Phi "&#934;">
-<!ENTITY phi "&#966;">
-<!ENTITY Pi "&#928;">
-<!ENTITY pi "&#960;">
-<!ENTITY piv "&#982;">
-<!ENTITY plusmn "&#177;">
-<!ENTITY pound "&#163;">
-<!ENTITY prime "&#8242;">
-<!ENTITY Prime "&#8243;">
-<!ENTITY prod "&#8719;">
-<!ENTITY prop "&#8733;">
-<!ENTITY Psi "&#936;">
-<!ENTITY psi "&#968;">
-<!ENTITY quot "&#34;">
-<!ENTITY radic "&#8730;">
-<!ENTITY rang "&#9002;">
-<!ENTITY raquo "&#187;">
-<!ENTITY rarr "&#8594;">
-<!ENTITY rArr "&#8658;">
-<!ENTITY rceil "&#8969;">
-<!ENTITY rdquo "&#8221;">
-<!ENTITY real "&#8476;">
-<!ENTITY reg "&#174;">
-<!ENTITY rfloor "&#8971;">
-<!ENTITY Rho "&#929;">
-<!ENTITY rho "&#961;">
-<!ENTITY rlm "&#8207;">
-<!ENTITY rsaquo "&#8250;">
-<!ENTITY rsquo "&#8217;">
-<!ENTITY sbquo "&#8218;">
-<!ENTITY Scaron "&#352;">
-<!ENTITY scaron "&#353;">
-<!ENTITY sdot "&#8901;">
-<!ENTITY sect "&#167;">
-<!ENTITY shy "&#173;">
-<!ENTITY Sigma "&#931;">
-<!ENTITY sigma "&#963;">
-<!ENTITY sigmaf "&#962;">
-<!ENTITY sim "&#8764;">
-<!ENTITY spades "&#9824;">
-<!ENTITY sub "&#8834;">
-<!ENTITY sube "&#8838;">
-<!ENTITY sum "&#8721;">
-<!ENTITY sup "&#8835;">
-<!ENTITY sup1 "&#185;">
-<!ENTITY sup2 "&#178;">
-<!ENTITY sup3 "&#179;">
-<!ENTITY supe "&#8839;">
-<!ENTITY szlig "&#223;">
-<!ENTITY Tau "&#932;">
-<!ENTITY tau "&#964;">
-<!ENTITY there4 "&#8756;">
-<!ENTITY Theta "&#920;">
-<!ENTITY theta "&#952;">
-<!ENTITY thetasym "&#977;">
-<!ENTITY thinsp "&#8201;">
-<!ENTITY THORN "&#222;">
-<!ENTITY thorn "&#254;">
-<!ENTITY tilde "&#732;">
-<!ENTITY times "&#215;">
-<!ENTITY trade "&#8482;">
-<!ENTITY Uacute "&#218;">
-<!ENTITY uacute "&#250;">
-<!ENTITY uarr "&#8593;">
-<!ENTITY uArr "&#8657;">
-<!ENTITY Ucirc "&#219;">
-<!ENTITY ucirc "&#251;">
-<!ENTITY Ugrave "&#217;">
-<!ENTITY ugrave "&#249;">
-<!ENTITY uml "&#168;">
-<!ENTITY upsih "&#978;">
-<!ENTITY Upsilon "&#933;">
-<!ENTITY upsilon "&#965;">
-<!ENTITY Uuml "&#220;">
-<!ENTITY uuml "&#252;">
-<!ENTITY weierp "&#8472;">
-<!ENTITY Xi "&#926;">
-<!ENTITY xi "&#958;">
-<!ENTITY Yacute "&#221;">
-<!ENTITY yacute "&#253;">
-<!ENTITY yen "&#165;">
-<!ENTITY Yuml "&#376;">
-<!ENTITY yuml "&#255;">
-<!ENTITY Zeta "&#918;">
-<!ENTITY zeta "&#950;">
-<!ENTITY zwj "&#8205;">
-<!ENTITY zwnj "&#8204;">`.replace(/\n/g, ' ');
-
-  /**
-   * A reasonably strict xml declaration.
-   */
-  const XML_DECL = '<?xml version="1.0" standalone="no"?>';
-
-  /**
-   * The beginning of the XML doctype declaration.
-   */
-  const DOCTYPE_START = `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [`;
-
-  /**
-   * The end of the XML docype declaration.
-   */
-  const DOCTYPE_END = ']>';
-
-  /**
-   * A full header for an SVG XML document.
-   */
-  const SVG_XML_HEADER = `${XML_DECL}
-    ${DOCTYPE_START}${HTML_ENTITIES}${DOCTYPE_END}`;
-
-    void Promise.all([...diagrams].map(renderOneMarmaid));
-  });
-</script>
-<style>
-  .jp-Mermaid:not(.jp-RenderedMermaid) {
-    display: none;
-  }
-
-  .jp-RenderedMermaid {
-    overflow: auto;
-    display: flex;
-  }
-
-  .jp-RenderedMermaid.jp-mod-warning {
-    width: auto;
-    padding: 0.5em;
-    margin-top: 0.5em;
-    border: var(--jp-border-width) solid var(--jp-warn-color2);
-    border-radius: var(--jp-border-radius);
-    color: var(--jp-ui-font-color1);
-    font-size: var(--jp-ui-font-size1);
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  .jp-RenderedMermaid figure {
-    margin: 0;
-    overflow: auto;
-    max-width: 100%;
-  }
-
-  .jp-RenderedMermaid img {
-    max-width: 100%;
-  }
-
-  .jp-RenderedMermaid-Details > pre {
-    margin-top: 1em;
-  }
-
-  .jp-RenderedMermaid-Summary {
-    color: var(--jp-warn-color2);
-  }
-
-  .jp-RenderedMermaid:not(.jp-mod-warning) pre {
-    display: none;
-  }
-
-  .jp-RenderedMermaid-Summary > pre {
-    display: inline-block;
-    white-space: normal;
-  }
-</style>
-<!-- End of mermaid configuration --></head>
-<body class="jp-Notebook jp-mod-light" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div aria-label="Notebook actions" class="wiki-toolbar" role="toolbar">
-<div class="wiki-toolbar-left">
-<a class="jp-Button" href="/">home</a>
-<span class="wiki-toolbar-title" title="Webllm">Webllm</span>
-</div>
-<div aria-label="File actions" class="wiki-toolbar-actions" role="group">
-<a class="jp-Button" href="/notebooks/index.html?path=webllm.ipynb" rel="noopener noreferrer" target="_blank">edit</a>
-<a class="jp-Button" href="/lab/index.html?path=webllm.ipynb" rel="noopener noreferrer" target="_blank">lab</a>
-<a aria-label="Download" class="jp-Button" download="" href="/files/webllm.ipynb" title="Download">down</a>
-<button aria-label="Copy share link" class="jp-Button" data-share="/wiki/webllm.html" type="button">share</button>
-</div>
-</div>
-<main class="wiki-main">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e61d0521-be1d-4f22-bfd0-b8a6f2dee6ad">
+<!-- End of mathjax configuration --><!-- Reveal Theme -->
+<link href="https://unpkg.com/reveal.js@4.0.2/dist/theme/simple.css" id="theme" rel="stylesheet"/>
+</head>
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+<main>
+<div class="reveal">
+<div class="slides"><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15befede">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This <a href="https://webllm.mlc.ai/">WebLLM</a> in a <a href="https://github.com/jupyterlite">JupyterLite</a> demo notebook is from <a href="https://panel.holoviz.org/gallery/webllm.html">Holoviz Panel App Gallery WebLLM</a>.</p>
-<p><em>If you are in the wiki view (static HTML rendering), click "edit" in the top right to open this <a href="https://jupyterlite.readthedocs.io/">JupyterLite</a> notebook in your browser.</em></p>
-<p>Recommended quick start is to choose "Run: Run All Cells".  That will take a few moments to load the wheels in the next cell and get the JupyterLite engine running.  Scroll to the end and when it is run you'll see a message that says "Load a model...".  Scroll up a bit until you see the "Load" button and the model selector.  The default is the smallest, <a href="https://huggingface.co/mlc-ai/SmolLM2-360M-Instruct-q4f16_1-MLC">Smol2-360M (130MB)</a>, so just click "Load" and you should see the progress bar run after a bit.  When it is done you'll see a message in the chat at the bottom saying the model is loaded.  Go ahead and type in the chat.  Smol 360M gives some pretty entertaining responses.  Everything is running in your browser.</p>
-<p>TODO: What is the behavior when WebGPU isn't available?</p>
-<p>This version at <a href="https://wiki3.ai/notebooks/?path=webllm.ipynb">https://wiki3.ai/notebooks/?path=webllm.ipynb</a> is by <a href="https://github.com/jimwhite">Jim White</a> and the project repo is at <a href="https://github.com/wiki3-ai/wiki3-ai-site">https://github.com/fovi-llc/wiki3ai</a>.</p>
+<h1 id="AI-Owners-Club">AI Owners Club<a class="anchor-link" href="#AI-Owners-Club">¶</a></h1><h1 id="OwnersClub.ai"><a href="https://ownersclub.ai">OwnersClub.ai</a><a class="anchor-link" href="#OwnersClub.ai">¶</a></h1><h2 id="Own-Your-Own-AI"><em>Own Your Own AI</em><a class="anchor-link" href="#Own-Your-Own-AI">¶</a></h2><h3 id="Welcome-&amp;-Logistics">Welcome &amp; Logistics<a class="anchor-link" href="#Welcome-&amp;-Logistics">¶</a></h3><ul>
+<li><strong>Goal:</strong> Collaborative development and support for owning your own AI.</li>
+<li><strong>Logistics:</strong> Bring your laptop (if you want to).</li>
+<li><strong>Overview</strong> of the 2.5-hour agenda<ul>
+<li>First Hour: Getting started with Jan</li>
+<li>Second Hour: Digging into the technology</li>
+<li>Final Half Hour: Feedback and planning for the Owners Club</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c533087c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">micropip</span>
-
-<span class="c1"># Get the latest wheel URLs from the HoloViz CDN (adjust version as needed)</span>
-<span class="c1"># You might need to check the HoloViz documentation for the absolute latest versions</span>
-<span class="n">bk_whl</span> <span class="o">=</span> <span class="s2">"https://cdn.holoviz.org/panel/1.8.2/dist/wheels/bokeh-3.8.0-py3-none-any.whl"</span>
-<span class="n">pn_whl</span> <span class="o">=</span> <span class="s2">"https://cdn.holoviz.org/panel/1.8.2/dist/wheels/panel-1.8.2-py3-none-any.whl"</span>
-
-<span class="k">await</span> <span class="n">micropip</span><span class="o">.</span><span class="n">install</span><span class="p">([</span><span class="n">bk_whl</span><span class="p">,</span> <span class="n">pn_whl</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=85d4841f-2f9b-481f-96e8-48b05add3deb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># %pip install -q panel bokeh</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=04c6078a-0398-425c-82f7-d516b01b713d">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">panel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pn</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">param</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">panel.custom</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSComponent</span><span class="p">,</span> <span class="n">ESMEvent</span>
-
-<span class="n">pn</span><span class="o">.</span><span class="n">extension</span><span class="p">(</span><span class="s1">'mathjax'</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">'material'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<script type="esms-options">{"shimMode": true}</script><style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(
-  > .cell-output-ipywidget-background > .lm-Widget > *[data-root-id]
-),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedJavaScript jp-OutputArea-output" data-mime-type="application/javascript" id="2b8172c0-9bbf-426a-8fca-05f95abd36aa" tabindex="0">
-<script type="text/javascript">
-var element = document.getElementById('2b8172c0-9bbf-426a-8fca-05f95abd36aa');
-(function(root) {
-  function now() {
-    return new Date();
-  }
-
-  const force = true;
-  const py_version = '3.8.0'.replace('rc', '-rc.').replace('.dev', '-dev.');
-  const reloading = false;
-  const Bokeh = root.Bokeh;
-
-  // Set a timeout for this load but only if we are not already initializing
-  if (typeof (root._bokeh_timeout) === "undefined" || (force || !root._bokeh_is_initializing)) {
-    root._bokeh_timeout = Date.now() + 5000;
-    root._bokeh_failed_load = false;
-  }
-
-  function run_callbacks() {
-    try {
-      root._bokeh_onload_callbacks.forEach(function(callback) {
-        if (callback != null)
-          callback();
-      });
-    } finally {
-      delete root._bokeh_onload_callbacks;
-    }
-    console.debug("Bokeh: all callbacks have finished");
-  }
-
-  function load_libs(css_urls, js_urls, js_modules, js_exports, callback) {
-    if (css_urls == null) css_urls = [];
-    if (js_urls == null) js_urls = [];
-    if (js_modules == null) js_modules = [];
-    if (js_exports == null) js_exports = {};
-
-    root._bokeh_onload_callbacks.push(callback);
-
-    if (root._bokeh_is_loading > 0) {
-      // Don't load bokeh if it is still initializing
-      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
-      return null;
-    } else if (js_urls.length === 0 && js_modules.length === 0 && Object.keys(js_exports).length === 0) {
-      // There is nothing to load
-      run_callbacks();
-      return null;
-    }
-
-    function on_load() {
-      root._bokeh_is_loading--;
-      if (root._bokeh_is_loading === 0) {
-        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
-        run_callbacks()
-      }
-    }
-    window._bokeh_on_load = on_load
-
-    function on_error(e) {
-      const src_el = e.srcElement
-      console.error("failed to load " + (src_el.href || src_el.src));
-    }
-
-    const skip = [];
-    if (window.requirejs) {
-      window.requirejs.config({'packages': {}, 'paths': {}, 'shim': {}});
-      root._bokeh_is_loading = css_urls.length + 0;
-    } else {
-      root._bokeh_is_loading = css_urls.length + js_urls.length + js_modules.length + Object.keys(js_exports).length;
-    }
-
-    const existing_stylesheets = []
-    const links = document.getElementsByTagName('link')
-    for (let i = 0; i < links.length; i++) {
-      const link = links[i]
-      if (link.href != null) {
-        existing_stylesheets.push(link.href)
-      }
-    }
-    for (let i = 0; i < css_urls.length; i++) {
-      const url = css_urls[i];
-      const escaped = encodeURI(url)
-      if (existing_stylesheets.indexOf(escaped) !== -1) {
-        on_load()
-        continue;
-      }
-      const element = document.createElement("link");
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.rel = "stylesheet";
-      element.type = "text/css";
-      element.href = url;
-      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
-      document.body.appendChild(element);
-    }    var existing_scripts = []
-    const scripts = document.getElementsByTagName('script')
-    for (let i = 0; i < scripts.length; i++) {
-      var script = scripts[i]
-      if (script.src != null) {
-        existing_scripts.push(script.src)
-      }
-    }
-    for (let i = 0; i < js_urls.length; i++) {
-      const url = js_urls[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      const element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (let i = 0; i < js_modules.length; i++) {
-      const url = js_modules[i];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) !== -1 || existing_scripts.indexOf(escaped) !== -1) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      var element = document.createElement('script');
-      element.onload = on_load;
-      element.onerror = on_error;
-      element.async = false;
-      element.src = url;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      document.head.appendChild(element);
-    }
-    for (const name in js_exports) {
-      const url = js_exports[name];
-      const escaped = encodeURI(url)
-      if (skip.indexOf(escaped) >= 0 || root[name] != null) {
-        if (!window.requirejs) {
-          on_load();
-        }
-        continue;
-      }
-      var element = document.createElement('script');
-      element.onerror = on_error;
-      element.async = false;
-      element.type = "module";
-      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
-      element.textContent = `
-      import ${name} from "${url}"
-      window.${name} = ${name}
-      window._bokeh_on_load()
-      `
-      document.head.appendChild(element);
-    }
-    if (!js_urls.length && !js_modules.length) {
-      on_load()
-    }
-  };
-
-  function inject_raw_css(css) {
-    const element = document.createElement("style");
-    element.appendChild(document.createTextNode(css));
-    document.body.appendChild(element);
-  }
-
-  const js_urls = ["https://cdn.jsdelivr.net/npm/es-module-shims@^1.10.0/dist/es-module-shims.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-3.8.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-gl-3.8.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.8.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.8.0.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-mathjax-3.8.0.min.js", "https://cdn.holoviz.org/panel/1.8.2/dist/panel.min.js"];
-  const js_modules = [];
-  const js_exports = {};
-  const css_urls = [];
-  const inline_js = [    function(Bokeh) {
-      Bokeh.set_log_level("info");
-    },
-function(Bokeh) {} // ensure no trailing comma for IE
-  ];
-
-  function run_inline_js() {
-    if ((root.Bokeh !== undefined) || (force === true)) {
-      for (let i = 0; i < inline_js.length; i++) {
-        try {
-          inline_js[i].call(root, root.Bokeh);
-        } catch(e) {
-          if (!reloading) {
-            throw e;
-          }
-        }
-      }
-      // Cache old bokeh versions
-      if (Bokeh != undefined && !reloading) {
-        var NewBokeh = root.Bokeh;
-        if (Bokeh.versions === undefined) {
-          Bokeh.versions = new Map();
-        }
-        if (NewBokeh.version !== Bokeh.version) {
-          Bokeh.versions.set(NewBokeh.version, NewBokeh)
-        }
-        root.Bokeh = Bokeh;
-      }
-    } else if (Date.now() < root._bokeh_timeout) {
-      setTimeout(run_inline_js, 100);
-    } else if (!root._bokeh_failed_load) {
-      console.log("Bokeh: BokehJS failed to load within specified timeout.");
-      root._bokeh_failed_load = true;
-    }
-    root._bokeh_is_initializing = false
-  }
-
-  function load_or_wait() {
-    // Implement a backoff loop that tries to ensure we do not load multiple
-    // versions of Bokeh and its dependencies at the same time.
-    // In recent versions we use the root._bokeh_is_initializing flag
-    // to determine whether there is an ongoing attempt to initialize
-    // bokeh, however for backward compatibility we also try to ensure
-    // that we do not start loading a newer (Panel>=1.0 and Bokeh>3) version
-    // before older versions are fully initialized.
-    if (root._bokeh_is_initializing && Date.now() > root._bokeh_timeout) {
-      // If the timeout and bokeh was not successfully loaded we reset
-      // everything and try loading again
-      root._bokeh_timeout = Date.now() + 5000;
-      root._bokeh_is_initializing = false;
-      root._bokeh_onload_callbacks = undefined;
-      root._bokeh_is_loading = 0
-      console.log("Bokeh: BokehJS was loaded multiple times but one version failed to initialize.");
-      load_or_wait();
-    } else if (root._bokeh_is_initializing || (typeof root._bokeh_is_initializing === "undefined" && root._bokeh_onload_callbacks !== undefined)) {
-      setTimeout(load_or_wait, 100);
-    } else {
-      root._bokeh_is_initializing = true
-      root._bokeh_onload_callbacks = []
-      const bokeh_loaded = root.Bokeh != null && (root.Bokeh.version === py_version || (root.Bokeh.versions !== undefined && root.Bokeh.versions.has(py_version)));
-      if (!reloading && !bokeh_loaded) {
-        if (root.Bokeh) {
-          root.Bokeh = undefined;
-        }
-        console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
-      }
-      load_libs(css_urls, js_urls, js_modules, js_exports, function() {
-        console.debug("Bokeh: BokehJS plotting callback run at", now());
-        run_inline_js();
-      });
-    }
-  }
-  // Give older versions of the autoload script a head-start to ensure
-  // they initialize before we start loading newer version.
-  setTimeout(load_or_wait, 100)
-}(window));
-</script>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedJavaScript jp-OutputArea-output" data-mime-type="application/javascript" id="034a8a8f-2f67-4224-93cd-ec51b9cc5c85" tabindex="0">
-<script type="text/javascript">
-var element = document.getElementById('034a8a8f-2f67-4224-93cd-ec51b9cc5c85');
-
-if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
-  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
-}
-
-
-    function JupyterCommManager() {
-    }
-
-    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
-      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        comm_manager.register_target(comm_id, function(comm) {
-          comm.on_msg(msg_handler);
-        });
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
-          comm.onMsg = msg_handler;
-        });
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
-          var messages = comm.messages[Symbol.asyncIterator]();
-          function processIteratorResult(result) {
-            var message = result.value;
-            var content = {data: message.data, comm_id};
-            var buffers = []
-            for (var buffer of message.buffers || []) {
-              buffers.push(new DataView(buffer))
-            }
-            var metadata = message.metadata || {};
-            var msg = {content, buffers, metadata}
-            msg_handler(msg);
-            return messages.next().then(processIteratorResult);
-          }
-          return messages.next().then(processIteratorResult);
-        })
-      }
-    }
-
-    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
-      if (comm_id in window.PyViz.comms) {
-        return window.PyViz.comms[comm_id];
-      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
-        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
-        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
-        if (msg_handler) {
-          comm.on_msg(msg_handler);
-        }
-      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
-        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
-        let retries = 0;
-        const open = () => {
-          if (comm.active) {
-            comm.open();
-          } else if (retries > 3) {
-            console.warn('Comm target never activated')
-          } else {
-            retries += 1
-            setTimeout(open, 500)
-          }
-        }
-        if (comm.active) {
-          comm.open();
-        } else {
-          setTimeout(open, 500)
-        }
-        if (msg_handler) {
-          comm.onMsg = msg_handler;
-        }
-      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
-        var comm_promise = google.colab.kernel.comms.open(comm_id)
-        comm_promise.then((comm) => {
-          window.PyViz.comms[comm_id] = comm;
-          if (msg_handler) {
-            var messages = comm.messages[Symbol.asyncIterator]();
-            function processIteratorResult(result) {
-              var message = result.value;
-              var content = {data: message.data};
-              var metadata = message.metadata || {comm_id};
-              var msg = {content, metadata}
-              msg_handler(msg);
-              return messages.next().then(processIteratorResult);
-            }
-            return messages.next().then(processIteratorResult);
-          }
-        })
-        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
-          return comm_promise.then((comm) => {
-            comm.send(data, metadata, buffers, disposeOnDone);
-          });
-        };
-        var comm = {
-          send: sendClosure
-        };
-      }
-      window.PyViz.comms[comm_id] = comm;
-      return comm;
-    }
-    window.PyViz.comm_manager = new JupyterCommManager();
-    
-
-
-var JS_MIME_TYPE = 'application/javascript';
-var HTML_MIME_TYPE = 'text/html';
-var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
-var CLASS_NAME = 'output';
-
-/**
- * Render data to the DOM node
- */
-function render(props, node) {
-  var div = document.createElement("div");
-  var script = document.createElement("script");
-  node.appendChild(div);
-  node.appendChild(script);
-}
-
-/**
- * Handle when a new output is added
- */
-function handle_add_output(event, handle) {
-  var output_area = handle.output_area;
-  var output = handle.output;
-  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
-    return
-  }
-  var id = output.metadata[EXEC_MIME_TYPE]["id"];
-  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
-  if (id !== undefined) {
-    var nchildren = toinsert.length;
-    var html_node = toinsert[nchildren-1].children[0];
-    html_node.innerHTML = output.data[HTML_MIME_TYPE];
-    var scripts = [];
-    var nodelist = html_node.querySelectorAll("script");
-    for (var i in nodelist) {
-      if (nodelist.hasOwnProperty(i)) {
-        scripts.push(nodelist[i])
-      }
-    }
-
-    scripts.forEach( function (oldScript) {
-      var newScript = document.createElement("script");
-      var attrs = [];
-      var nodemap = oldScript.attributes;
-      for (var j in nodemap) {
-        if (nodemap.hasOwnProperty(j)) {
-          attrs.push(nodemap[j])
-        }
-      }
-      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
-    });
-    if (JS_MIME_TYPE in output.data) {
-      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
-    }
-    output_area._hv_plot_id = id;
-    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
-      window.PyViz.plot_index[id] = Bokeh.index[id];
-    } else {
-      window.PyViz.plot_index[id] = null;
-    }
-  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
-    var bk_div = document.createElement("div");
-    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
-    var script_attrs = bk_div.children[0].attributes;
-    for (var i = 0; i < script_attrs.length; i++) {
-      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
-    }
-    // store reference to server id on output_area
-    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
-  }
-}
-
-/**
- * Handle when an output is cleared or removed
- */
-function handle_clear_output(event, handle) {
-  var id = handle.cell.output_area._hv_plot_id;
-  var server_id = handle.cell.output_area._bokeh_server_id;
-  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
-  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
-  if (server_id !== null) {
-    comm.send({event_type: 'server_delete', 'id': server_id});
-    return;
-  } else if (comm !== null) {
-    comm.send({event_type: 'delete', 'id': id});
-  }
-  delete PyViz.plot_index[id];
-  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
-    var doc = window.Bokeh.index[id].model.document
-    doc.clear();
-    const i = window.Bokeh.documents.indexOf(doc);
-    if (i > -1) {
-      window.Bokeh.documents.splice(i, 1);
-    }
-  }
-}
-
-/**
- * Handle kernel restart event
- */
-function handle_kernel_cleanup(event, handle) {
-  delete PyViz.comms["hv-extension-comm"];
-  window.PyViz.plot_index = {}
-}
-
-/**
- * Handle update_display_data messages
- */
-function handle_update_output(event, handle) {
-  handle_clear_output(event, {cell: {output_area: handle.output_area}})
-  handle_add_output(event, handle)
-}
-
-function register_renderer(events, OutputArea) {
-  function append_mime(data, metadata, element) {
-    // create a DOM node to render to
-    var toinsert = this.create_output_subarea(
-    metadata,
-    CLASS_NAME,
-    EXEC_MIME_TYPE
-    );
-    this.keyboard_manager.register_events(toinsert);
-    // Render to node
-    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
-    render(props, toinsert[0]);
-    element.append(toinsert);
-    return toinsert
-  }
-
-  events.on('output_added.OutputArea', handle_add_output);
-  events.on('output_updated.OutputArea', handle_update_output);
-  events.on('clear_output.CodeCell', handle_clear_output);
-  events.on('delete.Cell', handle_clear_output);
-  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
-
-  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
-    safe: true,
-    index: 0
-  });
-}
-
-if (window.Jupyter !== undefined) {
-  try {
-    var events = require('base/js/events');
-    var OutputArea = require('notebook/js/outputarea').OutputArea;
-    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
-      register_renderer(events, OutputArea);
-    }
-  } catch(err) {
-  }
-}
-
-</script>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div id="31d816ca-1bf9-4c8f-9207-77a5dde397c1">
-<div data-root-id="31d816ca-1bf9-4c8f-9207-77a5dde397c1" id="f1acb2c2-5c96-42bd-9709-4bb98fb74e48" style="display: contents;"></div>
-</div>
-<script type="application/javascript">(function(root) {
-  var docs_json = {"89dce06d-5661-49b7-a3c2-b340415346ec":{"version":"3.8.0","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"8aa34531-644d-4fcc-b329-e607032135d4","attributes":{"notifications":{"type":"object","name":"Notifications","id":"433948f1-38d4-4056-a16e-d9a098416ae0"}}},"roots":[{"type":"object","name":"panel.models.browser.BrowserInfo","id":"31d816ca-1bf9-4c8f-9207-77a5dde397c1"},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"1fa844aa-4313-41c0-80e4-aa810f43eb41","attributes":{"plot_id":"31d816ca-1bf9-4c8f-9207-77a5dde397c1","comm_id":"6f0ec556f83c42d295d843995cb500e3","client_comm_id":"773b2c50ed8547949c600349c595fa17"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]}]}};
-  var render_items = [{"docid":"89dce06d-5661-49b7-a3c2-b340415346ec","roots":{"31d816ca-1bf9-4c8f-9207-77a5dde397c1":"f1acb2c2-5c96-42bd-9709-4bb98fb74e48"},"root_ids":["31d816ca-1bf9-4c8f-9207-77a5dde397c1"]}];
-  var docs = Object.values(docs_json)
-  if (!docs) {
-    return
-  }
-  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
-  async function embed_document(root) {
-    var Bokeh = get_bokeh(root)
-    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
-    for (const render_item of render_items) {
-      for (const root_id of render_item.root_ids) {
-	const id_el = document.getElementById(root_id)
-	if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
-	  const root_el = id_el.children[0]
-	  root_el.id = root_el.id + '-rendered'
-	  for (const child of root_el.children) {
-            // Ensure JupyterLab does not capture keyboard shortcuts
-            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
-	    child.setAttribute('data-lm-suppress-shortcuts', 'true')
-	  }
-	}
-      }
-    }
-  }
-  function get_bokeh(root) {
-    if (root.Bokeh === undefined) {
-      return null
-    } else if (root.Bokeh.version !== py_version) {
-      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
-	return null
-      }
-      return root.Bokeh.versions.get(py_version);
-    } else if (root.Bokeh.version === py_version) {
-      return root.Bokeh
-    }
-    return null
-  }
-  function is_loaded(root) {
-    var Bokeh = get_bokeh(root)
-    return (Bokeh != null && Bokeh.Panel !== undefined && ( root.MathJax !== undefined) && ( root.MathJax !== undefined))
-  }
-  if (is_loaded(root)) {
-    embed_document(root);
-  } else {
-    var attempts = 0;
-    var timer = setInterval(function(root) {
-      if (is_loaded(root)) {
-        clearInterval(timer);
-        embed_document(root);
-      } else if (document.readyState == "complete") {
-        attempts++;
-        if (attempts > 200) {
-          clearInterval(timer);
-	  var Bokeh = get_bokeh(root)
-	  if (Bokeh == null || Bokeh.Panel == null) {
-            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
-	  } else {
-	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
-	    embed_document(root)
-	  }
-        }
-      }
-    }, 25, root)
-  }
-})(window);</script>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9aea88fd-3ae9-453f-a66e-b3bdc44c22e3">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b64fa620-abea-4eea-b91b-ba85ef0fd72f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This example demonstrates how to wrap an external library (specifically <a href="https://github.com/mlc-ai/web-llm">WebLLM</a>) as a <code>JSComponent</code> and interface it with the <code>ChatInterface</code>.</p>
+<h1 id="What-is-Jan">What is Jan<a class="anchor-link" href="#What-is-Jan">¶</a></h1><h2 id="Jan.ai"><a href="https://jan.ai">Jan.ai</a><a class="anchor-link" href="#Jan.ai">¶</a></h2><h2 id="A-local-first-ChatGPT-clone-and-model-hub">A local-first ChatGPT clone and model hub<a class="anchor-link" href="#A-local-first-ChatGPT-clone-and-model-hub">¶</a></h2><h2 id="OSS-Apache-2-License">OSS Apache 2 License<a class="anchor-link" href="#OSS-Apache-2-License">¶</a></h2><h2 id="GitHub-Repo:-https://github.com/janhq/jan">GitHub Repo: <a href="https://github.com/janhq/jan">https://github.com/janhq/jan</a><a class="anchor-link" href="#GitHub-Repo:-https://github.com/janhq/jan">¶</a></h2><h2 id="Releases-on-GitHub:-https://github.com/janhq/jan/releases">Releases on GitHub: <a href="https://github.com/janhq/jan/releases">https://github.com/janhq/jan/releases</a><a class="anchor-link" href="#Releases-on-GitHub:-https://github.com/janhq/jan/releases">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=957c9fab-3fa7-48d7-83d0-5532bde6e547">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">MODELS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'SmolLM2 (130MB)'</span><span class="p">:</span> <span class="s1">'SmolLM2-360M-Instruct-q4f16_1-MLC'</span><span class="p">,</span>
-    <span class="s1">'TinyLlama-1.1B-Chat (675 MB)'</span><span class="p">:</span> <span class="s1">'TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC-1k'</span><span class="p">,</span>
-    <span class="s1">'Gemma-2b (2GB)'</span><span class="p">:</span> <span class="s1">'gemma-2-2b-it-q4f16_1-MLC'</span><span class="p">,</span>
-    <span class="s1">'Llama-3.2-3B-Instruct (2.2GB)'</span><span class="p">:</span> <span class="s1">'Llama-3.2-3B-Instruct-q4f16_1-MLC'</span><span class="p">,</span>
-    <span class="s1">'Mistral-7b-Instruct (5GB)'</span><span class="p">:</span> <span class="s1">'Mistral-7B-Instruct-v0.3-q4f16_1-MLC'</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">WebLLM</span><span class="p">(</span><span class="n">JSComponent</span><span class="p">):</span>
-
-    <span class="n">loaded</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">        Whether the model is loaded."""</span><span class="p">)</span>
-
-    <span class="n">history</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Integer</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-    <span class="n">status</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Dict</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="p">{</span><span class="s1">'text'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span> <span class="s1">'progress'</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-
-    <span class="n">load_model</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-
-    <span class="n">model</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Selector</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s1">'SmolLM2-360M-Instruct-q4f16_1-MLC'</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="n">MODELS</span><span class="p">)</span>
-
-    <span class="n">running</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Boolean</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">        Whether the LLM is currently running."""</span><span class="p">)</span>
-    
-    <span class="n">temperature</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">doc</span><span class="o">=</span><span class="s2">"""</span>
-<span class="s2">        Temperature of the model completions."""</span><span class="p">)</span>
-
-    <span class="n">_esm</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">    import * as webllm from "https://esm.run/@mlc-ai/web-llm";</span>
-
-<span class="s2">    const engines = new Map()</span>
-
-<span class="s2">    export async function render({ model }) {</span>
-<span class="s2">      model.on("msg:custom", async (event) =&gt; {</span>
-<span class="s2">        if (event.type === 'load') {</span>
-<span class="s2">          if (!engines.has(model.model)) {</span>
-<span class="s2">            const initProgressCallback = (status) =&gt; {</span>
-<span class="s2">              model.status = status</span>
-<span class="s2">            }</span>
-<span class="s2">            const mlc = await webllm.CreateMLCEngine(</span>
-<span class="s2">               model.model,</span>
-<span class="s2">               </span><span class="si">{initProgressCallback}</span>
-<span class="s2">            )</span>
-<span class="s2">            engines.set(model.model, mlc)</span>
-<span class="s2">          }</span>
-<span class="s2">          model.loaded = true</span>
-<span class="s2">        } else if (event.type === 'completion') {</span>
-<span class="s2">          const engine = engines.get(model.model)</span>
-<span class="s2">          if (engine == null) {</span>
-<span class="s2">            model.send_msg({'finish_reason': 'error'})</span>
-<span class="s2">          }</span>
-<span class="s2">          const chunks = await engine.chat.completions.create({</span>
-<span class="s2">            messages: event.messages,</span>
-<span class="s2">            temperature: model.temperature ,</span>
-<span class="s2">            stream: true,</span>
-<span class="s2">          })</span>
-<span class="s2">          model.running = true</span>
-<span class="s2">          for await (const chunk of chunks) {</span>
-<span class="s2">            if (!model.running) {</span>
-<span class="s2">              break</span>
-<span class="s2">            }</span>
-<span class="s2">            model.send_msg(chunk.choices[0])</span>
-<span class="s2">          }</span>
-<span class="s2">        }</span>
-<span class="s2">      })</span>
-<span class="s2">    }</span>
-<span class="s2">    """</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">location</span><span class="p">:</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">sync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">{</span><span class="s1">'model'</span><span class="p">:</span> <span class="s1">'model'</span><span class="p">})</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="nd">@param</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="s1">'load_model'</span><span class="p">,</span> <span class="n">watch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_load_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loading</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_send_msg</span><span class="p">({</span><span class="s1">'type'</span><span class="p">:</span> <span class="s1">'load'</span><span class="p">})</span>
-
-    <span class="nd">@param</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="s1">'loaded'</span><span class="p">,</span> <span class="n">watch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_loaded_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loading</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="nd">@param</span><span class="o">.</span><span class="n">depends</span><span class="p">(</span><span class="s1">'model'</span><span class="p">,</span> <span class="n">watch</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_load_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_handle_msg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">running</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
-
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_completion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msgs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_send_msg</span><span class="p">({</span><span class="s1">'type'</span><span class="p">:</span> <span class="s1">'completion'</span><span class="p">,</span> <span class="s1">'messages'</span><span class="p">:</span> <span class="n">msgs</span><span class="p">})</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="n">choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="k">yield</span> <span class="n">choice</span>
-            <span class="n">reason</span> <span class="o">=</span> <span class="n">choice</span><span class="p">[</span><span class="s1">'finish_reason'</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">reason</span> <span class="o">==</span> <span class="s1">'error'</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'Model not loaded'</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">reason</span><span class="p">:</span>
-                <span class="k">return</span>
-
-    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loading</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s1">'## `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">`</span><span class="se">\n\n</span><span class="s1">'</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">rx</span><span class="p">()[</span><span class="s1">'text'</span><span class="p">]</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="s1">'Load the model'</span>
-            <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">running</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="s2">""</span>
-        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_completion</span><span class="p">([{</span><span class="s1">'role'</span><span class="p">:</span> <span class="s1">'user'</span><span class="p">,</span> <span class="s1">'content'</span><span class="p">:</span> <span class="n">contents</span><span class="p">}]):</span>
-            <span class="n">message</span> <span class="o">+=</span> <span class="n">chunk</span><span class="p">[</span><span class="s1">'delta'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'content'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">message</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">rx</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Select</span><span class="o">.</span><span class="n">from_param</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">),</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="o">.</span><span class="n">from_param</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">),</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="o">.</span><span class="n">from_param</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">load_model</span><span class="p">,</span> <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span><span class="p">,</span>
-                <span class="n">disabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">loaded</span><span class="o">.</span><span class="n">rx</span><span class="p">()</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">or_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">loading</span><span class="p">)</span>
-            <span class="p">),</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">indicators</span><span class="o">.</span><span class="n">Progress</span><span class="p">(</span>
-                <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="s1">'progress'</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">visible</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">loading</span><span class="p">,</span>
-                <span class="n">sizing_mode</span><span class="o">=</span><span class="s1">'stretch_width'</span>
-            <span class="p">),</span>
-            <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">status</span><span class="p">[</span><span class="s1">'text'</span><span class="p">],</span> <span class="n">visible</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">loading</span><span class="p">)</span>
-        <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a663e937-797b-468f-875d-5bb8c2af002b">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=98dd2b1a-98e9-4d9b-9410-a3f71cf0e356">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Having implemented the <code>WebLLM</code> component we can render the WebLLM UI:</p>
+<h1 id="OwnersClub-hotspot-at-the-Hacker-Dojo">OwnersClub hotspot at the Hacker Dojo<a class="anchor-link" href="#OwnersClub-hotspot-at-the-Hacker-Dojo">¶</a></h1><h2 id="WiFI">WiFI<a class="anchor-link" href="#WiFI">¶</a></h2><h3 id="SSID:-OwnersClub">SSID: OwnersClub<a class="anchor-link" href="#SSID:-OwnersClub">¶</a></h3><h3 id="password:-local-first-ai">password: <strong>local-first-ai</strong><a class="anchor-link" href="#password:-local-first-ai">¶</a></h3><h2 id="Local-Site">Local Site<a class="anchor-link" href="#Local-Site">¶</a></h2><h3 id="http://wiki3.local"><a href="http://wiki3.local">http://wiki3.local</a><a class="anchor-link" href="#http://wiki3.local">¶</a></h3><h3 id="Mirrors-for-Jan.ai-releases-and-some-models">Mirrors for Jan.ai releases and some models<a class="anchor-link" href="#Mirrors-for-Jan.ai-releases-and-some-models">¶</a></h3><h2 id="NOTICE"><strong>NOTICE</strong><a class="anchor-link" href="#NOTICE">¶</a></h2><p>This hotspot runs a caching web service to optimize model downloading.
+We try to avoid interfering with other web sites or snooping on you but there is a risk.</p>
+<p>There is a certificate if you want to trust it and use SSL but it is not required (or even recommended).</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58269444-868b-41e4-abe2-c4fcf031dc4b">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">llm</span> <span class="o">=</span> <span class="n">WebLLM</span><span class="p">()</span>
-
-<span class="n">intro</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">pane</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">`WebLLM` runs large-language models entirely in your browser.</span>
-<span class="s2">When visiting the application the first time the model has</span>
-<span class="s2">to be downloaded and loaded into memory, which may take </span>
-<span class="s2">some time. Models are ordered by size (and capability),</span>
-<span class="s2">e.g. SmolLLM is very quick to download but produces poor</span>
-<span class="s2">quality output while Mistral-7b will take a while to</span>
-<span class="s2">download but produces much higher quality output.</span>
-<span class="s2">"""</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="s1">' '</span><span class="p">))</span>
-
-<span class="n">pn</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
-    <span class="n">llm</span><span class="o">.</span><span class="n">menu</span><span class="p">(),</span>
-    <span class="n">intro</span><span class="p">,</span>
-    <span class="n">llm</span>
-<span class="p">)</span><span class="o">.</span><span class="n">servable</span><span class="p">(</span><span class="n">area</span><span class="o">=</span><span class="s1">'sidebar'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div id="ba1dcd89-6856-4dfc-b60a-81f0bba099d9">
-<div data-root-id="ba1dcd89-6856-4dfc-b60a-81f0bba099d9" id="eebfe204-6d90-4f22-abd5-e76520911393" style="display: contents;"></div>
-</div>
-<script type="application/javascript">(function(root) {
-  var docs_json = {"7819788a-14ee-470d-bc72-e5fa11ee5848":{"version":"3.8.0","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"04c2c3f2-3a72-4cb6-b23a-6ec2fb8858db","attributes":{"notifications":{"type":"object","name":"Notifications","id":"ec4194dc-c280-4d3d-b21d-216fb264ff04"}}},"roots":[{"type":"object","name":"panel.models.layout.Column","id":"ba1dcd89-6856-4dfc-b60a-81f0bba099d9","attributes":{"name":"Column00133","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"0ece1de6-bfea-493f-b473-dbd34ee2d599","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"7d9eca56-f4c2-48d8-bc2a-a0ec6a183faf","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"3164830a-c351-41fd-8972-f7ae0a32b4d6","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"f27cc5d5-b513-4142-bea1-4f22783db612","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/bundled/theme/native.css"}}],"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.layout.Column","id":"f6a632ce-ef0a-400f-89f5-057955823a32","attributes":{"name":"Column00132","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"id":"7d9eca56-f4c2-48d8-bc2a-a0ec6a183faf"},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.widgets.CustomSelect","id":"db98add4-36e4-4696-855c-90726ad10f68","attributes":{"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"type":"object","name":"ImportedStyleSheet","id":"cd8eff94-da21-47e8-84e2-0fde31b3cc59","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/select.css"}},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"width":300,"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","title":"Model","options":[["SmolLM2-360M-Instruct-q4f16_1-MLC","SmolLM2 (130MB)"],["TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC-1k","TinyLlama-1.1B-Chat (675 MB)"],["gemma-2-2b-it-q4f16_1-MLC","Gemma-2b (2GB)"],["Llama-3.2-3B-Instruct-q4f16_1-MLC","Llama-3.2-3B-Instruct (2.2GB)"],["Mistral-7B-Instruct-v0.3-q4f16_1-MLC","Mistral-7b-Instruct (5GB)"]],"value":"SmolLM2-360M-Instruct-q4f16_1-MLC"}},{"type":"object","name":"Slider","id":"60e5073c-28eb-4de9-b3a4-b5ca834c5992","attributes":{"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","title":"Temperature","start":0,"end":2,"value":1,"step":0.1}},{"type":"object","name":"panel.models.widgets.Button","id":"26595a88-c4af-4de9-a2f3-057c54aa754f","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"type":"object","name":"ImportedStyleSheet","id":"b1538074-07a5-4c99-a65d-c5b13f8fd51a","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/button.css"}},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","label":"Load model"}},{"type":"object","name":"panel.models.widgets.Progress","id":"474d804d-c41d-4dec-bebc-0854b49303bc","attributes":{"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"type":"object","name":"ImportedStyleSheet","id":"7b5ce143-bec1-4c5b-9113-4d6a466c70f6","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/progress.css"}},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"visible":false,"width":300,"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","bar_color":"success","value":0}},{"type":"object","name":"panel.models.markup.HTML","id":"cac1c9da-3d36-49b0-9190-cb2182efa33f","attributes":{"css_classes":["markdown"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"type":"object","name":"ImportedStyleSheet","id":"66a4c2f2-0363-4298-bd79-9bf0586b408e","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/markdown.css"}},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"visible":false,"margin":[5,10],"align":"start"}}]}},{"type":"object","name":"panel.models.markup.HTML","id":"f5cb4217-0113-43c7-b205-fcdab8e102fb","attributes":{"css_classes":["markdown","alert","alert-primary"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"type":"object","name":"ImportedStyleSheet","id":"08f87a55-be8c-4fac-bb64-76936dd8f801","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/alerts.css"}},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","text":"&lt;p&gt;&lt;code&gt;WebLLM&lt;/code&gt; runs large-language models entirely in your browser. When visiting the application the first time the model has to be downloaded and loaded into memory, which may take  some time. Models are ordered by size (and capability), e.g. SmolLLM is very quick to download but produces poor quality output while Mistral-7b will take a while to download but produces much higher quality output.&lt;/p&gt;\n"}},{"type":"object","name":"panel.models.esm.ReactiveESM","id":"f12954a0-85e5-464d-b40e-5af43c06679d","attributes":{"name":"WebLLM","subscribed_events":{"type":"set","entries":["dom_event","data_event"]},"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"0ece1de6-bfea-493f-b473-dbd34ee2d599"},{"id":"3164830a-c351-41fd-8972-f7ae0a32b4d6"},{"id":"f27cc5d5-b513-4142-bea1-4f22783db612"}],"margin":0,"align":"start","class_name":"WebLLM","data":{"type":"object","name":"WebLLM1","id":"a0806441-4c5c-4f01-9492-cb90361052dc","attributes":{"name":"WebLLM00120","tags":["__ref:ba1dcd89-6856-4dfc-b60a-81f0bba099d9"]}},"esm":"\nimport * as webllm from \"https://esm.run/@mlc-ai/web-llm\";\n\nconst engines = new Map()\n\nexport async function render({ model }) {\n  model.on(\"msg:custom\", async (event) => {\n    if (event.type === 'load') {\n      if (!engines.has(model.model)) {\n        const initProgressCallback = (status) => {\n          model.status = status\n        }\n        const mlc = await webllm.CreateMLCEngine(\n           model.model,\n           {initProgressCallback}\n        )\n        engines.set(model.model, mlc)\n      }\n      model.loaded = true\n    } else if (event.type === 'completion') {\n      const engine = engines.get(model.model)\n      if (engine == null) {\n        model.send_msg({'finish_reason': 'error'})\n      }\n      const chunks = await engine.chat.completions.create({\n        messages: event.messages,\n        temperature: model.temperature ,\n        stream: true,\n      })\n      model.running = true\n      for await (const chunk of chunks) {\n        if (!model.running) {\n          break\n        }\n        model.send_msg(chunk.choices[0])\n      }\n    }\n  })\n}\n","events":["load_model"]}}]}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"f7c5c075-a224-4f15-8345-3644f8eaa077","attributes":{"plot_id":"ba1dcd89-6856-4dfc-b60a-81f0bba099d9","comm_id":"6c2c6fcc65d44ccb8c76a8bb975141c3","client_comm_id":"0bc96327f9274a90b98117f3a0e92225"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"WebLLM1","properties":[{"name":"loaded","kind":"Any","default":false},{"name":"history","kind":"Any","default":3},{"name":"status","kind":"Any","default":{"type":"map","entries":[["text",""],["progress",0]]}},{"name":"load_model","kind":"Any","default":false},{"name":"model","kind":"Any","default":"SmolLM2-360M-Instruct-q4f16_1-MLC"},{"name":"running","kind":"Any","default":false},{"name":"temperature","kind":"Any","default":1},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]}]}};
-  var render_items = [{"docid":"7819788a-14ee-470d-bc72-e5fa11ee5848","roots":{"ba1dcd89-6856-4dfc-b60a-81f0bba099d9":"eebfe204-6d90-4f22-abd5-e76520911393"},"root_ids":["ba1dcd89-6856-4dfc-b60a-81f0bba099d9"]}];
-  var docs = Object.values(docs_json)
-  if (!docs) {
-    return
-  }
-  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
-  async function embed_document(root) {
-    var Bokeh = get_bokeh(root)
-    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
-    for (const render_item of render_items) {
-      for (const root_id of render_item.root_ids) {
-	const id_el = document.getElementById(root_id)
-	if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
-	  const root_el = id_el.children[0]
-	  root_el.id = root_el.id + '-rendered'
-	  for (const child of root_el.children) {
-            // Ensure JupyterLab does not capture keyboard shortcuts
-            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
-	    child.setAttribute('data-lm-suppress-shortcuts', 'true')
-	  }
-	}
-      }
-    }
-  }
-  function get_bokeh(root) {
-    if (root.Bokeh === undefined) {
-      return null
-    } else if (root.Bokeh.version !== py_version) {
-      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
-	return null
-      }
-      return root.Bokeh.versions.get(py_version);
-    } else if (root.Bokeh.version === py_version) {
-      return root.Bokeh
-    }
-    return null
-  }
-  function is_loaded(root) {
-    var Bokeh = get_bokeh(root)
-    return (Bokeh != null && Bokeh.Panel !== undefined && ( root.MathJax !== undefined) && ( root.MathJax !== undefined))
-  }
-  if (is_loaded(root)) {
-    embed_document(root);
-  } else {
-    var attempts = 0;
-    var timer = setInterval(function(root) {
-      if (is_loaded(root)) {
-        clearInterval(timer);
-        embed_document(root);
-      } else if (document.readyState == "complete") {
-        attempts++;
-        if (attempts > 200) {
-          clearInterval(timer);
-	  var Bokeh = get_bokeh(root)
-	  if (Bokeh == null || Bokeh.Panel == null) {
-            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
-	  } else {
-	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
-	    embed_document(root)
-	  }
-        }
-      }
-    }, 25, root)
-  }
-})(window);</script>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96229aa4-c5ed-4c4e-944a-789ee65d768f">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60998023-9ee4-4819-b365-f6ebc426c472">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>And connect it to a <code>ChatInterface</code>:</p>
+<h1 id="Your-First-Local-LLM">Your First Local LLM<a class="anchor-link" href="#Your-First-Local-LLM">¶</a></h1><h2 id="For-folks-at-HD:">For folks at HD:<a class="anchor-link" href="#For-folks-at-HD:">¶</a></h2><h3 id="Configure-the-proxy-settings">Configure the proxy settings<a class="anchor-link" href="#Configure-the-proxy-settings">¶</a></h3><h2 id="Download-the-model-from-the-Jan-Hub">Download the model from the Jan Hub<a class="anchor-link" href="#Download-the-model-from-the-Jan-Hub">¶</a></h2><h3 id="Filter,-choose,-download.">Filter, choose, download.<a class="anchor-link" href="#Filter,-choose,-download.">¶</a></h3><h2 id="%5BHello-World%5D">[Hello World]<a class="anchor-link" href="#%5BHello-World%5D">¶</a></h2><h3 id="Start-a-new-chat,-type-some-simple-message-and-hit-enter-or-click-go-button">Start a new chat, type some simple message and hit enter or click go button<a class="anchor-link" href="#Start-a-new-chat,-type-some-simple-message-and-hit-enter-or-click-go-button">¶</a></h3>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6f899068-8975-4cf4-9e1d-f3fdb5772a71">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28fbd413-2b2f-4c94-978f-a8ecf81a735a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">chat_interface</span> <span class="o">=</span> <span class="n">pn</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">ChatInterface</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">llm</span><span class="o">.</span><span class="n">callback</span><span class="p">)</span>
-<span class="n">chat_interface</span><span class="o">.</span><span class="n">send</span><span class="p">(</span>
-    <span class="s2">"Load a model and start chatting."</span><span class="p">,</span>
-    <span class="n">user</span><span class="o">=</span><span class="s2">"System"</span><span class="p">,</span>
-    <span class="n">respond</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">llm</span><span class="o">.</span><span class="n">param</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">chat_interface</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Loaded `</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">model</span><span class="si">}</span><span class="s1">`, start chatting!'</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">'System'</span><span class="p">,</span> <span class="n">respond</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="s1">'loaded'</span><span class="p">)</span>
-
-<span class="n">pn</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">chat_interface</span><span class="p">)</span><span class="o">.</span><span class="n">servable</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'WebLLM'</span><span class="p">)</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Using-the-exa-Search-MCP">Using the <code>exa</code> Search MCP<a class="anchor-link" href="#Using-the-exa-Search-MCP">¶</a></h1><h2 id="https://exa.ai/mcp"><a href="https://exa.ai/mcp">https://exa.ai/mcp</a><a class="anchor-link" href="#https://exa.ai/mcp">¶</a></h2><h3 id="Free-tier:-20,000-searches-per-month">Free tier: 20,000 searches per month<a class="anchor-link" href="#Free-tier:-20,000-searches-per-month">¶</a></h3><h2 id="Try-a-message-that-needs-current-news-like-%5BWhat's-happening-in-the-World-Cup?%5D">Try a message that needs current news like [What's happening in the World Cup?]<a class="anchor-link" href="#Try-a-message-that-needs-current-news-like-%5BWhat's-happening-in-the-World-Cup?%5D">¶</a></h2><h3 id="MCP-tool-search-permission-dialog">MCP tool search permission dialog<a class="anchor-link" href="#MCP-tool-search-permission-dialog">¶</a></h3><h3 id=""><a class="anchor-link" href="#">¶</a></h3>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div id="bfb96f9a-c324-42c0-85c0-bd32c48c95e4">
-<div data-root-id="bfb96f9a-c324-42c0-85c0-bd32c48c95e4" id="dcdf6165-9c1b-485d-9e7f-35a2e1325389" style="display: contents;"></div>
-</div>
-<script type="application/javascript">(function(root) {
-  var docs_json = {"bf051ba8-f860-4bf7-95e0-7ed5f2fc9ea8":{"version":"3.8.0","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"20bcd36e-cfdf-4782-9660-d0a0ad608c32","attributes":{"notifications":{"type":"object","name":"Notifications","id":"b3253124-ae5c-425c-b18c-e90faa46de37"}}},"roots":[{"type":"object","name":"Row","id":"bfb96f9a-c324-42c0-85c0-bd32c48c95e4","attributes":{"name":"Row00239","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"type":"object","name":"ImportedStyleSheet","id":"03fe695f-a23b-438b-b970-c6e37bfed90a","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/loading.css"}},{"type":"object","name":"ImportedStyleSheet","id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/listpanel.css"}},{"type":"object","name":"ImportedStyleSheet","id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/bundled/theme/default.css"}},{"type":"object","name":"ImportedStyleSheet","id":"985f2259-1152-40d0-96da-e102b65cda06","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/bundled/theme/native.css"}}],"min_width":60,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.layout.Card","id":"48fb9ca2-b326-4478-a565-901e7f152e4b","attributes":{"name":"Card00180","css_classes":["chat-interface"],"styles":{"type":"map","entries":[["padding","0px"]]},"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"type":"object","name":"ImportedStyleSheet","id":"762bd7a1-18c5-4bab-b3b8-aa0a93e6a6a8","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/chat_interface.css"}}],"min_width":60,"margin":5,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Row","id":"c2800f1b-661c-4525-b0aa-a2c6c9ee2a36","attributes":{"name":"Row00179","css_classes":["card-header-row"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.markup.HTML","id":"566937a0-4292-401f-8de7-954914863d11","attributes":{"css_classes":["chat-feed-title"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"margin":[5,0],"align":"start","text":"&amp;#8203;","disable_math":true}}]}},{"type":"object","name":"panel.models.feed.Feed","id":"59e9e53b-a4f7-4224-b956-fb20bda2f45a","attributes":{"name":"Feed00178","subscribed_events":{"type":"set","entries":["scroll_button_click"]},"css_classes":["chat-feed-log","scroll-vertical"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"762bd7a1-18c5-4bab-b3b8-aa0a93e6a6a8"}],"min_width":50,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Row","id":"24b28f19-1546-4052-b462-5b9268bb9b8f","attributes":{"name":"Row00238","css_classes":["chat-message"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"type":"object","name":"ImportedStyleSheet","id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/chat_message.css"}}],"min_width":50,"max_width":1200,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.layout.Column","id":"25d55ac0-1900-485f-859f-40589847d95f","attributes":{"name":"Column00217","css_classes":["left"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"height":100,"min_height":100,"max_width":60,"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.markup.HTML","id":"d47aac9b-d932-4f8d-a317-6dd2ef06f2dd","attributes":{"css_classes":["avatar"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"width":35,"height":35,"margin":[5,10],"sizing_mode":"fixed","align":"start","text":"\u2699\ufe0f","disable_math":true}}]}},{"type":"object","name":"panel.models.layout.Column","id":"d939ff81-74d5-45ec-8270-5f30a5cd6421","attributes":{"name":"Column00237","css_classes":["right"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"min_width":30,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Row","id":"a3a2eb4a-3131-4345-921e-b6a451f58e10","attributes":{"name":"Row00231","css_classes":["meta"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.markup.HTML","id":"317c4bac-42f3-4d7f-a4dd-10c4c791a600","attributes":{"css_classes":["name"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"height":20,"min_height":20,"margin":[5,10],"align":"start","text":"System","disable_math":true}},{"type":"object","name":"panel.models.markup.HTML","id":"07c51252-3483-4a7f-9c9d-edcb142a0f9a","attributes":{"css_classes":["activity-dot"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"visible":false,"margin":[5,0],"align":"start","text":"\u25cf","disable_math":true}}]}},{"type":"object","name":"panel.models.layout.Column","id":"4032984d-e67c-4707-be2a-288e53f03489","attributes":{"name":"Column00232","css_classes":["header"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Row","id":"0d72a7fd-b0df-431c-b80c-61a789895190","attributes":{"name":"Row00226","css_classes":["center"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.layout.Column","id":"46574dcc-e28c-4c98-90e7-8964a90f8bee","attributes":{"name":"Column00224","css_classes":["placeholder"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.markup.HTML","id":"f28e6cdf-b5a1-4edf-b767-7cbd3dbabaa9","attributes":{"css_classes":["markdown","message"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"type":"object","name":"ImportedStyleSheet","id":"b695de18-6888-4471-8817-14b21cd41dc7","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/markdown.css"}},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"margin":[5,10],"align":"start","text":"&lt;p&gt;Load a model and start chatting.&lt;/p&gt;\n"}}]}}]}},{"type":"object","name":"panel.models.layout.Column","id":"0feb3876-abe7-46d2-b7bc-5b24009873de","attributes":{"name":"Column00233","css_classes":["footer"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start"}},{"type":"object","name":"Row","id":"48bbe8bf-220c-4e97-b71d-8c1012ad6125","attributes":{"name":"Row00236","css_classes":["icons"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"min_width":30,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.icon.ToggleIcon","id":"a9138418-ad73-428f-9c34-4295e8c741ee","attributes":{"css_classes":["edit-icon"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"type":"object","name":"ImportedStyleSheet","id":"7e811499-b987-4b22-9249-e9c909e8be37","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/icon.css"}},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"visible":false,"width":15,"height":15,"margin":[5,10],"sizing_mode":"fixed","align":"start","active_icon":"x","icon":"edit"}},{"type":"object","name":"panel.models.reactive_html.ReactiveHTML","id":"0061d09c-81cf-4d68-a130-2238eb19059d","attributes":{"subscribed_events":{"type":"set","entries":["dom_event"]},"css_classes":["edit-icon"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"type":"object","name":"ImportedStyleSheet","id":"5fdd8705-a27d-477b-aa43-508f55ed92bd","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/chat_copy_icon.css"}},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"width":15,"height":15,"margin":0,"sizing_mode":"fixed","align":"start","attrs":{"type":"map","entries":[["copy-button",[["onclick",[],"{script('request_value')}"]]]]},"callbacks":{"type":"map","entries":[["copy-button",[["onclick","script('request_value')"]]]]},"data":{"type":"object","name":"request_value1","id":"99e3cb66-6e2d-473e-87ea-6e1d92870a7f","attributes":{"name":"ChatCopyIcon00213","tags":["__ref:bfb96f9a-c324-42c0-85c0-bd32c48c95e4"]}},"html":"\n&lt;div\n    type=&quot;button&quot;\n    id=&quot;copy-button-${id}&quot;\n    onclick=&quot;${script(&#x27;request_value&#x27;)}&quot;\n    style=&quot;cursor: pointer; width: ${model.width}px; height: ${model.height}px;&quot;\n    title=&quot;Copy message to clipboard&quot;\n&gt;\n    &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-copy&quot; id=&quot;copy_icon-${id}&quot;\n        width=&quot;${model.width}&quot; height=&quot;${model.height}&quot; viewBox=&quot;0 0 24 24&quot;\n        stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;\n    &gt;\n        &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;\n        &lt;path d=&quot;M8 8m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z&quot;&gt;&lt;/path&gt;\n        &lt;path d=&quot;M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2&quot;&gt;&lt;/path&gt;\n    &lt;/svg&gt;\n&lt;/div&gt;\n","nodes":["copy-button","copy_icon"],"scripts":{"type":"map","entries":[["render",["copy_icon.setAttribute(&#x27;fill&#x27;, data.fill)"]],["fill",["copy_icon.setAttribute(&#x27;fill&#x27;, data.fill)"]],["request_value",["data._request_sync += 1;\ndata.fill = &quot;currentColor&quot;;"]],["_synced",["navigator.clipboard.writeText(`${data._synced}`);\ndata.fill = &quot;none&quot;;"]]]}}},{"type":"object","name":"panel.models.layout.Column","id":"526a5370-96ef-4400-bff1-29ac7f0fc34d","attributes":{"name":"Column00206","css_classes":["reaction-icons"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"width":15,"height":15,"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Row","id":"cec4da7b-e043-4baa-902e-8866fcaf7f48","attributes":{"name":"Row00209","stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"type":"object","name":"ImportedStyleSheet","id":"004e1100-6de0-4155-80d9-783f054c3305","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/chat_reaction_icons.css"}},{"id":"d818ea15-e7e6-4ff4-951a-c7ef12eb73d9"}],"margin":0,"align":"start","children":[{"type":"object","name":"panel.models.icon.ToggleIcon","id":"9216f14e-d241-4fc9-96d6-59844fe08aff","attributes":{"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"7e811499-b987-4b22-9249-e9c909e8be37"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"margin":0,"align":"start"}}]}}]}}]}},{"type":"object","name":"panel.models.markup.HTML","id":"0385e30a-2079-47c9-8e87-d47f9ee26932","attributes":{"css_classes":["timestamp"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"margin":[5,10],"align":"start","text":"09:51","disable_math":true}}]}}]}}],"auto_scroll_limit":200,"scroll_button_threshold":100,"view_latest":true}},{"type":"object","name":"Row","id":"0945395c-7cdd-436b-8cc8-d5ea1d7a5078","attributes":{"name":"Row00183","css_classes":["chat-interface-input-container"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"762bd7a1-18c5-4bab-b3b8-aa0a93e6a6a8"}],"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"Row","id":"4a475de1-6b95-45b6-8ea6-9d30f50d5a22","attributes":{"name":"Row00205","css_classes":["chat-interface-input-row"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"8547eb09-4d56-4c87-9065-d53af8c4dfe5"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"},{"id":"762bd7a1-18c5-4bab-b3b8-aa0a93e6a6a8"}],"min_width":0,"margin":0,"sizing_mode":"stretch_width","align":"start","children":[{"type":"object","name":"panel.models.chatarea_input.ChatAreaInput","id":"2c19b667-23bf-4180-9063-bb1957817a77","attributes":{"subscribed_events":{"type":"set","entries":["chat_message_event"]},"css_classes":["chat-interface-input-widget"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"width":300,"min_width":0,"margin":[5,10],"sizing_mode":"stretch_width","align":"start","resizable":"height","placeholder":"Send a message","max_length":50000,"rows":1,"auto_grow":true,"max_rows":10}},{"type":"object","name":"panel.models.widgets.Button","id":"d0696cc4-c343-48a1-aa71-97dca9342d61","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"type":"object","name":"ImportedStyleSheet","id":"ccd03c9c-13e2-444a-a3c4-0a47b37c9684","attributes":{"url":"https://cdn.holoviz.org/panel/1.8.2/dist/css/button.css"}},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"min_width":0,"max_width":90,"max_height":50,"margin":[0,5,0,0],"sizing_mode":"stretch_width","align":"center","label":"Send","icon":{"type":"object","name":"TablerIcon","id":"863563de-374a-4e56-a27a-8bab7780fecf","attributes":{"icon_name":"send"}}}},{"type":"object","name":"panel.models.widgets.Button","id":"2550790f-7396-4333-b840-ad14c6d1ee78","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"ccd03c9c-13e2-444a-a3c4-0a47b37c9684"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"visible":false,"min_width":0,"max_width":90,"max_height":50,"margin":[0,5,0,0],"sizing_mode":"stretch_width","align":"center","label":"Stop","icon":{"type":"object","name":"TablerIcon","id":"27db142c-2fd4-404d-8f59-11f27c621e52","attributes":{"icon_name":"player-stop"}}}},{"type":"object","name":"panel.models.widgets.Button","id":"7cab25e3-6598-44a0-a460-f6002f625d65","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"ccd03c9c-13e2-444a-a3c4-0a47b37c9684"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"min_width":0,"max_width":90,"max_height":50,"margin":[0,5,0,0],"sizing_mode":"stretch_width","align":"center","label":"Rerun","icon":{"type":"object","name":"TablerIcon","id":"85652903-f4d1-494c-b09c-6285ebbb901e","attributes":{"icon_name":"repeat"}}}},{"type":"object","name":"panel.models.widgets.Button","id":"81104f67-a17c-49ad-b1a8-7ab7c45bb13b","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"ccd03c9c-13e2-444a-a3c4-0a47b37c9684"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"min_width":0,"max_width":90,"max_height":50,"margin":[0,5,0,0],"sizing_mode":"stretch_width","align":"center","label":"Undo","icon":{"type":"object","name":"TablerIcon","id":"75534de2-2d07-4def-b9b7-c701802654a0","attributes":{"icon_name":"arrow-back"}}}},{"type":"object","name":"panel.models.widgets.Button","id":"74dff97c-1fce-47df-843f-7715878f136e","attributes":{"subscribed_events":{"type":"set","entries":["button_click"]},"css_classes":["solid"],"stylesheets":["\n:host(.pn-loading):before, .pn-loading:before {\n  background-color: #c3c3c3;\n  mask-size: auto calc(min(50%, 300px));\n  -webkit-mask-size: auto calc(min(50%, 300px));\n}",{"id":"03fe695f-a23b-438b-b970-c6e37bfed90a"},{"id":"ccd03c9c-13e2-444a-a3c4-0a47b37c9684"},{"id":"69e4ccfa-52a6-4a3c-ac93-784d8f0d4713"},{"id":"985f2259-1152-40d0-96da-e102b65cda06"}],"min_width":0,"max_width":90,"max_height":50,"margin":[0,5,0,0],"sizing_mode":"stretch_width","align":"center","label":"Clear","icon":{"type":"object","name":"TablerIcon","id":"f824fc1d-0de9-4686-8f46-7b3e1647650e","attributes":{"icon_name":"trash"}}}}]}}]}}],"button_css_classes":["card-button"],"collapsed":false,"collapsible":false,"header_background":"","header_color":"","header_css_classes":["chat-feed-header"],"hide_header":true}}]}},{"type":"object","name":"panel.models.comm_manager.CommManager","id":"2213606e-0e2b-4201-a553-497d51bae5f3","attributes":{"plot_id":"bfb96f9a-c324-42c0-85c0-bd32c48c95e4","comm_id":"98b43fa56b404e77bfb35cec48985c80","client_comm_id":"259cb898750340fca4e602f8bfe4d603"}}],"defs":[{"type":"model","name":"ReactiveHTML1"},{"type":"model","name":"FlexBox1","properties":[{"name":"align_content","kind":"Any","default":"flex-start"},{"name":"align_items","kind":"Any","default":"flex-start"},{"name":"flex_direction","kind":"Any","default":"row"},{"name":"flex_wrap","kind":"Any","default":"wrap"},{"name":"gap","kind":"Any","default":""},{"name":"justify_content","kind":"Any","default":"flex-start"}]},{"type":"model","name":"FloatPanel1","properties":[{"name":"config","kind":"Any","default":{"type":"map"}},{"name":"contained","kind":"Any","default":true},{"name":"position","kind":"Any","default":"right-top"},{"name":"offsetx","kind":"Any","default":null},{"name":"offsety","kind":"Any","default":null},{"name":"theme","kind":"Any","default":"primary"},{"name":"status","kind":"Any","default":"normalized"}]},{"type":"model","name":"GridStack1","properties":[{"name":"ncols","kind":"Any","default":null},{"name":"nrows","kind":"Any","default":null},{"name":"allow_resize","kind":"Any","default":true},{"name":"allow_drag","kind":"Any","default":true},{"name":"state","kind":"Any","default":[]}]},{"type":"model","name":"drag1","properties":[{"name":"slider_width","kind":"Any","default":5},{"name":"slider_color","kind":"Any","default":"black"},{"name":"start","kind":"Any","default":0},{"name":"end","kind":"Any","default":100},{"name":"value","kind":"Any","default":50}]},{"type":"model","name":"click1","properties":[{"name":"terminal_output","kind":"Any","default":""},{"name":"debug_name","kind":"Any","default":""},{"name":"clears","kind":"Any","default":0}]},{"type":"model","name":"ReactiveESM1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"JSComponent1","properties":[{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"ReactComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"AnyWidgetComponent1","properties":[{"name":"use_shadow_dom","kind":"Any","default":true},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]},{"type":"model","name":"FastWrapper1","properties":[{"name":"object","kind":"Any","default":null},{"name":"style","kind":"Any","default":null}]},{"type":"model","name":"NotificationArea1","properties":[{"name":"js_events","kind":"Any","default":{"type":"map"}},{"name":"max_notifications","kind":"Any","default":5},{"name":"notifications","kind":"Any","default":[]},{"name":"position","kind":"Any","default":"bottom-right"},{"name":"_clear","kind":"Any","default":0},{"name":"types","kind":"Any","default":[{"type":"map","entries":[["type","warning"],["background","#ffc107"],["icon",{"type":"map","entries":[["className","fas fa-exclamation-triangle"],["tagName","i"],["color","white"]]}]]},{"type":"map","entries":[["type","info"],["background","#007bff"],["icon",{"type":"map","entries":[["className","fas fa-info-circle"],["tagName","i"],["color","white"]]}]]}]}]},{"type":"model","name":"Notification","properties":[{"name":"background","kind":"Any","default":null},{"name":"duration","kind":"Any","default":3000},{"name":"icon","kind":"Any","default":null},{"name":"message","kind":"Any","default":""},{"name":"notification_type","kind":"Any","default":null},{"name":"_rendered","kind":"Any","default":false},{"name":"_destroyed","kind":"Any","default":false}]},{"type":"model","name":"TemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"BootstrapTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"TemplateEditor1","properties":[{"name":"layout","kind":"Any","default":[]}]},{"type":"model","name":"MaterialTemplateActions1","properties":[{"name":"open_modal","kind":"Any","default":0},{"name":"close_modal","kind":"Any","default":0}]},{"type":"model","name":"request_value1","properties":[{"name":"fill","kind":"Any","default":"none"},{"name":"_synced","kind":"Any","default":null},{"name":"_request_sync","kind":"Any","default":0}]},{"type":"model","name":"WebLLM1","properties":[{"name":"loaded","kind":"Any","default":false},{"name":"history","kind":"Any","default":3},{"name":"status","kind":"Any","default":{"type":"map","entries":[["text",""],["progress",0]]}},{"name":"load_model","kind":"Any","default":false},{"name":"model","kind":"Any","default":"SmolLM2-360M-Instruct-q4f16_1-MLC"},{"name":"running","kind":"Any","default":false},{"name":"temperature","kind":"Any","default":1},{"name":"esm_constants","kind":"Any","default":{"type":"map"}}]}]}};
-  var render_items = [{"docid":"bf051ba8-f860-4bf7-95e0-7ed5f2fc9ea8","roots":{"bfb96f9a-c324-42c0-85c0-bd32c48c95e4":"dcdf6165-9c1b-485d-9e7f-35a2e1325389"},"root_ids":["bfb96f9a-c324-42c0-85c0-bd32c48c95e4"]}];
-  var docs = Object.values(docs_json)
-  if (!docs) {
-    return
-  }
-  const py_version = docs[0].version.replace('rc', '-rc.').replace('.dev', '-dev.')
-  async function embed_document(root) {
-    var Bokeh = get_bokeh(root)
-    await Bokeh.embed.embed_items_notebook(docs_json, render_items);
-    for (const render_item of render_items) {
-      for (const root_id of render_item.root_ids) {
-	const id_el = document.getElementById(root_id)
-	if (id_el.children.length && id_el.children[0].hasAttribute('data-root-id')) {
-	  const root_el = id_el.children[0]
-	  root_el.id = root_el.id + '-rendered'
-	  for (const child of root_el.children) {
-            // Ensure JupyterLab does not capture keyboard shortcuts
-            // see: https://jupyterlab.readthedocs.io/en/4.1.x/extension/notebook.html#keyboard-interaction-model
-	    child.setAttribute('data-lm-suppress-shortcuts', 'true')
-	  }
-	}
-      }
-    }
-  }
-  function get_bokeh(root) {
-    if (root.Bokeh === undefined) {
-      return null
-    } else if (root.Bokeh.version !== py_version) {
-      if (root.Bokeh.versions === undefined || !root.Bokeh.versions.has(py_version)) {
-	return null
-      }
-      return root.Bokeh.versions.get(py_version);
-    } else if (root.Bokeh.version === py_version) {
-      return root.Bokeh
-    }
-    return null
-  }
-  function is_loaded(root) {
-    var Bokeh = get_bokeh(root)
-    return (Bokeh != null && Bokeh.Panel !== undefined && ( root.MathJax !== undefined) && ( root.MathJax !== undefined))
-  }
-  if (is_loaded(root)) {
-    embed_document(root);
-  } else {
-    var attempts = 0;
-    var timer = setInterval(function(root) {
-      if (is_loaded(root)) {
-        clearInterval(timer);
-        embed_document(root);
-      } else if (document.readyState == "complete") {
-        attempts++;
-        if (attempts > 200) {
-          clearInterval(timer);
-	  var Bokeh = get_bokeh(root)
-	  if (Bokeh == null || Bokeh.Panel == null) {
-            console.warn("Panel: ERROR: Unable to run Panel code because Bokeh or Panel library is missing");
-	  } else {
-	    console.warn("Panel: WARNING: Attempting to render but not all required libraries could be resolved.")
-	    embed_document(root)
-	  }
-        }
-      }
-    }, 25, root)
-  }
-})(window);</script>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b2cd34c4-d6c3-44cd-9717-bca643bf42e9">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3d35a9c8-ac97-48fe-acf9-141bbaab2881">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Using-the-local-files-MCP">Using the local files MCP<a class="anchor-link" href="#Using-the-local-files-MCP">¶</a></h1><ul>
+<li>Is this the way to go?  It requires NodeJS and not contained, so certainly optional.</li>
+</ul>
 </div>
 </div>
 </div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89d2001a-851e-4c4e-b893-889882da40e1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Using-OpenRouter,-a-cloud-LLM-service">Using OpenRouter, a cloud LLM service<a class="anchor-link" href="#Using-OpenRouter,-a-cloud-LLM-service">¶</a></h1><h2 id="What-if-I-need-more-performance-that-my-machine-has?">What if I need more performance that my machine has?<a class="anchor-link" href="#What-if-I-need-more-performance-that-my-machine-has?">¶</a></h2>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2b4fc1ce">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="The-Philosophy-of-Owning-Your-AI">The Philosophy of Owning Your AI<a class="anchor-link" href="#The-Philosophy-of-Owning-Your-AI">¶</a></h1><h3 id="Why-Local-First-AI?">Why Local-First AI?<a class="anchor-link" href="#Why-Local-First-AI?">¶</a></h3><ul>
+<li>Personal AI will make Personal Computers actually personal (again).</li>
+<li>This echoes the 1970s homebrew computer era, when we built our own systems due to a lack of choices.</li>
+<li>Comparing the bespoke nature of Web1 and repersonalization of Web3 to the big tech hegemony of Web2.</li>
+<li>Why open-source software (OSS) and "free as in freedom" are crucial to owning your AI.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f754900e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Understanding-the-Technology">Understanding the Technology<a class="anchor-link" href="#Understanding-the-Technology">¶</a></h1><h3 id="What-is-an-LLM?">What is an LLM?<a class="anchor-link" href="#What-is-an-LLM?">¶</a></h3><ul>
+<li>LLMs are pure functions in software systems which are otherwise pretty much just ordinary applications.</li>
+<li>They solve the incredibly difficult problem of understanding and using human language.</li>
+<li>They are computationally expensive.</li>
+<li>There are wide variations in performance with big factors including size, training data &amp; method, and inference algorithm.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0546c115">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Analogies-for-AI">Analogies for AI<a class="anchor-link" href="#Analogies-for-AI">¶</a></h1><h3 id="How-do-we-think-about-AI?">How do we think about AI?<a class="anchor-link" href="#How-do-we-think-about-AI?">¶</a></h3><ul>
+<li><strong>The Electricity Analogy:</strong>
+Andrew Ng: <a href="https://scet.berkeley.edu/ai-is-the-new-electricity-insights-from-dr-andrew-ng/">"AI is the new electricity"</a></li>
+</ul>
+<p>And we're not in the 1880s yet, we're much much closer to the mid/late 1700s (Lyden Jar) and early 1800s (Voltaic Pile).</p>
+<p><a href="https://library.si.edu/exhibition/fantastic-worlds/body-electric">https://library.si.edu/exhibition/fantastic-worlds/body-electric</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52e40509">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Analogies-for-AI">Analogies for AI<a class="anchor-link" href="#Analogies-for-AI">¶</a></h1><ul>
+<li><p><strong>Car Ownership</strong></p>
+</li>
+<li><p>Owning an AI is like owning a car.</p>
+</li>
+<li><p>The CPU &amp; GPU are engine and turbo.  An agent harness is a chassis. This can go on for dashboard, windows, body, etc.</p>
+</li>
+<li><p><strong>But an AI isn't a car</strong></p>
+</li>
+<li><p>It is, or can be, a riding mechanic and tools for modifying the car, and even a car factory too.
+<a href="https://connorskelly.substack.com/p/building-plane-while-flying-burnout">https://connorskelly.substack.com/p/building-plane-while-flying-burnout</a></p>
+</li>
+</ul>
+<p><img alt="An airplane being built while it flies" src="https://substackcdn.com/image/fetch/$s_!D2QH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fd5d9fdc4-36f2-490f-8a09-5fcad3da17fa_1920x1536.png" width="400"/></p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b566da5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Tools-and-Solutions">Tools and Solutions<a class="anchor-link" href="#Tools-and-Solutions">¶</a></h1><h3 id="Toolset-Overview">Toolset Overview<a class="anchor-link" href="#Toolset-Overview">¶</a></h3><ul>
+<li><strong>Local Applications:</strong> Jan.ai (Mac, Win, Linux), LMStudio.ai (Mac, Win, Linux), and Osaurus.ai (Mac).</li>
+<li><strong>Browser &amp; Server Tools:</strong> WebLLM, Home Assistant, and the Wiki3.ai Web Proxy / IPFS Model Server.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=addc60af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Solving-the-RAG-Problem">Solving the RAG Problem<a class="anchor-link" href="#Solving-the-RAG-Problem">¶</a></h1><h3 id="Adding-Document-Intelligence-to-Jan.ai">Adding Document Intelligence to Jan.ai<a class="anchor-link" href="#Adding-Document-Intelligence-to-Jan.ai">¶</a></h3><ul>
+<li><strong>The Problem:</strong> Jan.ai does not support built-in RAG, meaning you can't drop a folder of PDFs into it to ask questions directly.</li>
+<li><strong>The Solution:</strong> Layer Jan.ai as a clean, privacy-first UI over Haystack and Open WebUI.</li>
+<li>Haystack indexes documents locally, and Open WebUI provides RAG via an OpenAI-compatible API to connect with Jan.ai, keeping all data on your machine.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4c5fbcc3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Hands-On-Application">Hands-On Application<a class="anchor-link" href="#Hands-On-Application">¶</a></h1><h3 id="Setup-&amp;-Configuration">Setup &amp; Configuration<a class="anchor-link" href="#Setup-&amp;-Configuration">¶</a></h3><ul>
+<li>Walkthrough of Jan.ai installation for Mac and Windows.</li>
+<li>Connecting to models using OpenAI-compatible APIs.</li>
+<li>Utilizing free tiers, such as Groq and OpenRouter, and exploring task-based model routing.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd4a51a2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Expanding-Capabilities">Expanding Capabilities<a class="anchor-link" href="#Expanding-Capabilities">¶</a></h1><h3 id="Advanced-Integration">Advanced Integration<a class="anchor-link" href="#Advanced-Integration">¶</a></h3><ul>
+<li>Integrating tools and skills like web search and research.</li>
+<li>Exploring Model Context Protocol (MCP) servers and tools.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f7dd562e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Workshop-Practice-&amp;-Conclusion">Workshop Practice &amp; Conclusion<a class="anchor-link" href="#Workshop-Practice-&amp;-Conclusion">¶</a></h1><h3 id="Practice-&amp;-Problem-Solving">Practice &amp; Problem Solving<a class="anchor-link" href="#Practice-&amp;-Problem-Solving">¶</a></h3><ul>
+<li><strong>Workshop / Fix It:</strong> Bring your AI ownership issues and questions, and we'll work on them with you.</li>
+<li><strong>Member Demos:</strong> Show the group what you did or learned in the class.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3eb7764b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Community-&amp;-Feedback">Community &amp; Feedback<a class="anchor-link" href="#Community-&amp;-Feedback">¶</a></h1><h3 id="What's-Next?">What's Next?<a class="anchor-link" href="#What's-Next?">¶</a></h3><ul>
+<li>Gathering feedback on what use cases to cover next and how to improve the class.</li>
+<li>This class is Open Source—we are seeking people to localize, customize, and deliver the class themselves.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section>
 </div>
 </div>
 </main>
-<div aria-live="polite" class="wiki-sr-only" id="wiki-share-status"></div>
 </body>
-<script src="/static/wiki_behavior.js"></script>
+<script>
+require(
+    {
+      // it makes sense to wait a little bit when you are loading
+      // reveal from a cdn in a slow connection environment
+      waitSeconds: 15
+    },
+    [
+      "https://unpkg.com/reveal.js@4.0.2/dist/reveal.js",
+      "https://unpkg.com/reveal.js@4.0.2/plugin/notes/notes.js"
+    ],
+
+    function(Reveal, RevealNotes){
+        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            transition: "slide",
+            slideNumber: "",
+            plugins: [RevealNotes],
+            width: 960,
+			      height: 700,
+
+        });
+
+        var update = function(event){
+          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
+            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
+          }
+        };
+
+        Reveal.addEventListener('slidechanged', update);
+
+        function setScrollingSlide() {
+            var scroll = false
+            if (scroll === true) {
+              var h = $('.reveal').height() * 0.95;
+              $('section.present').find('section')
+                .filter(function() {
+                  return $(this).height() > h;
+                })
+                .css('height', 'calc(95vh)')
+                .css('overflow-y', 'scroll')
+                .css('margin-top', '20px');
+            }
+        }
+
+        // check and set the scrolling slide every time the slide change
+        Reveal.addEventListener('slidechanged', setScrollingSlide);
+    }
+);
+</script>
 </html>
